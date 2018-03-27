@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#970203</color>
+    <color name="colorPrimaryDark">#970203</color>
+    <color name="colorAccent">#434343</color>
+    <color name="windowBackground">#EEEEEE</color>
+    <color name="colorBG">#EEEEEE</color>
+
+    <color name="textColorPrimary">#000000</color>
+    <color name="navigationBarColor">#970203</color>
+
+    <!-- Fiche movie-->
+    <color name="colorLine2">#808080</color>
+    <color name="colorLine3">#000000</color>
+    <!--#434343-->
+    <color name="colorTitle">#000000</color>
+
+    <!--General-->
+    <color name="color_overview">#000000</color>
+
+    <!--Tabs-->
+    <color name="color_tabs_indicator">#970203</color>
+    <color name="color_tabs_text">#000000</color>
+    <color name="color_tabs_text_selected">#970203</color>
+</resources>

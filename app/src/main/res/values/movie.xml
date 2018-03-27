@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="movie_title">Black Panther</string>
+    <string name="movie_year">2018</string>
+    <string name="movie_tags">Action, Adventure, Science Fiction </string>
+    <string name="movie_duration">134</string>
+    <string name="movie_release_date">February 15, 2018</string>
+
+    <string name="movie_overview">
+        After the death of his father, T\'Challa now prepares to be crowned the new king of Wakanda.
+        \nHowever, T\'Challa finds that his position is now being challenged by the appearance of an old enemy named Killmonger,
+        which puts both Wakanda and the world at risk.
+        \nTeaming with the Dora Milaje, his little sister Shuri, and his CIA ally Everett K. Ross,
+        T\'Challa must harness the powers of the Black Panther to fight his enemy and save Wakanda from destruction.
+    </string>
+    <!--<string name="movie_poster">@drawable/movie_poster</string>-->
+
+    <!--TABS-->
+    <string name="movie_tab1">Overview</string>
+    <string name="movie_tab2">Crew</string>
+    <string name="movie_tab3">Cinemas</string>
+    <string name="movie_tab4">Comments</string>
+    <string name="movie_tab5">Related</string>
+</resources>

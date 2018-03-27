@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Movies-->
+    <dimen name="dim_infos_height">120dp</dimen>
+    <dimen name="dim_infos_title">26sp</dimen>
+    <dimen name="dim_infos_line2">14sp</dimen>
+    <dimen name="dim_infos_line3">14sp</dimen>
+
+    <dimen name="dim_movie_tabs_height">222dp</dimen>
+
+    <dimen name="dim_trailer_height">170dp</dimen>
+
+    <dimen name="dim_overview_text">15sp</dimen>
+
+    <!--Tabs-->
+    <dimen name="tab_text_size">14sp</dimen>
+
+    <!--Material Design-->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="tab_max_width">264dp</dimen>
+    <dimen name="tab_padding_bottom">16dp</dimen>
+    <dimen name="tab_label">14sp</dimen>
+    <dimen name="custom_tab_layout_height">72dp</dimen>
+
+</resources>

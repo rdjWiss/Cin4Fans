@@ -1,0 +1,18 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="show"
+            type="prj.mob1.prjmob1.show.TVShow"
+            />
+    </data>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{show.overview}"
+            android:textColor="@color/color_overview"
+            android:textSize="@dimen/dim_overview_text"
+            android:layout_marginTop="50dp" />
+</layout>

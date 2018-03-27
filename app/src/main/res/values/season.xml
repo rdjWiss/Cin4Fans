@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="season_num">Season 8</string>
+    <string name="season_title_show">The Walking Dead</string>
+    <string name="season_episodes">16</string>
+    <string name="season_date_begin">October 22, 2017</string>
+    <string name="season_date_end">April 15, 2018</string>
+
+    <string name="season_overview">
+        Rick, Maggie, and Ezekiel rally their communities to flood the Sanctuary with walkers, trapping Negan.
+        During the war, key Savior members grow suspicious of each other while the Hilltop and
+        Kingdom are overwhelmed by the Saviors. Alexandria is attacked after Negan is freed.
+        \nAs Carl retreats the residents to the sewers,
+        they are horrified to discover Carl has been bitten.
+
+    </string>
+    <!--<string name="movie_poster">@drawable/movie_poster</string>-->
+
+    <!--TABS-->
+    <string name="season_tab1">Overview</string>
+    <string name="season_tab2">Crew</string>
+    <string name="season_tab3">Episodes</string>
+    <string name="season_tab4">Comments</string>
+</resources>

@@ -1,0 +1,21 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="movie"
+            type="prj.mob1.prjmob1.movie.MovieClass"
+            />
+    </data>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{movie.overview}"
+        android:textColor="@color/color_overview"
+        android:textSize="@dimen/dim_overview_text"
+        android:layout_marginTop="50dp" />
+
+    <!--android:textStyle="bold"
+        android:layout_centerInParent="true"-->
+
+</layout>

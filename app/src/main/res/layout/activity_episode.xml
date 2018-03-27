@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="prj.mob1.prjmob1.episode.Episode"
+    android:background="@color/colorBG">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/episode_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_trailer_height"
+            app:srcCompat="@drawable/episode_image"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            />
+
+        <LinearLayout
+            android:id="@+id/episode_infos"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_infos_height"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/episode_tabs_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/Notitle">
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/episode_tab_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabMode="fixed"
+                        app:tabGravity="fill"
+                        android:elevation="10dp"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        app:tabIndicatorColor="@color/color_tabs_indicator"
+                        app:tabIndicatorHeight="4dp"
+                        app:tabSelectedTextColor="@color/color_tabs_text_selected"
+                        app:tabTextColor="@color/color_tabs_text"
+                        app:tabTextAppearance="@style/TabsStyle"
+                        app:tabBackground="@color/colorBG"/>
+                </android.support.design.widget.AppBarLayout>
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/episode_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:layout_margin="10dp"/>
+            </android.support.design.widget.CoordinatorLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

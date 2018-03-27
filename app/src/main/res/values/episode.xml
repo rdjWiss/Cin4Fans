@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="episode_num">Episode 1</string>
+    <string name="episode_title_show">The Walking Dead</string>
+    <string name="episode_num_season">Season 8</string>
+    <string name="episode_date">October 22, 2017</string>
+    <string name="episode_channel">AMC</string>
+
+    <string name="episode_overview">
+        Rick, Maggie, and Ezekiel rally their communities together to take down Negan.
+        Gregory attempts to have the Hilltop residents side with Negan, but they all firmly stand behind Maggie.
+        The group attacks the Sanctuary, taking down its fences and flooding the compound with walkers.
+        With the Sanctuary defaced, everyone leaves except Gabriel, who reluctantly stays to save Gregory,
+        but is left behind when Gregory abandons him. Surrounded by walkers,
+        Gabriel hides in a trailer, where he is trapped inside with Negan.
+
+    </string>
+    <!--<string name="movie_poster">@drawable/movie_poster</string>-->
+
+    <!--TABS-->
+    <string name="episode_tab1">Overview</string>
+    <string name="episode_tab2">Comments</string>
+</resources>

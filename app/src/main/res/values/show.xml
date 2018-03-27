@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="show_title">The Walking Dead</string>
+    <string name="show_episodes">111</string>
+    <string name="show_tags">Drama, Horror, Thriller</string>
+    <string name="show_duration">44</string>
+
+    <string name="show_overview">
+        The Walking Dead takes place after the onset of a worldwide zombie apocalypse.
+        The zombies, colloquially referred to as "walkers", shamble towards living humans and other creatures to eat them;
+        they are attracted to noise, such as gunshots, and to different scents, e.g. humans.
+        Humans that they bite or scratch become infected and slowly turn into walkers as well.
+        It is revealed early in the series that all living humans carry this pathogen,
+        so that if they die from any other cause, they will also turn into walkers.
+        The only way to permanently kill a walker is to damage its brain or otherwise fully destroy the body,
+        such as by cremating it.
+        The series centers on sheriff\'s deputy Rick Grimes, who wakes up from a coma to discover this apocalypse.
+        He becomes the leader of a group of survivors from the Atlanta, Georgia region
+        as they attempt to sustain themselves and protect themselves not only against attacks by walkers
+        but by other groups of survivors willing to assure their longevity by any means necessary.
+        The series centers on sheriff\'s deputy Rick Grimes, who wakes up from a coma to discover this apocalypse.
+        He becomes the leader of a group of survivors from the Atlanta, Georgia region
+        as they attempt to sustain themselves and protect themselves not only against attacks by walkers
+        but by other groups of survivors willing to assure their longevity by any means necessary.
+
+    </string>
+    <!--<string name="movie_poster">@drawable/movie_poster</string>-->
+
+    <!--TABS-->
+    <string name="show_tab1">Overview</string>
+    <string name="show_tab2">Crew</string>
+    <string name="show_tab3">Seasons</string>
+    <string name="show_tab4">Comments</string>
+    <string name="show_tab5">Related</string>
+</resources>
