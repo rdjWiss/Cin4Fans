@@ -1,13 +1,18 @@
 package prj.mob1.prjmob1.show
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_show.*
+import prj.mob1.prjmob1.CrewFragment
 import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.season.Season
+import prj.mob1.prjmob1.season.SeasonActivity
 
-class ShowActivity : AppCompatActivity() {
+class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ShowSeasonsFragment.OnSeasonSelected {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,5 +56,28 @@ class ShowActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    override fun onCrewSelected(name: String) {
+        Toast.makeText(this, "Click detected on item $name",
+                Toast.LENGTH_LONG).show()
+    }
+
+    override fun onSeasonSelected(season: Season) {
+        /*Toast.makeText(this, "Click detected on item ${season.num_season}",
+                Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Click detected on item ${season.nbr_episodes}",
+                Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Click detected on item ${season.overview}",
+                Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Click detected on item ${season.title_show}",
+                Toast.LENGTH_LONG).show()*/
+
+        val intent = Intent(this, SeasonActivity::class.java)
+        var bundle = Bundle()
+        bundle.putParcelable("season",season)
+        intent.putExtra("bundle",bundle)
+        startActivity(intent)
+
     }
 }

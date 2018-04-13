@@ -1,5 +1,6 @@
 package prj.mob1.prjmob1.show
 
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
@@ -17,7 +18,13 @@ class ShowTabPagerAdapter (fm: FragmentManager, private var tabCount: Int) :
 
         when (position) {
             0 -> return ShowOverviewFragment()
-            1 -> return CrewFragment()
+            1 -> {
+                var bundle = Bundle()
+                bundle.putInt("TypeCrew", 1)
+                var frag = CrewFragment()
+                frag.arguments = bundle
+                return frag
+            }
             2 -> return ShowSeasonsFragment()
             3 -> return CommentsFragment()
             4 -> return MovieRelatedFragment()
