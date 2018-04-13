@@ -13,9 +13,26 @@ import prj.mob1.prjmob1.databinding.FragmentEpisodeOverviewBinding
 
 class EpisodeOverviewFragment : Fragment() {
 
+    private var overview: String? = null
+
+    companion object {
+
+        private val ARG_Overview = "overview"
+
+        fun newInstance(overview: String): EpisodeOverviewFragment {
+            val fragment = EpisodeOverviewFragment()
+            val args = Bundle()
+            args.putString(ARG_Overview, overview)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        if (arguments != null) {
+            overview = arguments.getString(ARG_Overview)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -27,8 +44,10 @@ class EpisodeOverviewFragment : Fragment() {
         var myView : View  = binding.root
 
 
+        var overview = ""
+                overview = arguments.getString(ARG_Overview)
         // setting values to model
-        val overview = getString(R.string.season_overview)
+        //val overview = getString(R.string.episode_overview)
 
         var episode = Episode()
         episode.overview = overview
