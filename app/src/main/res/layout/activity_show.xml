@@ -15,35 +15,21 @@
     android:background="@color/colorBG"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    android:orientation="vertical"
-    >
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:isScrollContainer="true">
+        android:isScrollContainer="true"
+        >
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_height="match_parent"
         android:orientation="vertical"
        >
-
-<!-- app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"-->
-
-        <!--android:layout_marginBottom="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="0dp"-->
-        <!-- <VideoView
-             android:id="@+id/movie_trailer"
-             android:layout_width="match_parent"
-             android:layout_height="@dimen/dim_movie_trailer_height" />-->
+        <!--TODO: use data binding-->
         <ImageView
             android:id="@+id/show_trailer"
             android:layout_width="match_parent"
@@ -66,7 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/colorPrimary"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            >
 
             <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -85,7 +72,7 @@
                         android:layout_height="wrap_content"
                         app:tabMode="scrollable"
                         app:tabGravity="fill"
-                        android:elevation="10dp"
+                        android:elevation="5dp"
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         app:tabIndicatorColor="@color/color_tabs_indicator"
                         app:tabIndicatorHeight="4dp"
@@ -100,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="5dp"/>
             </android.support.design.widget.CoordinatorLayout>
         </LinearLayout>
 

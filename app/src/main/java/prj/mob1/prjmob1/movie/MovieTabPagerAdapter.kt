@@ -1,5 +1,6 @@
 package prj.mob1.prjmob1.movie
 
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
@@ -16,7 +17,13 @@ class MovieTabPagerAdapter(fm: FragmentManager, private var tabCount: Int) :
 
         when (position) {
             0 -> return MovieOverviewFragment()
-            1 -> return CrewFragment()
+            1 -> {
+                var bundle = Bundle()
+                bundle.putInt("TypeCrew", 0)
+                var frag = CrewFragment()
+                frag.arguments = bundle
+                return frag
+            }
             2 -> return MovieCinemaFragment()
             3 -> return CommentsFragment()
             4 -> return MovieRelatedFragment()

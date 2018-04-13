@@ -34,6 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="6"
+            android:layout_marginLeft="10dp"
             android:orientation="vertical">
             <!--
             -->
@@ -51,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="7"
                     android:fontFamily="Roboto"
-                    android:text="@{episode.num_episode}"
+                    android:text="@{episode.episode_title}"
                     android:textColor="@color/colorTitle"
                     android:textSize="@dimen/dim_infos_title"
                     android:textStyle="bold" />
@@ -81,7 +82,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:fontFamily="Roboto"
-                android:text="@{episode.title_show + ` | ` + episode.num_season}"
+                android:text="@{episode.num_episode + ` | ` + episode.title_show + ` | ` + episode.num_season}"
                 android:textColor="@color/colorLine2"
                 android:textSize="@dimen/dim_infos_line2" />
 

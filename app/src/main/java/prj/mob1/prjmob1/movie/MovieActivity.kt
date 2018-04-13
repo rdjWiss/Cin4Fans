@@ -2,16 +2,19 @@ package prj.mob1.prjmob1.movie
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.Window
 import prj.mob1.prjmob1.R
 import android.support.v4.view.ViewPager
 import android.support.design.widget.TabLayout
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.Toolbar
+import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_movie.*
+import prj.mob1.prjmob1.CrewFragment
 
-class MovieActivity : AppCompatActivity() {
+class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,5 +59,10 @@ class MovieActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    override fun onCrewSelected(name: String) {
+        Toast.makeText(this, "Click detected on item $name",
+                Toast.LENGTH_LONG).show()
     }
 }

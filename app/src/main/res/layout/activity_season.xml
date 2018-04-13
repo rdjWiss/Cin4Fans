@@ -18,6 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--TODO: use data binding-->
         <ImageView
             android:id="@+id/season_trailer"
             android:layout_width="match_parent"
@@ -74,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="5dp"/>
             </android.support.design.widget.CoordinatorLayout>
         </LinearLayout>
 
