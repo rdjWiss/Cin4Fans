@@ -1,0 +1,16 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/all_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_overview"
+        android:textSize="@dimen/dim_overview_text"
+        android:layout_marginTop="50dp"
+        android:padding="10dp"/>
+
+    <!--android:textStyle="bold"
+        android:layout_centerInParent="true"-->
+
+</layout>
