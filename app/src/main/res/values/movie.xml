@@ -15,6 +15,9 @@
     </string>
     <!--<string name="movie_poster">@drawable/movie_poster</string>-->
 
+    <string name="movie_crew_name">Chadwick Boseman</string>
+    <string name="movie_crew_character">T\'Challa / Black Panther</string>
+
     <!--TABS-->
     <string name="movie_tab1">Overview</string>
     <string name="movie_tab2">Crew</string>

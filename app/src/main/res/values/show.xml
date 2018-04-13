@@ -26,6 +26,10 @@
     </string>
     <!--<string name="movie_poster">@drawable/movie_poster</string>-->
 
+    <string name="show_crew_name">Andrew Lincoln</string>
+    <string name="show_crew_character">Rick Grimes</string>
+
+    <string name="show_season1_ep">6</string>
     <!--TABS-->
     <string name="show_tab1">Overview</string>
     <string name="show_tab2">Crew</string>

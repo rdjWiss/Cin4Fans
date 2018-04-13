@@ -22,4 +22,8 @@
     <color name="color_tabs_indicator">#970203</color>
     <color name="color_tabs_text">#000000</color>
     <color name="color_tabs_text_selected">#970203</color>
+
+    <!-- Tabs Crew List Card-->
+    <color name="color_bg_card">#EEEEEE</color>
+    <color name="color_crew_text">#000000</color>
 </resources>

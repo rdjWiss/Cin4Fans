@@ -2,6 +2,130 @@
 <resources>
     <string name="season_num">Season 8</string>
     <string name="season_title_show">The Walking Dead</string>
+
+    <string-array name="seasons_nums">
+        <item>Season 1</item>
+        <item>Season 2</item>
+        <item>Season 3</item>
+        <item>Season 4</item>
+        <item>Season 5</item>
+        <item>Season 6</item>
+        <item>Season 7</item>
+        <item>Season 8</item>
+    </string-array>
+
+    <string-array name="seasons_eps">
+        <item>6</item>
+        <item>13</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+    </string-array>
+
+    <string-array name="seasons_date_begin">
+        <item>October 31, 2010</item>
+        <item>October 16, 2011</item>
+        <item>October 14, 2012</item>
+        <item>October 13, 2013</item>
+        <item>October 12, 2014</item>
+        <item>October 11, 2015</item>
+        <item>October 23, 2016</item>
+        <item>October 22, 2017</item>
+    </string-array>
+
+    <string-array name="seasons_date_end">
+        <item>December 5, 2010</item>
+        <item>March 18, 2012</item>
+        <item>March 31, 2013</item>
+        <item>March 30, 2014</item>
+        <item>March 29, 2015</item>
+        <item>April 3, 2016</item>
+        <item>April 2, 2017</item>
+        <item>April 15, 2018</item>
+    </string-array>
+
+    <string-array name="seasons_overviews">
+       <item>
+        Sheriff\'s deputy Rick Grimes wakes from a coma discovering a world overrun by zombies.
+           After befriending Morgan Jones, Rick travels alone to Atlanta to find his wife Lori, his son, Carl,
+           and his police partner, Shane Walsh, encountering other survivors.
+           The group travels to the Centers for Disease Control (CDC),
+           but find from the sole remaining CDC member that no cure exists for the epidemic.
+       </item>
+        <item>
+        Traveling from Atlanta, Rick\'s group takes shelter at Hershel Greene\'s farm while they search
+            for Carol\'s missing daughter, Sophia.
+            Tensions between Rick\'s group and Hershel\'s family worsen after it is discovered
+            that Hershel has kept friends and family turned into zombies, including Sophia,
+            in his barn. Shane and Rick\'s friendship becomes increasingly unhinged
+            when Lori reveals that she is pregnant, and Rick is forced to kill Shane in self-defense.
+            Carl then shoots Shane in the head after he reanimates.
+            The noise draws zombies, forcing Rick\'s group and Hershel\'s surviving family to evacuate the farm.
+        </item>
+        <item>
+        Eight months after fleeing Hershel\'s farm,
+            Rick\'s group finds a prison, which they clear of zombies to make their new home.
+            Lori dies in childbirth, and Rick becomes withdrawn.
+            Meanwhile, Andrea is rescued by Michonne and the two discover Woodbury,
+            a fortified town led by a man known as the Governor.
+            He learns of Rick\'s group at the prison, leading to conflict between them.
+            Rick\'s group eventually raids and destroys Woodbury,
+            but the Governor has Andrea ultimately killed and escapes.
+            Woodbury\'s citizens live with Rick\’s group at the prison.
+        </item>
+        <item>
+        Several months after the Governor\'s attack,
+            a deadly flu kills many of the population at the prison.
+            The Governor finds his former right-hand men and kills them,
+            taking over their group and destroys the prison.
+            Rick\'s group are forced to separate and flee, but not before Hershel and the Governor are killed.
+            The survivors divide, face their own trials and meet new faces before
+            finding signs pointing to a safe haven called Terminus.
+            One by one, they reunite at Terminus, but all the group are captured for some unknown purpose.
+        </item>
+        <item>
+        Rick discovers the residents of Terminus engage in cannibalism,
+            but the group manage to destroy Terminus and reunite.
+            Some are injured and kidnapped to Grady, a hospital run by corrupt cops and doctors.
+            When the remaining survivors regroup, they are approached by Aaron,
+            inviting them to join a fortified community called Alexandria.
+            They are initially welcomed, but Rick\'s group realize the residents
+            have not faced the zombie threat directly. Morgan, who has been searching for Rick,
+            arrives and is shocked to see Rick killing an Alexandrian, who has been abusing his wife, in anger.
+        </item>
+        <item>
+        The residents of Alexandria put more trust in Rick\'s group to protect the town better.
+            A group known as the Wolves use a zombie horde to attack Alexandria,
+            and many lives are lost before the living regain control.
+            While recovering, they learn of a community called the Hilltop,
+            who offer to help trade supplies if they can end the threat of the extortionist
+            Saviors led by a man named Negan. Although Rick\'s group decimate one Savior outpost,
+            they are later caught by Negan, and forced to swear loyalty to him.
+        </item>
+        <item>
+        Negan murders Glenn and Abraham to coerce Rick\'s loyalty.
+            Rick initially submits, but Michonne persuades him to fight back,
+            and recruits a community called the Scavengers for help.
+            Meanwhile, Rosita and Eugene make a bullet to kill Negan.
+            When this fails, Negan forcibly recruits Eugene as a Savior.
+            Separately, Carol and Morgan befriend Ezekiel of the Kingdom, another community,
+            while Maggie and Rosita rally the Hilltop. Negan,
+            the Saviors and the turncoat Scavengers attack Alexandria,
+            but it is repelled by Sasha\'s sacrifice and the aid of Kingdom and Hilltop soldiers.
+        </item>
+        <item>
+        Rick, Maggie, and Ezekiel rally their communities into war against Negan and the Saviors.
+             Losses are heavy on both sides: many of the Kingdom soldiers are killed,
+            Alexandria falls to a Savior attack, and Carl is bitten by a walker;
+            before euthanizing himself, Carl convinces Rick to seek a peaceful end to the war
+            and restart society anew. Negan is forced to weed out disloyalty in his ranks,
+            and asserts the only way to end the war is to wipe out all of Rick\'s allies.
+        </item>
+    </string-array>
+
     <string name="season_episodes">16</string>
     <string name="season_date_begin">October 22, 2017</string>
     <string name="season_date_end">April 15, 2018</string>

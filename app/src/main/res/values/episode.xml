@@ -1,5 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="episode_titles">
+        <item>Mercy</item>
+        <item>The Damned</item>
+        <item>Monsters</item>
+        <item>Some Guy</item>
+        <item>The Big Scary U</item>
+    </string-array>
+
+    <string-array name="episode_nums">
+        <item>Episode #1</item>
+        <item>Episode #2</item>
+        <item>Episode #3</item>
+        <item>Episode #4</item>
+        <item>Episode #5</item>
+    </string-array>
+
+    <string-array name="episode_dates">
+        <item>October 22, 2017</item>
+        <item>October 29, 2017</item>
+        <item>November 5, 2017</item>
+        <item>November 12, 2017-</item>
+        <item>November 19, 2017</item>
+    </string-array>
+
+    <string-array name="episode_overviews">
+        <item>Rick, Maggie, and Ezekiel rally their communities together to take down Negan.
+        Gregory attempts to have the Hilltop residents side with Negan, but they all firmly stand behind Maggie.
+        The group attacks the Sanctuary, taking down its fences and flooding the compound with walkers.
+        With the Sanctuary defaced, everyone leaves except Gabriel, who reluctantly stays to save Gregory,
+        but is left behind when Gregory abandons him. Surrounded by walkers,
+        Gabriel hides in a trailer, where he is trapped inside with Negan.</item>
+        <item>Rick\'s forces split into separate parties to attack several of the Saviors\' outposts,
+            during which many members of the group are killed;
+            Eric is critically injured and rushed away by Aaron.
+            Jesus stops Tara and Morgan from executing a group of surrendered Saviors.
+            While clearing an outpost with Daryl, Rick is confronted and held at gunpoint by Morales,
+            a survivor he met in the initial Atlanta camp, who is now with the Saviors.</item>
+        <item>Daryl finds Morales threatening Rick and kills him;
+            the duo then pursue a group of Saviors who are transporting weapons to another outpost.
+            Gregory returns to Hilltop, and after a heated argument,
+            Maggie ultimately allows him back in the community.
+            Eric dies from his injuries, leaving Aaron distraught.
+            Despite Tara and Morgan\'s objections, Jesus leads the group of surrendered Saviors to Hilltop.
+            Ezekiel\'s group attacks another Savior compound, during which several
+            Kingdommers are shot while protecting Ezekiel.</item>
+        <item>Ezekiel\'s group is overwhelmed by the Saviors,
+            who kill all of them except for Ezekiel himself and Jerry. Carol clears the inside of the compound,
+            killing all but two Saviors, who almost escape but are eventually caught by Rick and Daryl.
+            En route to the Kingdom, Ezekiel, Jerry, and Carol are surrounded by walkers,
+            but Shiva sacrifices herself to save them. The trio returns to the Kingdom,
+            where Ezekiel\'s confidence in himself as a leader has diminished.</item>
+        <item>After confessing their sins to each other,
+            Gabriel and Negan manage to escape from the trailer.
+            Simon and the other lieutenants grow suspicious of each other,
+            knowing that Rick\’s forces must have inside information.
+            The workers in the Sanctuary become increasingly frustrated with their living conditions,
+            and a riot nearly ensues,
+            until Negan returns and restores order.
+            Gabriel is locked in a cell, where Eugene discovers him sick and suffering. Meanwhile,
+            Rick and Daryl argue over how to take out the Saviors, leading Daryl to abandon Rick.</item>
+    </string-array>
+
+    <string name="episode_title">Mercy</string>
     <string name="episode_num">Episode 1</string>
     <string name="episode_title_show">The Walking Dead</string>
     <string name="episode_num_season">Season 8</string>
