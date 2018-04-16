@@ -76,9 +76,5 @@
                     android:layout_margin="5dp"/>
             </android.support.design.widget.CoordinatorLayout>
         </LinearLayout>
-
-
-
     </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>

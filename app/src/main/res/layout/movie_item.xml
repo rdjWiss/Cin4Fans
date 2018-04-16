@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/card_view"
+
+    card_view:cardElevation="3dp"
+    card_view:contentPadding="4dp" >
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/poster_mov"
+            android:src="@drawable/poster_mov" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/margin_left_movie_item"
+        android:layout_marginTop="@dimen/margin_top_movie_item"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie_year"
+            android:text="@string/movie_year"
+            android:textColor="@color/colorPrimaryDark"
+            android:fontFamily="@string/font_roboto_medium"
+            android:textSize="@dimen/size_text"
+            android:textStyle="bold"
+            />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie_title"
+            android:text="@string/movie_title"
+
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@string/font_roboto_medium"
+            android:textSize="@dimen/size_movie_title"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie_tag"
+            android:text="@string/movie_tags"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@string/font_roboto_medium"
+            android:textSize="@dimen/size_text"
+            android:textStyle="normal"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/star_margin_top"
+            >
+            <ImageView
+                android:layout_width="@dimen/star_dim"
+                android:layout_height="@dimen/star_dim"
+                android:src="@drawable/star"
+                />
+            <ImageView
+                android:layout_width="@dimen/star_dim"
+                android:layout_height="@dimen/star_dim"
+                android:src="@drawable/star"
+                />
+            <ImageView
+                android:layout_width="@dimen/star_dim"
+                android:layout_height="@dimen/star_dim"
+                android:src="@drawable/star"
+                />
+            <ImageView
+                android:layout_width="@dimen/star_dim"
+                android:layout_height="@dimen/star_dim"
+                android:src="@drawable/star"
+                />
+            <ImageView
+                android:layout_width="@dimen/star_dim"
+                android:layout_height="@dimen/star_dim"
+                android:src="@drawable/star_arg"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+</android.support.v7.widget.CardView>

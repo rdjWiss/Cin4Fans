@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="show_year">2018</string>
     <string name="show_title">The Walking Dead</string>
     <string name="show_episodes">111</string>
     <string name="show_tags">Drama, Horror, Thriller</string>

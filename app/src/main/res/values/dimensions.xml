@@ -23,7 +23,44 @@
     <dimen name="tab_label">14sp</dimen>
     <dimen name="custom_tab_layout_height">72dp</dimen>
 
+    <!--For the drawer using Material Design-->
+    <dimen name="screen_left_margin">16dp</dimen>
+    <dimen name="text_left_margin">44dp</dimen>
+    <dimen name="subtitle_and_list_item">48dp</dimen>
+    <dimen name="space_between_content_area">8dp</dimen>
+
+    <!--for username-->
+    <dimen name="size_text">14sp</dimen>
+
+
+    <!-- for the header of drawer-->
+    <dimen name="height_header">150dp</dimen>
+
+    <!-- for the image of the header-->
+    <dimen name="size_accout">100dp</dimen>
+
+    <!--Line -->
+    <dimen name="line_height">2dp</dimen>
+    <dimen name="line_margin_bottom">16dp</dimen>
+
+
+    <!-- For tablet-->
+    <dimen name="screen_left_margin_tab">24dp</dimen>
+    <dimen name="text_left_margin_tab">52dp</dimen>
+
+    <!--Movies Item-->
+    <dimen name="margin_left_movie_item">10dp</dimen>
+    <dimen name="margin_top_movie_item">5dp</dimen>
+    <dimen name="size_movie_title">18sp</dimen>
+    <!-- For the image poster-->
+    <dimen name="poster_movie_height">110dp</dimen>
+    <dimen name="star_dim">15dp</dimen>
+    <dimen name="star_margin_top">10dp</dimen>
+
+
     <dimen name="dim_crew_item_name">20sp</dimen>
     <dimen name="dim_crew_item_name_character">16sp</dimen>
+
+
 
 </resources>

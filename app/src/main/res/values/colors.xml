@@ -22,6 +22,14 @@
     <color name="color_tabs_indicator">#970203</color>
     <color name="color_tabs_text">#000000</color>
     <color name="color_tabs_text_selected">#970203</color>
+    <!--Test color -->
+    <color name="text_color_white">#ffffff</color>
+
+    <!--Drawer line divider-->
+
+    <color name="color_line_devider">#b8c3bb</color>
+    <color name="color_item_drawer">#E0E0E0</color>
+    <color name="color_item_pressed">#BDBDBD</color>
 
     <!-- Tabs Crew List Card-->
     <color name="color_bg_card">#EEEEEE</color>

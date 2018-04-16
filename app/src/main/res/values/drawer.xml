@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drawer_names">
+        <item>Home</item>
+        <item>Movies</item>
+    </string-array>
+
+    <string-array name="drawer_images" >
+        <item>@drawable/home</item>
+        <item>@drawable/home</item>
+    </string-array>
+</resources>

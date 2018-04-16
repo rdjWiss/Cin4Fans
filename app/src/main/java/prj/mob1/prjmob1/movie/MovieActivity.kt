@@ -57,7 +57,6 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected {
             override fun onTabReselected(tab: TabLayout.Tab) {
 
             }
-
         })
     }
 

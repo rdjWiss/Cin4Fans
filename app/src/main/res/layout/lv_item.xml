@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:id="@+id/item_drawer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="@drawable/item_drawer_pressed"
+
+        >
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/subtitle_and_list_item"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/screen_left_margin"
+
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivicon"
+                android:src="@drawable/home"
+                />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/text_left_margin"
+                android:layout_marginTop="@dimen/space_between_content_area"
+                android:text="Home"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="@string/font_roboto_medium"
+                android:textSize="@dimen/size_text"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/line_height"
+        android:layout_marginBottom="@dimen/line_margin_bottom"
+        android:background="@color/color_line_devider"
+        android:visibility="gone"
+        />
+</LinearLayout>
+
+

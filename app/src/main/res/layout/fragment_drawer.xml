@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBG">
+    <LinearLayout
+        android:id="@+id/nav_header_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_header"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryDark">
+
+        <ImageView
+            android:layout_marginTop="@dimen/space_between_content_area"
+            android:layout_width="@dimen/size_accout"
+            android:layout_height="@dimen/size_accout"
+            android:src="@drawable/user_accout"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/screen_left_margin"
+            android:textSize="@dimen/size_text"
+            android:textColor="@color/text_color_white"
+            android:fontFamily="@string/font_roboto_medium"
+            android:textStyle="bold"
+            android:text="Username"
+            android:layout_marginBottom="@dimen/space_between_content_area"
+            />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_between_content_area"
+        android:scrollbars="vertical"
+        />
+</LinearLayout>
