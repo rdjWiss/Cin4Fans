@@ -12,8 +12,9 @@ import prj.mob1.prjmob1.R
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import prj.mob1.prjmob1.HomeActivity
-import prj.mob1.prjmob1.movie.MovieActivity
+import prj.mob1.prjmob1.AllListMovies.Activity_all_list_movie
+import prj.mob1.prjmob1.AllListShow.AllListShowActivity
+import prj.mob1.prjmob1.Home.HomeActivity
 
 
 import java.util.*
@@ -85,21 +86,24 @@ class DrawerFragment : Fragment() {
                     startActivity (intent)}
            }
            1->
-             {val intent = Intent (context, MovieActivity:: class.java)
+             {val intent = Intent (context, Activity_all_list_movie:: class.java)
                 startActivity (intent)}
+           2->
+           {val intent = Intent (context, AllListShowActivity:: class.java)
+               startActivity (intent)}
             else -> {
             }
         }
     }
 
-    fun removeAllFragment(replaceFragment: Fragment, tag: String) {
+   /* fun removeAllFragment(replaceFragment: Fragment, tag: String) {
         val manager = activity.supportFragmentManager
         val ft = manager.beginTransaction()
         manager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
         ft.replace(R.id.container_body, replaceFragment)
         ft.commitAllowingStateLoss()
-    }
+    }*/
 
     fun setUpDrawer(fragmentId: Int, drawerLayout: DrawerLayout, toolbar: Toolbar) {
         containerView = activity.findViewById(fragmentId)

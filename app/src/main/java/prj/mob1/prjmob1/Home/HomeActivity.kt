@@ -1,14 +1,15 @@
-package prj.mob1.prjmob1
+package prj.mob1.prjmob1.Home
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.movie_tab.*
+import prj.mob1.prjmob1.AllListShow.AllListShowFragment
 import prj.mob1.prjmob1.Drawer.DrawerFragment
-import prj.mob1.prjmob1.Liste_movies.HomeTabPagerAdapter
+import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.Util.addFragment
 
 
 class HomeActivity : AppCompatActivity() {
@@ -23,15 +24,18 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         toolbar = findViewById<View>(R.id.toolbar) as Toolbar?
-       setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         // To get the instance of the fragment
         drawerFragment = supportFragmentManager.findFragmentById(R.id.fragment_navigation_drawer) as DrawerFragment
         drawerFragment!!.setUpDrawer(R.id.fragment_navigation_drawer, findViewById<View>(R.id.drawer_layout) as DrawerLayout, toolbar!!)
 
-       // supportFragmentManager.beginTransaction().add(R.id.container_body, ListMoviesFragment()).commit()
+
         // The tab
         configureTabLayout()
+
+
+
     }
 
 

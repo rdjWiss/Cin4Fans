@@ -18,10 +18,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="200dp"
-                android:layout_height="100dp"
-                android:id="@+id/poster_mov"
-                android:src="@drawable/show_poster" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/poster_show"
+                android:src="@drawable/show_poster1" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/movie_year"
+                android:id="@+id/show_year"
                 android:text="@string/show_year"
                 android:textColor="@color/colorPrimaryDark"
                 android:fontFamily="@string/font_roboto_medium"
