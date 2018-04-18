@@ -1,38 +1,32 @@
-package prj.mob1.prjmob1.AllListShow
+package prj.mob1.prjmob1.MyShows
 
-import android.app.Fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import prj.mob1.prjmob1.BaseFragment.BaseFragment
-import prj.mob1.prjmob1.Liste_shows.ListShowAdapter
-import prj.mob1.prjmob1.Liste_shows.ListShowFragment
-import prj.mob1.prjmob1.Liste_shows.Show_Item
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.show.ShowActivity
 
 /**
- * Created by LE on 17/04/2018.
+ * Created by LE on 18/04/2018.
  */
-class AllListShowFragment: BaseFragment()
+class MyShowFragment: BaseFragment()
 {
 
     private var views: View? = null
 
-    private var list_show_adapter: ListShowAdapter? = null
+    private var list_show_adapter: MyShowAdapter? = null
     private var recyclerView: RecyclerView? = null
-    private lateinit var item: Show_Item
-    private lateinit var show_items:Array<Show_Item>
+    private lateinit var item: MyShowItem
+    private lateinit var show_items:Array<MyShowItem>
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        item= Show_Item(R.drawable.show_poster1
-                ,resources.getString(R.string.show_year).toInt(),
+        item= MyShowItem(R.drawable.show_poster1,
                 resources.getString(R.string.show_title),
                 resources.getString(R.string.show_tags).toString())
 
@@ -46,38 +40,48 @@ class AllListShowFragment: BaseFragment()
 
 
         recyclerView = views!!.findViewById<View>(R.id.show_item_listview) as RecyclerView
-        list_show_adapter= ListShowAdapter(activity,populateList())
+        list_show_adapter= MyShowAdapter(activity,populateList())
         recyclerView!!.adapter = list_show_adapter
         //
         if (resources.getString(R.string.is_phone) == "true") {
-            recyclerView!!.layoutManager = LinearLayoutManager(activity)
+            recyclerView!!.layoutManager = GridLayoutManager(activity,2)
         }else{
             recyclerView!!.layoutManager = GridLayoutManager(activity,4)
         }
-        recyclerView!!.addOnItemTouchListener(ListShowFragment.RecyclerTouchListener(activity, recyclerView!!,object : BaseFragment.ClickListener {
+        recyclerView!!.addOnItemTouchListener(MyShowFragment.RecyclerTouchListener(activity, recyclerView!!, object : MyShowFragment.ClickListener {
             override fun onClick(view: View, position: Int) {
                 openFragment(position)
             }
             override fun onLongClick(view: View?, position: Int) {
             }
         }))
+
+        // openFragment(0)
+
         return views //to return the layout as a result
     }
-
-    override  fun openFragment(position: Int) {
+    override fun openFragment(position: Int) {
         val context: Context = getContext()
-        val intent = Intent (context, ShowActivity:: class.java)
+        val intent = Intent (context,  ShowActivity:: class.java)
         startActivity (intent)
     }
 
-    fun populateList(): ArrayList<Show_Item> {
-        val list = ArrayList<Show_Item>()
+
+    private fun populateList(): ArrayList<MyShowItem> {
+        val list = ArrayList<MyShowItem>()
 
         for (i in show_items.indices) {
             list.add(show_items[i])
         }
         return list
     }
+
+    interface ClickListener {
+        fun onClick(view: View, position: Int)
+
+        fun onLongClick(view: View?, position: Int)
+    }
+
     internal class RecyclerTouchListener(context: Context, recyclerView: RecyclerView, private val clickListener: ClickListener?) : RecyclerView.OnItemTouchListener {
 
         private val gestureDetector: GestureDetector
@@ -96,6 +100,7 @@ class AllListShowFragment: BaseFragment()
                 }
             })
         }
+
         override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
 
             val child = rv.findChildViewUnder(e.x, e.y)

@@ -30,7 +30,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".AllListShow.AllListShowActivity" />
-        <activity android:name=".AllListMovies.Activity_all_list_movie"></activity>
+        <activity android:name=".AllListMovies.Activity_all_list_movie" />
+        <activity android:name=".MyMovies.MyMoviesActivity" />
+        <activity android:name=".MyShows.MyShowActivity"></activity>
     </application>
 
 </manifest>

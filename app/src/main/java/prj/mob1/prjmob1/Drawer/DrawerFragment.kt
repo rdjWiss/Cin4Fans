@@ -15,6 +15,8 @@ import android.util.Log
 import prj.mob1.prjmob1.AllListMovies.Activity_all_list_movie
 import prj.mob1.prjmob1.AllListShow.AllListShowActivity
 import prj.mob1.prjmob1.Home.HomeActivity
+import prj.mob1.prjmob1.MyMovies.MyMoviesActivity
+import prj.mob1.prjmob1.MyShows.MyShowActivity
 
 
 import java.util.*
@@ -91,6 +93,13 @@ class DrawerFragment : Fragment() {
            2->
            {val intent = Intent (context, AllListShowActivity:: class.java)
                startActivity (intent)}
+           4->
+           {val intent = Intent (context, MyMoviesActivity:: class.java)
+               startActivity (intent)}
+           5->
+           {val intent = Intent (context, MyShowActivity:: class.java)
+               startActivity (intent)}
+
             else -> {
             }
         }

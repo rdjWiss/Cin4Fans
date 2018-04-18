@@ -1,83 +1,89 @@
-package prj.mob1.prjmob1.AllListShow
+package prj.mob1.prjmob1.MyMovies
 
-import android.app.Fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
+import prj.mob1.prjmob1.AllListMovies.AllListMoviesFragment
 import prj.mob1.prjmob1.BaseFragment.BaseFragment
-import prj.mob1.prjmob1.Liste_shows.ListShowAdapter
-import prj.mob1.prjmob1.Liste_shows.ListShowFragment
-import prj.mob1.prjmob1.Liste_shows.Show_Item
 import prj.mob1.prjmob1.R
-import prj.mob1.prjmob1.show.ShowActivity
+import prj.mob1.prjmob1.movie.MovieActivity
 
 /**
- * Created by LE on 17/04/2018.
+ * Created by LE on 18/04/2018.
  */
-class AllListShowFragment: BaseFragment()
+
+class  MyMoviesFragment: BaseFragment()
 {
 
     private var views: View? = null
 
-    private var list_show_adapter: ListShowAdapter? = null
+    private var list_mov_adapter: MyMoviesAdapter? = null
     private var recyclerView: RecyclerView? = null
-    private lateinit var item: Show_Item
-    private lateinit var show_items:Array<Show_Item>
+    private lateinit var item: MyMovieItem
+    private lateinit var movie_items:Array<MyMovieItem>
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        item= Show_Item(R.drawable.show_poster1
-                ,resources.getString(R.string.show_year).toInt(),
-                resources.getString(R.string.show_title),
-                resources.getString(R.string.show_tags).toString())
+        item= MyMovieItem(R.drawable.poster_mov,
+                resources.getString(R.string.movie_title),
+                resources.getString(R.string.movie_tags).toString())
 
-        show_items = arrayOf(item,item,item,item,item)
+        movie_items = arrayOf(item,item,item,item,item)
 
 
 
         // Inflate the layout for this fragment
-        views = inflater!!.inflate(R.layout.fragment_list_show, container, false)
+        views = inflater!!.inflate(R.layout.fragment_list_movies, container, false)
 
 
 
-        recyclerView = views!!.findViewById<View>(R.id.show_item_listview) as RecyclerView
-        list_show_adapter= ListShowAdapter(activity,populateList())
-        recyclerView!!.adapter = list_show_adapter
+        recyclerView = views!!.findViewById<View>(R.id.movie_item_listview) as RecyclerView
+        list_mov_adapter= MyMoviesAdapter(activity,populateList())
+        recyclerView!!.adapter = list_mov_adapter
         //
         if (resources.getString(R.string.is_phone) == "true") {
-            recyclerView!!.layoutManager = LinearLayoutManager(activity)
+            recyclerView!!.layoutManager = GridLayoutManager(activity,2)
         }else{
             recyclerView!!.layoutManager = GridLayoutManager(activity,4)
         }
-        recyclerView!!.addOnItemTouchListener(ListShowFragment.RecyclerTouchListener(activity, recyclerView!!,object : BaseFragment.ClickListener {
+        recyclerView!!.addOnItemTouchListener(AllListMoviesFragment.RecyclerTouchListener(activity, recyclerView!!, object : AllListMoviesFragment.ClickListener {
             override fun onClick(view: View, position: Int) {
                 openFragment(position)
             }
             override fun onLongClick(view: View?, position: Int) {
             }
         }))
+
+        // openFragment(0)
+
         return views //to return the layout as a result
     }
-
-    override  fun openFragment(position: Int) {
+    override fun openFragment(position: Int) {
         val context: Context = getContext()
-        val intent = Intent (context, ShowActivity:: class.java)
+        val intent = Intent (context, MovieActivity:: class.java)
         startActivity (intent)
     }
 
-    fun populateList(): ArrayList<Show_Item> {
-        val list = ArrayList<Show_Item>()
 
-        for (i in show_items.indices) {
-            list.add(show_items[i])
+    private fun populateList(): ArrayList<MyMovieItem> {
+        val list = ArrayList<MyMovieItem>()
+
+        for (i in movie_items.indices) {
+            list.add(movie_items[i])
         }
         return list
     }
+
+    interface ClickListener {
+        fun onClick(view: View, position: Int)
+
+        fun onLongClick(view: View?, position: Int)
+    }
+
     internal class RecyclerTouchListener(context: Context, recyclerView: RecyclerView, private val clickListener: ClickListener?) : RecyclerView.OnItemTouchListener {
 
         private val gestureDetector: GestureDetector
@@ -96,6 +102,7 @@ class AllListShowFragment: BaseFragment()
                 }
             })
         }
+
         override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
 
             val child = rv.findChildViewUnder(e.x, e.y)
