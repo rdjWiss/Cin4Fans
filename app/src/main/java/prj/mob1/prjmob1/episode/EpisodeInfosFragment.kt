@@ -1,20 +1,23 @@
 package prj.mob1.prjmob1.episode
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.databinding.FragmentEpisodeInfosBinding
-import prj.mob1.prjmob1.season.Season
+import prj.mob1.prjmob1.rating.OnRateClick
 
 
 class EpisodeInfosFragment : Fragment() {
 
     private var episode: Episode? = null
+    private lateinit var listener: OnRateClick
 
     companion object {
 
@@ -36,27 +39,31 @@ class EpisodeInfosFragment : Fragment() {
         }
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        if (context is OnRateClick) {
+            listener = context
+        } else {
+            throw ClassCastException(context.toString() + " must implement OnRateClick.")
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        var binding : FragmentEpisodeInfosBinding =
+        val binding : FragmentEpisodeInfosBinding =
                 FragmentEpisodeInfosBinding.inflate(inflater!! ,container , false)
-        var myView : View  = binding.root
+        val myView : View  = binding.root
 
+        //Set rating listener
+        myView.findViewById<ImageView>(R.id.episode_infos_rate).setOnClickListener{
+            listener.onRateClick()
+        }
 
-        var episode = arguments.getParcelable<Episode>(ARG_Episode) as Episode
-        // setting values to model
-       /* val episodeTitle = getString(R.string.episode_title)
-        val numEpisode = getString(R.string.episode_num)
-        val numSeason = getString(R.string.episode_num_season)
-        val title = getString(R.string.episode_title_show)
-        val date = getString(R.string.episode_date)
-        val channel = getString(R.string.episode_channel)
-        val episode = Episode(episodeTitle,numEpisode,numSeason,title,date,channel,1,"")
-        Log.e("TAG",episode.title_show)*/
+        val episode = arguments.getParcelable<Episode>(ARG_Episode) as Episode
         binding.episode = episode
 
         return myView
-        //return inflater?.inflate(R.layout.fragment_movie_infos, container, false)
     }
-}// Required empty public constructor
+}
