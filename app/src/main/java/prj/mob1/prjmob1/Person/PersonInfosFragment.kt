@@ -1,102 +1,77 @@
 package prj.mob1.prjmob1.Person
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.ImageView
 import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.databinding.FragmentPersonInfosBinding
+import prj.mob1.prjmob1.rating.OnRateClick
 
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [PersonInfosFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [PersonInfosFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PersonInfosFragment : Fragment() {
+    private var name = ""
+    private lateinit var listener: OnRateClick
 
-    // TODO: Rename and change types of parameters
-    private var mParam1: String? = null
-    private var mParam2: String? = null
+    companion object {
 
-    private var mListener: OnFragmentInteractionListener? = null
+        private val ARG_namePerson = "personName"
+
+        fun newInstance(nom : String): PersonInfosFragment {
+            val fragment = PersonInfosFragment()
+            val args = Bundle()
+            args.putString(ARG_namePerson , nom)
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            mParam1 = arguments.getString(ARG_PARAM1)
-            mParam2 = arguments.getString(ARG_PARAM2)
-        }
-    }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_person_infos, container, false)
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        if (mListener != null) {
-            mListener!!.onFragmentInteraction(uri)
+            name = arguments.getString(ARG_namePerson)
         }
     }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            mListener = context
+
+        if (context is OnRateClick) {
+            listener = context
         } else {
-            throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
+            throw ClassCastException(context.toString() + " must implement OnRateClick.")
         }
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        mListener = null
-    }
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val binding : FragmentPersonInfosBinding =
+                FragmentPersonInfosBinding.inflate(inflater!! ,container , false)
+        val view : View  = binding.root
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
-     */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
-    }
-
-    companion object {
-        // TODO: Rename parameter arguments, choose names that match
-        // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private val ARG_PARAM1 = "param1"
-        private val ARG_PARAM2 = "param2"
-
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PersonInfosFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): PersonInfosFragment {
-            val fragment = PersonInfosFragment()
-            val args = Bundle()
-            args.putString(ARG_PARAM1, param1)
-            args.putString(ARG_PARAM2, param2)
-            fragment.arguments = args
-            return fragment
+        //Set rating listener
+        view.findViewById<ImageView>(R.id.person_infos_rate).setOnClickListener{
+            listener.onRateClick()
         }
+
+        var indice= 0;
+        if(resources.getStringArray(R.array.person_names)[1] == name) indice = 1
+
+        val birthday = resources.getStringArray(R.array.person_birthdays)[indice]
+        val origin = resources.getStringArray(R.array.person_from)[indice]
+        val bio = resources.getStringArray(R.array.person_biographies)[indice]
+
+        val profil = resources.obtainTypedArray(R.array.person_profils).getResourceId(indice,0)
+        val image = resources.obtainTypedArray(R.array.person_images).getResourceId(indice,0)
+
+        view.findViewById<ImageView>(R.id.person_image_top).setImageResource(image)
+        view.findViewById<ImageView>(R.id.person_profil_image).setImageResource(profil)
+
+        binding.person = Person(name,birthday,origin,bio,0,0)
+        return view
+
     }
 }// Required empty public constructor

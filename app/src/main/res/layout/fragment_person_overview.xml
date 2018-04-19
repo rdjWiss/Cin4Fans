@@ -1,0 +1,96 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="person"
+            type="prj.mob1.prjmob1.Person.Person"
+            />
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+            <ImageView
+                android:id="@+id/person_birthday_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_cake"
+                android:tint="@color/colorPrimary"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/person_birthday"
+                android:text="@{person.birthday}"
+                android:textSize="@dimen/dim_person_infos_text"
+                android:textColor="@color/color_person_infos_text"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="@dimen/dim_person_overview_margin_left"
+                android:layout_marginStart="@dimen/dim_person_overview_margin_left"
+                android:gravity="bottom"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+            <ImageView
+                android:id="@+id/person_from_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_placeholder"
+                android:tint="@color/colorPrimary"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/person_from"
+                android:text="@{person.origin}"
+                android:textSize="@dimen/dim_person_infos_text"
+                android:textColor="@color/color_person_infos_text"
+                android:layout_marginLeft="@dimen/dim_person_overview_margin_left"
+                android:layout_marginStart="@dimen/dim_person_overview_margin_left"
+                android:layout_marginTop="5dp"
+                android:gravity="bottom"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/person_biographie_title"
+            android:text="@string/person_biography"
+            android:textStyle="bold"
+            android:textSize="@dimen/dim_person_infos_text"
+            android:textColor="@color/color_person_infos_text"
+            android:layout_marginLeft="@dimen/dim_person_overview_margin_left"
+            android:layout_marginStart="@dimen/dim_person_overview_margin_left"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/person_biography"
+            android:text="@{person.biography}"
+            android:textSize="@dimen/dim_person_infos_text"
+            android:textColor="@color/color_person_infos_text"
+            android:layout_marginLeft="@dimen/dim_person_overview_margin_left"
+            android:layout_marginStart="@dimen/dim_person_overview_margin_left"/>
+
+    </LinearLayout>
+    </ScrollView>
+
+</layout>

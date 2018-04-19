@@ -1,13 +1,83 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="prj.mob1.prjmob1.Person.PersonInfosFragment">
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="person"
+            type="prj.mob1.prjmob1.Person.Person"
+            />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9">
+
+            <ImageView
+                android:id="@+id/person_image_top"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_image_top_height"
+                app:srcCompat="@drawable/show_image"
+                android:layout_marginTop="0dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                />
+            <ImageView
+                android:id="@+id/person_profil_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/andrew_profil"
+                android:layout_alignParentTop="true"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dim_person_profil_image_margin_top"
+                />
+
+            <ImageView
+                android:id="@+id/person_infos_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_star"
+                android:tint="@color/colorPrimary"
+                android:gravity="end"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dim_person_star_margin_top"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/person_name"
+            android:text="@{person.nom}"
+            android:textStyle="bold"
+            android:textSize="@dimen/dim_person_name"
+            android:textColor="@color/color_person_infos_text"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <ImageView
+            android:id="@+id/person_infos_rating"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_rating2"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="person_names">
+        <item>Chadwick Aaron Boseman</item>
+        <item>Andrew Lincoln</item>
+    </string-array>
+
+    <string-array name="person_birthdays">
+        <item>November 29, 1977 (age 40)</item>
+        <item>September 14, 1973</item>
+    </string-array>
+
+    <string-array name="person_from">
+        <item>Anderson, South Carolina, U.S.</item>
+        <item>London, England, UK </item>
+    </string-array>
+
+    <string-array name="person_biographies">
+        <item>Boseman was born and raised in Anderson, South Carolina,
+            the son of Carolyn and Leroy Boseman, both African Americans.
+            His mother was a nurse and his father worked at a textile factory,
+            keeping an upholstery business as well. Boseman graduated from T. L. Hanna High School in 1995.
+            In his junior year, he wrote his first play, Crossroads, and staged it at the school
+            after a classmate was shot and killed. He studied at Howard University in Washington, DC,
+            graduating in 2000 with a bachelor of fine arts in directing. One of his teachers was Phylicia Rashad,
+            who became a mentor. She helped raise funds so that Boseman and some classmates could attend
+            the Oxford Mid-Summer Program of the British American Drama Academy in London,
+            to which they\'d been accepted.She helped raise funds so that Boseman and some classmates could attend
+            the Oxford Mid-Summer Program of the British American Drama Academy in London,
+            to which they\'d been accepted.She helped raise funds so that Boseman and some classmates could attend
+            the Oxford Mid-Summer Program of the British American Drama Academy in London,
+            to which they\'d been accepted.</item>
+        <item>Andrew Lincoln is a British actor. Lincoln spent his early childhood in Hull, Yorkshire
+            before his family relocated to Bath, Somerset when he was age 10.
+            He was educated at Beechen Cliff School in Bath,
+            and then the prestigious Royal Academy of Dramatic Art in London.
+            His father is a civil engineer and his mother is a nurse Lincoln's first big</item>
+    </string-array>
+
+    <array name="person_profils">
+        <item>@drawable/chadwick_profil</item>
+        <item>@drawable/andrew_profil</item>
+    </array>
+
+    <array name="person_images">
+        <item>@drawable/movie_image</item>
+        <item>@drawable/show_image</item>
+    </array>
+
+    <string name="person_tab1">Infos</string>
+    <string name="person_tab2">Movies</string>
+    <string name="person_tab3">TV Shows</string>
+    <string name="person_tab4">Comments</string>
+
+    <string name="person_biography">Biographie:</string>
+</resources>
