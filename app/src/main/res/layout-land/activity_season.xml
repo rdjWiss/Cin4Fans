@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="prj.mob1.prjmob1.season.Season"
+    android:background="@color/colorBG">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/season_trailer"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dim_trailer_height"
+                    app:srcCompat="@drawable/show_image"
+                    android:layout_marginTop="0dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    />
+
+                <ImageView
+                    android:id="@+id/back_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_go_back_left_arrow"
+                    android:tint="@color/colorBG"
+                    android:gravity="end"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/season_infos"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_infos_height"
+                android:orientation="horizontal"/>
+            <LinearLayout
+                android:id="@+id/season_overview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/season_tabs_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorBG"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/Notitle">
+
+                    <android.support.design.widget.TabLayout
+                        android:background="@color/color_tabs_bg"
+                        android:id="@+id/season_tab_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabMode="scrollable"
+                        app:tabGravity="fill"
+                        android:elevation="10dp"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        app:tabIndicatorColor="@color/color_tabs_indicator"
+                        app:tabIndicatorHeight="4dp"
+                        app:tabSelectedTextColor="@color/color_tabs_text_selected"
+                        app:tabTextColor="@color/color_tabs_text"
+                        app:tabTextAppearance="@style/TabsStyle"
+                        app:tabBackground="@color/color_tabs_bg"/>
+                </android.support.design.widget.AppBarLayout>
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/season_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:layout_margin="5dp"/>
+            </android.support.design.widget.CoordinatorLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
