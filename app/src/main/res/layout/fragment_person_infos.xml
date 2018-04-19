@@ -44,13 +44,14 @@
 
             <ImageView
                 android:id="@+id/person_infos_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dimen_ic_star"
+                android:layout_height="@dimen/dimen_ic_star"
                 app:srcCompat="@drawable/ic_star"
                 android:tint="@color/colorPrimary"
                 android:gravity="end"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/dim_person_star_margin_top"
                 android:layout_marginRight="10dp"
                 android:layout_marginEnd="10dp"/>

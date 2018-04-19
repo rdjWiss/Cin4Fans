@@ -89,24 +89,6 @@
 
         </RelativeLayout>
 
-        <!--<VideoView
-            android:id="@+id/movie_trailer"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dim_trailer_height"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="fitXY"/>-->
-        <!--TODO: use data binding-->
-        <!--<ImageView-->
-        <!--android:id="@+id/movie_trailer"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/dim_trailer_height"-->
-        <!--app:srcCompat="@drawable/movie_image"-->
-        <!--android:layout_marginTop="0dp"-->
-        <!--android:adjustViewBounds="true"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:scaleType="fitXY"-->
-        <!--/>-->
-
         <LinearLayout
             android:id="@+id/show_infos"
             android:layout_width="match_parent"

@@ -15,6 +15,8 @@ class AllListShowActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_list_show)
+        setTitle("All TV Shows")
+
         apply {
             initDrawer()
             //addFragment(AllListShowFragment(),R.id.container_body_all_show)

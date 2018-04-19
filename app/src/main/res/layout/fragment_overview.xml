@@ -10,7 +10,4 @@
         android:layout_marginTop="10dp"
         android:padding="10dp"/>
 
-    <!--android:textStyle="bold"
-        android:layout_centerInParent="true"-->
-
 </layout>

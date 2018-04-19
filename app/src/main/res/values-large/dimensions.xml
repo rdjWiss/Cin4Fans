@@ -34,7 +34,7 @@
 
     <!--Season-->
     <dimen name="dim_episode_item_title">20sp</dimen>
-    <dimen name="dim_episode_item_date">16sp</dimen>
+    <dimen name="dim_episode_item_date">18sp</dimen>
 
     <!--Comments-->
     <dimen name="dim_comment_item_username">15sp</dimen>
@@ -53,7 +53,7 @@
     <!--icons-->
     <dimen name="dimen_ic_star">28dp</dimen>
     <dimen name="dimen_ic_bookmark">28dp</dimen>
-    <dimen name="dimen_rating">24dp</dimen>
+    <dimen name="dimen_rating">80dp</dimen>
 
     <!--For the drawer using Material Design-->
     <dimen name="screen_left_margin">16dp</dimen>

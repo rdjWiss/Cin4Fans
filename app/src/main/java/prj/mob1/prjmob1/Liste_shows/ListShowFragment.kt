@@ -44,7 +44,7 @@ import prj.mob1.prjmob1.show.ShowActivity
         list_show_adapter= ListShowAdapter(activity,populateList())
         recyclerView!!.adapter = list_show_adapter
         //
-        if (resources.getString(R.string.is_phone) == "true") {
+        if (resources.getString(R.string.isLand) == "false") {
             recyclerView!!.layoutManager = LinearLayoutManager(activity)
         }else{
             recyclerView!!.layoutManager = GridLayoutManager(activity,2)

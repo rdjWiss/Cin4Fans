@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+<!--
         <LinearLayout
             android:id="@+id/container_toolbar"
             android:layout_width="match_parent"
@@ -20,11 +20,56 @@
             <include
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar" />
-        </LinearLayout>
+        </LinearLayout>-->
+
+        <android.support.design.widget.CoordinatorLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            tools:context=".Home.HomeActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Notitle"
+            >
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/mv_tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="fixed"
+                app:tabGravity="fill"
+                android:elevation="5dp"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:tabIndicatorColor="@color/text_color_white"
+                app:tabIndicatorHeight="4dp"
+                app:tabSelectedTextColor="@color/text_color_white"
+                app:tabTextColor="@color/text_color_white"
+                app:tabTextAppearance="@style/TabsStyle"
+                app:tabBackground="@color/colorPrimaryDark"/>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/mv_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_margin="5dp"/>
+
+        </android.support.design.widget.CoordinatorLayout>
+
 
         <!--This is the bar and viewpager which contain movie and Tv show airing-->
 
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
                 <include
@@ -32,10 +77,9 @@
                     layout="@layout/movie_tab"
                 />
 
-        </LinearLayout>
+        </LinearLayout>-->
 
     </LinearLayout>
-
     <fragment
         android:id="@+id/fragment_navigation_drawer"
 

@@ -22,7 +22,5 @@
         android:layout_margin="10dp"/>
     </RelativeLayout>
     </ScrollView>
-    <!--android:textStyle="bold"
-        android:layout_centerInParent="true"-->
 
 </layout>

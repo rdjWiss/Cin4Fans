@@ -11,6 +11,8 @@ class MyShowActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_show)
+        setTitle("My TV Shows")
+
         apply {
             initDrawer()
             addFragment(MyShowFragment(),R.id.container_body_my_show)

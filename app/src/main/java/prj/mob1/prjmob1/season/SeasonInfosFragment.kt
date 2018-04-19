@@ -53,6 +53,10 @@ class SeasonInfosFragment : Fragment() {
                 FragmentSeasonInfosBinding.inflate(inflater!! ,container , false)
         val myView : View  = binding.root
 
+        //Rate listner
+        myView.findViewById<ImageView>(R.id.season_infos_rate).setOnClickListener{
+            listener.onRateClick()
+        }
 
         val season = arguments.getParcelable<Season>(ARG_Season) as Season
         myView.findViewById<ImageView>(R.id.season_infos_poster).setImageResource(season.posterId)

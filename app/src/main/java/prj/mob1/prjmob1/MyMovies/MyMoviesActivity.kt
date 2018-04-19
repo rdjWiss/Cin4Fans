@@ -11,6 +11,7 @@ class MyMoviesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_movies)
+        setTitle("My Movies")
 
         apply {
             initDrawer()

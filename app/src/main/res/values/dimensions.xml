@@ -53,13 +53,13 @@
     <!--icons-->
     <dimen name="dimen_ic_star">24dp</dimen>
     <dimen name="dimen_ic_bookmark">24dp</dimen>
-    <dimen name="dimen_rating">24dp</dimen>
+    <dimen name="dimen_rating">50dp</dimen>
 
     <!--For the drawer using Material Design-->
     <dimen name="screen_left_margin">16dp</dimen>
     <dimen name="text_left_margin">44dp</dimen>
     <dimen name="subtitle_and_list_item">48dp</dimen>
-    <dimen name="space_between_content_area">8dp</dimen>
+    <dimen name="space_between_content_area">12dp</dimen>
 
     <!--for username-->
     <dimen name="size_text">14sp</dimen>

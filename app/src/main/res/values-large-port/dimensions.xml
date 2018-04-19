@@ -33,27 +33,27 @@
     <dimen name="dim_season_item_ep">18sp</dimen>
 
     <!--Season-->
-    <dimen name="dim_episode_item_title">20sp</dimen>
-    <dimen name="dim_episode_item_date">16sp</dimen>
+    <dimen name="dim_episode_item_title">22sp</dimen>
+    <dimen name="dim_episode_item_date">20sp</dimen>
 
     <!--Comments-->
-    <dimen name="dim_comment_item_username">15sp</dimen>
-    <dimen name="dim_comment_item_body">16sp</dimen>
+    <dimen name="dim_comment_item_username">17sp</dimen>
+    <dimen name="dim_comment_item_body">18sp</dimen>
     <dimen name="weight_comments">10</dimen>
 
     <!--Person-->
-    <dimen name="dim_image_top_height">150dp</dimen>
+    <dimen name="dim_image_top_height">200dp</dimen>
     <dimen name="dim_person_overview_margin_left">10dp</dimen>
-    <dimen name="dim_person_infos_height">250dp</dimen>
-    <dimen name="dim_person_profil_image_margin_top">80dp</dimen>
-    <dimen name="dim_person_star_margin_top">155dp</dimen>
-    <dimen name="dim_person_infos_text">14sp</dimen>
-    <dimen name="dim_person_name">20sp</dimen>
+    <dimen name="dim_person_infos_height">350dp</dimen>
+    <dimen name="dim_person_profil_image_margin_top">100dp</dimen>
+    <dimen name="dim_person_star_margin_top">205dp</dimen>
+    <dimen name="dim_person_infos_text">16sp</dimen>
+    <dimen name="dim_person_name">28sp</dimen>
 
     <!--icons-->
-    <dimen name="dimen_ic_star">28dp</dimen>
-    <dimen name="dimen_ic_bookmark">28dp</dimen>
-    <dimen name="dimen_rating">24dp</dimen>
+    <dimen name="dimen_ic_star">35dp</dimen>
+    <dimen name="dimen_ic_bookmark">35dp</dimen>
+    <dimen name="dimen_rating">80dp</dimen>
 
     <!--For the drawer using Material Design-->
     <dimen name="screen_left_margin">16dp</dimen>

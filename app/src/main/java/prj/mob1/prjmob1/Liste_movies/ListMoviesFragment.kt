@@ -47,7 +47,7 @@ class ListMoviesFragment:Fragment()
         list_mov_adapter= ListMoviesAdapter(activity,populateList())
         recyclerView!!.adapter = list_mov_adapter
         //
-        if (resources.getString(R.string.is_phone) == "true") {
+        if (resources.getString(R.string.isLand) == "false") {
             recyclerView!!.layoutManager = LinearLayoutManager(activity)
         }else{
             recyclerView!!.layoutManager = GridLayoutManager(activity,2)
@@ -68,15 +68,6 @@ class ListMoviesFragment:Fragment()
         val context: Context = getContext()
         val intent = Intent (context, MovieActivity:: class.java)
         startActivity (intent)
-    }
-
-    fun removeAllFragment(replaceFragment: Fragment, tag: String) {
-        val manager = activity.supportFragmentManager
-        val ft = manager.beginTransaction()
-        manager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
-        ft.replace(R.id.container_body, replaceFragment)
-        ft.commitAllowingStateLoss()
     }
 
 
