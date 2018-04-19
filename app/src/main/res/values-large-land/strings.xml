@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Cin4Fans</string>
+
+    <string name="nbr_viewers">(45230)</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="is_phone">false</string>
+    <string name="isLand">true</string>
+</resources>

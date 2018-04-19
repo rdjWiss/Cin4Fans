@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_black">#000000</color>
+    <color name="color_white">#ffffff</color>
 
     <color name="colorPrimary">#970203</color>
     <color name="colorPrimaryDark">#970203</color>
@@ -10,22 +11,31 @@
     <color name="color_line">#ccc9c9</color>
 
     <color name="textColorPrimary">#000000</color>
-    <color name="navigationBarColor">#970203</color>
+    <color name="navigationBarColor">@color/colorPrimary</color>
 
     <!-- Fiche movie-->
     <color name="colorLine2">#808080</color>
-    <color name="colorLine3">#000000</color>
+    <color name="colorLine3">@color/color_black</color>
     <!--#434343-->
-    <color name="colorTitle">#000000</color>
+    <color name="colorTitle">@color/color_black</color>
 
     <!--General-->
-    <color name="color_overview">#000000</color>
+    <color name="color_overview">@color/color_black</color>
 
     <!--Tabs-->
-    <color name="color_tabs_indicator">#970203</color>
-    <color name="color_tabs_text">#000000</color>
-    <color name="color_tabs_text_selected">#970203</color>
-    <color name="color_tabs_bg">@color/colorBG</color>
+    <color name="color_tabs_indicator">@color/color_white</color>
+    <color name="color_tabs_text">@color/color_white</color>
+    <color name="color_tabs_text_selected">@color/color_white</color>
+    <color name="color_tabs_bg">@color/colorPrimary</color>
+
+    <!-- Tabs Crew List Card-->
+    <color name="color_bg_card">@color/colorBG</color>
+    <color name="color_crew_text">@color/color_black</color>
+
+    <color name="color_comment_username">#434343</color>
+
+    <!--Person-->
+    <color name="color_person_infos_text">@color/color_black</color>
 
     <!--Test color -->
     <color name="text_color_white">#ffffff</color>
@@ -35,15 +45,6 @@
     <color name="color_line_devider">#b8c3bb</color>
     <color name="color_item_drawer">#E0E0E0</color>
     <color name="color_item_pressed">#BDBDBD</color>
-
-    <!-- Tabs Crew List Card-->
-    <color name="color_bg_card">#EEEEEE</color>
-    <color name="color_crew_text">#000000</color>
-
-    <color name="color_comment_username">#434343</color>
-
-    <!--Person-->
-    <color name="color_person_infos_text">@color/color_black</color>
 
     <color name="blue_grey_800_50p">#E237474F</color>
 </resources>

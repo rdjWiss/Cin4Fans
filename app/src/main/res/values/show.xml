@@ -25,7 +25,10 @@
         but by other groups of survivors willing to assure their longevity by any means necessary.
 
     </string>
-    <!--<string name="movie_poster">@drawable/movie_poster</string>-->
+    <array name="show_images">
+        <item>@drawable/show_image</item>
+        <item>@drawable/show_poster</item>
+    </array>
 
     <string name="show_crew_name">Andrew Lincoln</string>
     <string name="show_crew_character">Rick Grimes</string>

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Movies-->
-    <dimen name="dim_infos_height">120dp</dimen>
-    <dimen name="dim_infos_title">24sp</dimen>
-    <dimen name="dim_infos_line2">14sp</dimen>
-    <dimen name="dim_infos_line3">14sp</dimen>
+    <dimen name="dim_infos_height">130dp</dimen>
+    <dimen name="dim_infos_title">28sp</dimen>
+    <dimen name="dim_infos_line2">16sp</dimen>
+    <dimen name="dim_infos_line3">16sp</dimen>
 
     <dimen name="dim_movie_tabs_height">222dp</dimen>
 
     <dimen name="dim_trailer_height">170dp</dimen>
 
-    <dimen name="dim_overview_text">15sp</dimen>
+    <dimen name="dim_overview_text">18sp</dimen>
 
     <!--Tabs-->
-    <dimen name="tab_text_size">14sp</dimen>
+    <dimen name="tab_text_size">18sp</dimen>
 
     <!--Material Design-->
     <dimen name="activity_horizontal_margin">16dp</dimen>
@@ -24,22 +24,22 @@
     <dimen name="custom_tab_layout_height">72dp</dimen>
 
     <!--Crew-->
-    <dimen name="dim_crew_item_name">20sp</dimen>
-    <dimen name="dim_crew_item_name_character">16sp</dimen>
-    <dimen name="dim_crew_item_name_margin_top">25dp</dimen>
+    <dimen name="dim_crew_item_name">18sp</dimen>
+    <dimen name="dim_crew_item_name_character">14sp</dimen>
+    <dimen name="dim_crew_item_name_margin_top">0dp</dimen>
 
     <!--Show-->
-    <dimen name="dim_season_item_num">18sp</dimen>
-    <dimen name="dim_season_item_ep">14sp</dimen>
+    <dimen name="dim_season_item_num">20sp</dimen>
+    <dimen name="dim_season_item_ep">16sp</dimen>
 
     <!--Season-->
-    <dimen name="dim_episode_item_title">18sp</dimen>
-    <dimen name="dim_episode_item_date">14sp</dimen>
+    <dimen name="dim_episode_item_title">20sp</dimen>
+    <dimen name="dim_episode_item_date">16sp</dimen>
 
     <!--Comments-->
-    <dimen name="dim_comment_item_username">13sp</dimen>
-    <dimen name="dim_comment_item_body">14sp</dimen>
-    <dimen name="weight_comments">5</dimen>
+    <dimen name="dim_comment_item_username">15sp</dimen>
+    <dimen name="dim_comment_item_body">16sp</dimen>
+    <dimen name="weight_comments">10</dimen>
 
     <!--Person-->
     <dimen name="dim_image_top_height">150dp</dimen>
@@ -51,8 +51,8 @@
     <dimen name="dim_person_name">20sp</dimen>
 
     <!--icons-->
-    <dimen name="dimen_ic_star">24dp</dimen>
-    <dimen name="dimen_ic_bookmark">24dp</dimen>
+    <dimen name="dimen_ic_star">28dp</dimen>
+    <dimen name="dimen_ic_bookmark">28dp</dimen>
     <dimen name="dimen_rating">24dp</dimen>
 
     <!--For the drawer using Material Design-->
@@ -62,7 +62,7 @@
     <dimen name="space_between_content_area">8dp</dimen>
 
     <!--for username-->
-    <dimen name="size_text">14sp</dimen>
+    <dimen name="size_text">18sp</dimen>
 
 
     <!-- for the header of drawer-->
@@ -83,17 +83,17 @@
     <!--Movies Item-->
     <dimen name="margin_left_movie_item">5dp</dimen>
     <dimen name="margin_top_movie_item">5dp</dimen>
-    <dimen name="size_movie_title">18sp</dimen>
+    <dimen name="size_movie_title">22sp</dimen>
     <!-- For the image poster-->
     <dimen name="poster_movie_height">110dp</dimen>
-    <dimen name="star_dim">15dp</dimen>
-    <dimen name="star_margin_top">5dp</dimen>
+    <dimen name="star_dim">20dp</dimen>
+    <dimen name="star_margin_top">10dp</dimen>
 
     <!--Card Views-->
-    <dimen name="dim_elevation_cv">2dp</dimen>
+    <dimen name="dim_elevation_cv">3dp</dimen>
 
     <!--Movie item-->
-    <dimen name="dim_movie_item_hight">95dp</dimen>
+    <dimen name="dim_movie_item_hight">140dp</dimen>
 
     <!--My Lists-->
     <dimen name="recycler_margin_horizontal">4dp</dimen>
@@ -101,6 +101,7 @@
     <dimen name="recycler_layout_spacing">4dp</dimen>
     <dimen name="recycler_item_footer_height_min">48dp</dimen>
     <dimen name="recycler_item_footer_padding">16dp</dimen>
+    <dimen name="dim_my_item_height">260dp</dimen>
 
-    <dimen name="dim_my_item_height">250dp</dimen>
+
 </resources>

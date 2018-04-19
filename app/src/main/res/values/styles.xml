@@ -30,7 +30,7 @@
         <item name="windowActionBar">false</item>-->
     <style name="TabsStyle" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">@dimen/tab_text_size</item>
-
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

@@ -15,6 +15,6 @@
     <string name="font_roboto_medium">Roboto Medium</string>
 
     <string name="is_phone">true</string>
-
+    <string name="isLand">false</string>
 
 </resources>

@@ -126,6 +126,28 @@
         </item>
     </string-array>
 
+    <array name="season_posters">
+        <item>@drawable/wd_s1_poster</item>
+        <item>@drawable/wd_s2_poster</item>
+        <item>@drawable/wd_s3_poster</item>
+        <item>@drawable/wd_s4_poster</item>
+        <item>@drawable/wd_s5_poster</item>
+        <item>@drawable/wd_s6_poster</item>
+        <item>@drawable/wd_s7_poster</item>
+        <item>@drawable/wd_s8_poster</item>
+    </array>
+
+    <array name="season_images">
+        <item>@drawable/wd_s1</item>
+        <item>@drawable/wd_s2</item>
+        <item>@drawable/wd_s3</item>
+        <item>@drawable/wd_s4</item>
+        <item>@drawable/wd_s5</item>
+        <item>@drawable/wd_s6</item>
+        <item>@drawable/wd_s7</item>
+        <item>@drawable/wd_s8</item>
+    </array>
+
     <string name="season_episodes">16</string>
     <string name="season_date_begin">October 22, 2017</string>
     <string name="season_date_end">April 15, 2018</string>

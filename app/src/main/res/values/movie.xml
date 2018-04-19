@@ -13,7 +13,11 @@
         \nTeaming with the Dora Milaje, his little sister Shuri, and his CIA ally Everett K. Ross,
         T\'Challa must harness the powers of the Black Panther to fight his enemy and save Wakanda from destruction.
     </string>
-    <!--<string name="movie_poster">@drawable/movie_poster</string>-->
+
+    <array name="movie_images">
+        <item>@drawable/movie_image</item>
+        <item>@drawable/movie_poster</item>
+    </array>
 
     <string name="movie_crew_name">Chadwick Boseman</string>
     <string name="movie_crew_character">T\'Challa / Black Panther</string>
