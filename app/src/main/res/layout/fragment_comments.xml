@@ -1,15 +1,54 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="prj.mob1.prjmob1.CommentsFragment">
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="COMMENTS"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true" />
+    <!--    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="@dimen/weight_comments">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/comments_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:scrollbars="vertical"
 
-</FrameLayout>
+            />
+    </LinearLayout>
+    <!--</ScrollView>-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <EditText
+            android:id="@+id/comment_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_toStartOf="@id/comment_send"
+            android:layout_toLeftOf="@id/comment_send"
+            android:inputType="textMultiLine" />
+
+        <ImageView
+            android:id="@+id/comment_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            app:srcCompat="@drawable/ic_send"
+            android:tint="@color/colorPrimary"/>
+
+    </RelativeLayout>
+</LinearLayout>
+
