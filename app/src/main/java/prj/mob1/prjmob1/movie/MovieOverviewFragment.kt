@@ -1,7 +1,5 @@
 package prj.mob1.prjmob1.movie
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -23,13 +21,10 @@ class MovieOverviewFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-//        return inflater!!.inflate(R.layout.fragment_movie_overview, container, false)
-        var binding : FragmentMovieOverviewBinding =
+        val binding : FragmentMovieOverviewBinding =
                 FragmentMovieOverviewBinding.inflate(inflater!! ,container , false)
-        var myView : View  = binding.root
+        val myView : View  = binding.root
 
-
-        // setting values to model
         val overview = getResources().getString(R.string.movie_overview)
 
         val movie = MovieClass()
@@ -39,7 +34,5 @@ class MovieOverviewFragment : Fragment() {
 
         return myView
     }
-
-
 
 }// Required empty public constructor

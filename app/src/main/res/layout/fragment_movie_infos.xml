@@ -35,8 +35,7 @@
             android:layout_height="match_parent"
             android:layout_weight="6"
             android:orientation="vertical">
-<!--
--->
+
             <LinearLayout
                 android:id="@+id/movie_infos_line1"
                 android:layout_width="match_parent"
@@ -59,7 +58,7 @@
                 <ImageView
                     android:id="@+id/movie_infos_rate"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dimen_ic_star"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_star"
                     android:tint="@color/colorPrimary"/>
@@ -67,7 +66,7 @@
                 <ImageView
                     android:id="@+id/movie_infos_bookmark1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dimen_ic_bookmark"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_bookmark_plus_outline"
                     android:tint="@color/colorPrimary"/>
