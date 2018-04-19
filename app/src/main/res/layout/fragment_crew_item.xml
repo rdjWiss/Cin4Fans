@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/crew_item_card_view"
-    android:layout_margin="2dp"
+    android:layout_margin="5dp"
     android:layout_marginBottom="20dp"
     card_view:cardBackgroundColor="@color/color_bg_card"
     card_view:cardCornerRadius="5dp"

@@ -2,8 +2,8 @@ package prj.mob1.prjmob1
 
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -67,17 +67,22 @@ class CrewFragment() : Fragment() {
                     R.drawable.crew_andrew)
         }
 
+        var modeTab = false
+        if (resources.getString(R.string.isLand) == "true") modeTab = true
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.crew_directors_list) as
                 RecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        var crewListAdapter = CrewListAdapter(arrayListOf(person, person, person))
+        if(!modeTab) recyclerView.layoutManager = LinearLayoutManager(activity)
+        else recyclerView.layoutManager = GridLayoutManager(activity, 2)
+        var crewListAdapter = CrewListAdapter(arrayListOf(person, person))
         recyclerView.adapter =crewListAdapter
 
 
         val recyclerView2 = view.findViewById<RecyclerView>(R.id.crew_actors_list) as
                 RecyclerView
-        recyclerView2.layoutManager = LinearLayoutManager(activity)
-        recyclerView2.adapter =CrewListAdapter(arrayListOf(person, person, person))
+        if(!modeTab) recyclerView2.layoutManager = LinearLayoutManager(activity)
+        else recyclerView2.layoutManager = GridLayoutManager(activity, 2)
+        recyclerView2.adapter =CrewListAdapter(arrayListOf(person, person))
         return view
     }
 
@@ -104,10 +109,6 @@ class CrewFragment() : Fragment() {
             viewHolder.itemImage.setImageResource(crewList[i].image)
 
             viewHolder.itemView.setOnClickListener { v: View  ->
-
-                /*Snackbar.make(v, "Click detected on item $i",
-                        Snackbar.LENGTH_LONG).setAction("Action", null).show()*/
-
                 listener.onCrewSelected(crewList[i].name)
             }
         }
