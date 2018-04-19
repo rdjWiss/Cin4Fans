@@ -2,11 +2,9 @@ package prj.mob1.prjmob1.show
 
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,18 +41,27 @@ class ShowSeasonsFragment : Fragment() {
                 RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
-        var seasons: ArrayList<Season> = ArrayList<Season>()
+        val seasons: ArrayList<Season> = ArrayList<Season>()
         val seasonNumsList = resources.getStringArray(R.array.seasons_nums)
         val seasonEpsList = resources.getStringArray(R.array.seasons_eps)
         val seasonDateBeginList = resources.getStringArray(R.array.seasons_date_begin)
         val seasonDateEndList = resources.getStringArray(R.array.seasons_date_end)
         val seasonOverviewsList = resources.getStringArray(R.array.seasons_overviews)
+
+        val posters = resources.obtainTypedArray(R.array.season_posters)
+        val images = resources.obtainTypedArray(R.array.season_images)
+
         val titleShow= getString(R.string.season_title_show)
         for(i in 0 .. seasonEpsList.size-1){
             seasons.add(Season(seasonNumsList[i],titleShow, seasonEpsList[i].toInt(), seasonDateBeginList[i],
-                    seasonDateEndList[i],1,seasonOverviewsList[i]))
+                    seasonDateEndList[i],
+                    posters.getResourceId(i,0),
+                    images.getResourceId(i,0),
+                    seasonOverviewsList[i]))
 
         }
+        posters.recycle()
+        images.recycle()
 
         recyclerView.adapter = SeasonListAdapter(seasons)
 
@@ -77,14 +84,11 @@ class ShowSeasonsFragment : Fragment() {
 
         override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
             viewHolder.itemNums.text = seasonList[i].num_season
-            val seasonEp = " ${seasonList[i].nbr_episodes.toString()} episodes"//TODO: USE STRING
+            val seasonEp = " ${seasonList[i].nbr_episodes.toString()} episodes"
             viewHolder.itemEps.text = seasonEp
 
             viewHolder.itemView.setOnClickListener { v: View  ->
 
-                /*Snackbar.make(v, "Click detected on item $i",
-                        Snackbar.LENGTH_LONG).setAction("Action", null).show()
-*/
                 listener.onSeasonSelected(seasonList[i])
             }
         }
@@ -103,8 +107,6 @@ class ShowSeasonsFragment : Fragment() {
                 itemEps = itemView.findViewById(R.id.season_item_eps)
 
             }
-
-
         }
     }
 }// Required empty public constructor

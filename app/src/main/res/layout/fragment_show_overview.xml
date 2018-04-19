@@ -7,12 +7,20 @@
             type="prj.mob1.prjmob1.show.TVShow"
             />
     </data>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{show.overview}"
             android:textColor="@color/color_overview"
             android:textSize="@dimen/dim_overview_text"
-            android:layout_marginTop="50dp" />
+            android:layout_margin="10dp"
+            android:layout_alignParentTop="true"/>
+    </RelativeLayout>
+    </ScrollView>
 </layout>

@@ -1,44 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="prj.mob1.prjmob1.show.TVShow"
-    android:background="@color/colorBG">-->
-<LinearLayout
-    android:id="@+id/outer_linearLayout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="prj.mob1.prjmob1.show.TVShow"
-    android:background="@color/colorBG"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context="prj.mob1.prjmob1.show.ShowActivity"
+    android:background="@color/colorBG">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:isScrollContainer="true"
-        >
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+
         android:orientation="vertical"
-       >
-        <!--TODO: use data binding-->
-        <ImageView
-            android:id="@+id/show_trailer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/show_trailer_container"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dim_trailer_height"
-            app:srcCompat="@drawable/show_image"
-            android:adjustViewBounds="true"
-            android:layout_alignParentTop="true"
-            android:scaleType="fitXY"
-            />
+            android:background="#000000">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true">
+                <ImageView
+                    android:id="@+id/show_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dim_trailer_height"
+                    app:srcCompat="@drawable/show_image"
+                    android:layout_marginTop="0dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:alpha=".50"/>
+
+                <VideoView
+                    android:id="@+id/show_trailer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"/>
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/btn_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_play_circle"
+                android:tint="@color/colorBG"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="48dp"
+                android:alpha=".75"/>
+
+            <ImageView
+                android:id="@+id/btn_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_pause_button_outline"
+                android:tint="@color/colorBG"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="5dp"
+                android:visibility="invisible"
+                android:alpha=".50"/>
+
+            <ImageView
+                android:id="@+id/back_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_go_back_left_arrow"
+                android:tint="@color/colorBG"
+                android:gravity="end"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"/>
+
+
+        </RelativeLayout>
+
+        <!--<VideoView
+            android:id="@+id/movie_trailer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_trailer_height"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitXY"/>-->
+        <!--TODO: use data binding-->
+        <!--<ImageView-->
+        <!--android:id="@+id/movie_trailer"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dim_trailer_height"-->
+        <!--app:srcCompat="@drawable/movie_image"-->
+        <!--android:layout_marginTop="0dp"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:scaleType="fitXY"-->
+        <!--/>-->
 
         <LinearLayout
             android:id="@+id/show_infos"
@@ -47,18 +114,24 @@
             android:orientation="horizontal">
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line"/>
+
         <LinearLayout
             android:id="@+id/show_tabs_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/colorPrimary"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             >
 
             <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                >
 
                 <android.support.design.widget.AppBarLayout
                     android:layout_width="match_parent"
@@ -70,6 +143,7 @@
                         android:id="@+id/show_tab_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/color_tabs_bg"
                         app:tabMode="scrollable"
                         app:tabGravity="fill"
                         android:elevation="5dp"
@@ -79,22 +153,24 @@
                         app:tabSelectedTextColor="@color/color_tabs_text_selected"
                         app:tabTextColor="@color/color_tabs_text"
                         app:tabTextAppearance="@style/TabsStyle"
-                        app:tabBackground="@color/colorBG"/>
+                        app:tabBackground="@color/color_tabs_bg"/>
                 </android.support.design.widget.AppBarLayout>
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/show_viewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    android:layout_margin="5dp"/>
+                    android:layout_margin="5dp"
+
+                    />
             </android.support.design.widget.CoordinatorLayout>
         </LinearLayout>
 
 
 
-
     </LinearLayout>
-    </ScrollView>
-</LinearLayout>
-<!--</android.support.constraint.ConstraintLayout>-->
+
+</android.support.constraint.ConstraintLayout>
+
+
