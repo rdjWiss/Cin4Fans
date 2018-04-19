@@ -30,7 +30,6 @@ class MyMoviesAdapter(private val context: Context, arrayList: ArrayList<MyMovie
         holder.poster_mov?.setImageResource(arrayList[position].poster_mov)
 
         holder.movie_title?.text=arrayList[position].movie_title
-        holder.movie_tag?.text=arrayList[position].movie_tag
 
     }
     override fun getItemCount(): Int {
@@ -39,12 +38,10 @@ class MyMoviesAdapter(private val context: Context, arrayList: ArrayList<MyMovie
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var poster_mov: ImageView?=null
         var movie_title: TextView?=null
-        var movie_tag: TextView?=null
 
         init {
             poster_mov = itemView.findViewById(R.id.my_poster_mov)
             movie_title = itemView.findViewById(R.id.my_movie_title)
-            movie_tag = itemView.findViewById(R.id.my_movie_tag)
         }
     }
 }

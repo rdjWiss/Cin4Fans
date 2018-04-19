@@ -28,11 +28,12 @@ class  MyMoviesFragment: BaseFragment()
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        item= MyMovieItem(R.drawable.poster_mov,
+        //R.drawable.poster_mov
+        item= MyMovieItem(R.drawable.movie_poster,
                 resources.getString(R.string.movie_title),
                 resources.getString(R.string.movie_tags).toString())
 
-        movie_items = arrayOf(item,item,item,item,item)
+        movie_items = arrayOf(item,item,item,item,item,item,item,item,item,item)
 
 
 
@@ -45,10 +46,10 @@ class  MyMoviesFragment: BaseFragment()
         list_mov_adapter= MyMoviesAdapter(activity,populateList())
         recyclerView!!.adapter = list_mov_adapter
         //
-        if (resources.getString(R.string.is_phone) == "true") {
+        if (resources.getString(R.string.isLand) == "false") {
             recyclerView!!.layoutManager = GridLayoutManager(activity,2)
         }else{
-            recyclerView!!.layoutManager = GridLayoutManager(activity,4)
+            recyclerView!!.layoutManager = GridLayoutManager(activity,5)
         }
         recyclerView!!.addOnItemTouchListener(AllListMoviesFragment.RecyclerTouchListener(activity, recyclerView!!, object : AllListMoviesFragment.ClickListener {
             override fun onClick(view: View, position: Int) {

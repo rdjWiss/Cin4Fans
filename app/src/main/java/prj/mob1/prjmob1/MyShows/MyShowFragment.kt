@@ -26,13 +26,11 @@ class MyShowFragment: BaseFragment()
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        item= MyShowItem(R.drawable.show_poster1,
+        item= MyShowItem(R.drawable.show_poster,
                 resources.getString(R.string.show_title),
                 resources.getString(R.string.show_tags).toString())
 
-        show_items = arrayOf(item,item,item,item,item)
-
-
+        show_items = arrayOf(item,item,item,item,item,item,item,item,item,item)
 
         // Inflate the layout for this fragment
         views = inflater!!.inflate(R.layout.fragment_list_show, container, false)
@@ -43,10 +41,10 @@ class MyShowFragment: BaseFragment()
         list_show_adapter= MyShowAdapter(activity,populateList())
         recyclerView!!.adapter = list_show_adapter
         //
-        if (resources.getString(R.string.is_phone) == "true") {
+        if (resources.getString(R.string.isLand) == "false") {
             recyclerView!!.layoutManager = GridLayoutManager(activity,2)
         }else{
-            recyclerView!!.layoutManager = GridLayoutManager(activity,4)
+            recyclerView!!.layoutManager = GridLayoutManager(activity,5)
         }
         recyclerView!!.addOnItemTouchListener(MyShowFragment.RecyclerTouchListener(activity, recyclerView!!, object : MyShowFragment.ClickListener {
             override fun onClick(view: View, position: Int) {
