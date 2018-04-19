@@ -2,7 +2,6 @@ package prj.mob1.prjmob1.season
 
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -81,14 +80,12 @@ class SeasonEpisodesFragment : Fragment() {
 
         override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
             viewHolder.itemTitles.text = episodeList[i].episode_title
-            var details = " ${episodeList[i].num_episode} | ${episodeList[i].date}"
+            val details = " ${episodeList[i].num_episode} | ${episodeList[i].date}"
             viewHolder.itemDetails.text = details
 
 
             viewHolder.itemView.setOnClickListener { v: View  ->
 
-                /*Snackbar.make(v, "Click detected on item ${episodeList[i].episode_title}",
-                        Snackbar.LENGTH_LONG).setAction("Action", null).show()*/
                 listener.onEpisodeSelected(episodeList[i])
             }
         }

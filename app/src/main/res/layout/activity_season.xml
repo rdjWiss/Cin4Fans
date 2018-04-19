@@ -18,16 +18,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!--TODO: use data binding-->
-        <ImageView
-            android:id="@+id/season_trailer"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dim_trailer_height"
-            app:srcCompat="@drawable/show_image"
-            android:layout_marginTop="0dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            />
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/season_trailer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_trailer_height"
+                app:srcCompat="@drawable/show_image"
+                android:layout_marginTop="0dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                />
+
+            <ImageView
+                android:id="@+id/back_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_go_back_left_arrow"
+                android:tint="@color/colorBG"
+                android:gravity="end"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"/>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/season_infos"
@@ -35,6 +52,11 @@
             android:layout_height="@dimen/dim_infos_height"
             android:orientation="horizontal">
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line"/>
 
         <LinearLayout
             android:id="@+id/season_tabs_container"
@@ -67,7 +89,8 @@
                         app:tabSelectedTextColor="@color/color_tabs_text_selected"
                         app:tabTextColor="@color/color_tabs_text"
                         app:tabTextAppearance="@style/TabsStyle"
-                        app:tabBackground="@color/colorBG"/>
+                        app:tabBackground="@color/color_tabs_bg"
+                        android:background="@color/color_tabs_bg"/>
                 </android.support.design.widget.AppBarLayout>
 
                 <android.support.v4.view.ViewPager

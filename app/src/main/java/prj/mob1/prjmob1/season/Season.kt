@@ -2,13 +2,12 @@ package prj.mob1.prjmob1.season
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.io.Serializable
 
 /**
  * Created by sol on 27/03/2018.
  */
 data class Season (val num_season:String,val title_show: String, val nbr_episodes: Int, val date_begin: String,
-              val date_end: String, val posterId: Int, var overview: String) : Parcelable {
+              val date_end: String, val posterId: Int,val imageId: Int, var overview: String) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
@@ -16,11 +15,12 @@ data class Season (val num_season:String,val title_show: String, val nbr_episode
             parcel.readString(),
             parcel.readString(),
             parcel.readInt(),
+            parcel.readInt(),
             parcel.readString()) {
     }
 
-    constructor() : this("","",0,"","",0,"")
-    constructor(num: String, nbr_episodes:Int): this(num,"",nbr_episodes,"","",0,"")
+    constructor() : this("","",0,"","",0,0,"")
+    constructor(num: String, nbr_episodes:Int): this(num,"",nbr_episodes,"","",0,0,"")
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(num_season)
@@ -29,6 +29,7 @@ data class Season (val num_season:String,val title_show: String, val nbr_episode
         parcel.writeString(date_begin)
         parcel.writeString(date_end)
         parcel.writeInt(posterId)
+        parcel.writeInt(imageId)
         parcel.writeString(overview)
     }
 

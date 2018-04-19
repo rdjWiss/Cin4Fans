@@ -26,7 +26,6 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="2"
             android:adjustViewBounds="false"
-            app:srcCompat="@drawable/show_poster"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
         <LinearLayout
@@ -63,15 +62,6 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_star"
                     android:tint="@color/colorPrimary"/>
-
-                <!--<ImageView
-                    android:id="@+id/season_infos_bookmark1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_bookmark_plus_outline"
-                    android:tint="@color/colorPrimary"/>-->
-
 
             </LinearLayout>
 

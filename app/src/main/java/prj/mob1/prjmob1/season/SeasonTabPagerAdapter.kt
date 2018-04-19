@@ -12,21 +12,22 @@ import prj.mob1.prjmob1.episode.OverviewFragment
 /**
  * Created by Wissem on 27/03/2018.
  */
-class SeasonTabPagerAdapter (fm: FragmentManager, private var tabCount: Int, val season : Season) :
+class SeasonTabPagerAdapter (fm: FragmentManager, private var tabCount: Int,
+                             val season : Season, val modeLand: Boolean) :
         FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment? {
+        var pos = position
+        if (modeLand) pos++
 
-        when (position) {
+        when (pos) {
             0 -> {
                 var bundle = Bundle()
                 Log.e("TAG", season.overview)
                 bundle.putString("overview", season.overview)
-                //var frag = EpisodeOverviewFragment()
                 var frag = OverviewFragment()
                 frag.arguments = bundle
                 return frag
-                //return SeasonOverviewFragment()
             }
             1 -> {
                 var bundle = Bundle()
