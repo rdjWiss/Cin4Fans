@@ -50,7 +50,7 @@ class AllListMoviesFragment:BaseFragment()
         if (resources.getString(R.string.is_phone) == "true") {
             recyclerView!!.layoutManager = LinearLayoutManager(activity)
         }else{
-            recyclerView!!.layoutManager = GridLayoutManager(activity,4)
+            recyclerView!!.layoutManager = GridLayoutManager(activity,3)
         }
         recyclerView!!.addOnItemTouchListener(AllListMoviesFragment.RecyclerTouchListener(activity, recyclerView!!, object : AllListMoviesFragment.ClickListener {
             override fun onClick(view: View, position: Int) {

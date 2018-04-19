@@ -2,6 +2,7 @@ package prj.mob1.prjmob1.AllListMovies
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import prj.mob1.prjmob1.Liste_movies.ListMoviesFragment
 
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.Util.addFragment
@@ -16,7 +17,8 @@ class Activity_all_list_movie : AppCompatActivity() {
 
         apply {
             initDrawer()
-            addFragment(AllListMoviesFragment(),R.id.container_body_all_movie)
+//            addFragment(AllListMoviesFragment(),R.id.container_body_all_movie)
+            addFragment(ListMoviesFragment(),R.id.container_body_all_movie)
         }
 
 
