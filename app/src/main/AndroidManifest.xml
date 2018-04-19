@@ -12,7 +12,6 @@
         <activity
             android:name=".movie.MovieActivity"
             android:theme="@style/Notitle" />
-        <activity android:name=".MainActivity" />
         <activity
             android:name=".show.ShowActivity"
             android:theme="@style/Notitle" />
@@ -22,12 +21,25 @@
         <activity
             android:name=".episode.EpisodeActivity"
             android:theme="@style/Notitle" />
-        <activity android:name=".Home.HomeActivity">
+        <activity
+            android:name=".Person.PersonActivity"
+            android:theme="@style/Notitle" />
+
+        <activity android:name=".SplashActivity"
+            android:theme="@style/Notitle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".Home.HomeActivity">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
         </activity>
         <activity android:name=".AllListShow.AllListShowActivity" />
         <activity android:name=".AllListMovies.Activity_all_list_movie" />
