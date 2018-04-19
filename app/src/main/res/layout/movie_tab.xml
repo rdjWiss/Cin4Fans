@@ -11,31 +11,31 @@
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:theme="@style/Notitle"
             >
-
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/mv_tab_layout"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabMode="fixed"
                 app:tabGravity="fill"
-                android:elevation="@dimen/_30sdp"
+                android:elevation="5dp"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 app:tabIndicatorColor="@color/text_color_white"
-                app:tabIndicatorHeight="@dimen/_4sdp"
-
+                app:tabIndicatorHeight="4dp"
                 app:tabSelectedTextColor="@color/text_color_white"
                 app:tabTextColor="@color/text_color_white"
                 app:tabTextAppearance="@style/TabsStyle"
                 app:tabBackground="@color/colorPrimaryDark"/>
+
         </android.support.design.widget.AppBarLayout>
+
         <android.support.v4.view.ViewPager
             android:id="@+id/mv_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"/>
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"/>
 
 </android.support.design.widget.CoordinatorLayout>
 

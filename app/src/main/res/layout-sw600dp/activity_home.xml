@@ -22,25 +22,27 @@
                 layout="@layout/toolbar" />
         </LinearLayout>
 
-        <!--This is the bar and viewpager which contain movie and Tv show airing-->
+        <FrameLayout
+            android:id="@+id/container_body"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-                <include
-                    android:id="@+id/mv_tabs_container"
-                    layout="@layout/movie_tab"
+            <include
+                android:id="@+id/mv_tabs_container"
+                layout="@layout/movie_tab"
                 />
 
         </LinearLayout>
-
     </LinearLayout>
-
     <fragment
         android:id="@+id/fragment_navigation_drawer"
 
-     android:name="prj.mob1.prjmob1.Drawer.DrawerFragment"
-        android:layout_width="260dp"
+        android:name="prj.mob1.prjmob1.Drawer.DrawerFragment"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:layout="@layout/fragment_drawer"

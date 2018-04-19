@@ -1,34 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="@color/color_bg_card"
+    android:layout_height="@dimen/dim_movie_item_hight"
+    android:layout_margin="4dp"
     card_view:cardElevation="3dp"
-    card_view:contentPadding="4dp" >
+    card_view:contentPadding="4dp"
+    card_view:cardCornerRadius="5dp"
+    android:clickable="true"
+    android:focusable="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:baselineAligned="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+
         >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/poster_show"
-                android:src="@drawable/show_poster1" />
-        </LinearLayout>
+
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"/>
+        </RelativeLayout>
+        <!--                android:src="@drawable/show_poster1"-->
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginLeft="@dimen/margin_left_movie_item"
-            android:layout_marginTop="@dimen/margin_top_movie_item"
+            android:layout_marginStart="@dimen/margin_left_movie_item"
             >
             <TextView
                 android:layout_width="wrap_content"

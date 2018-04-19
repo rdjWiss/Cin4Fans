@@ -29,7 +29,7 @@ class ListMoviesFragment:Fragment()
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        item= Movies_Item(R.drawable.poster_mov
+        item= Movies_Item(R.drawable.movie_poster
                 ,resources.getString(R.string.movie_year).toInt(),
                 resources.getString(R.string.movie_title),
                 resources.getString(R.string.movie_tags).toString())

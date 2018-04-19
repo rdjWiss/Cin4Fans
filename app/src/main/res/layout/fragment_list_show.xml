@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/show_lis_fg"
-    >
-
+    android:layout_height="match_parent">
     <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/show_item_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_35sdp"
+        android:orientation="vertical"
         android:scrollbars="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         />
-</LinearLayout>
+</RelativeLayout>

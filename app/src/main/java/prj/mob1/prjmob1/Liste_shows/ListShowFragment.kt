@@ -26,7 +26,7 @@ import prj.mob1.prjmob1.show.ShowActivity
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        item= Show_Item(R.drawable.show_poster1
+        item= Show_Item(R.drawable.show_poster
                 ,resources.getString(R.string.show_year).toInt(),
                 resources.getString(R.string.show_title),
                 resources.getString(R.string.show_tags).toString())
@@ -47,7 +47,7 @@ import prj.mob1.prjmob1.show.ShowActivity
         if (resources.getString(R.string.is_phone) == "true") {
             recyclerView!!.layoutManager = LinearLayoutManager(activity)
         }else{
-            recyclerView!!.layoutManager = GridLayoutManager(activity,4)
+            recyclerView!!.layoutManager = GridLayoutManager(activity,2)
         }
         recyclerView!!.addOnItemTouchListener(ListShowFragment.RecyclerTouchListener(activity, recyclerView!!,object : BaseFragment.ClickListener {
             override fun onClick(view: View, position: Int) {
