@@ -25,8 +25,7 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
         if(bundle != null){
             name = bundle.getString("personName","")
         }
-        Toast.makeText(this, "Click detected on item $name",
-                Toast.LENGTH_LONG).show()
+
         val infosFragment =
                 PersonInfosFragment.newInstance(name)
         supportFragmentManager.beginTransaction().add(R.id.person_infos, infosFragment).commit()

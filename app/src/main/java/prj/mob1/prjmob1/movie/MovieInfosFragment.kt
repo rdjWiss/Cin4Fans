@@ -2,12 +2,14 @@ package prj.mob1.prjmob1.movie
 
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import kotlinx.android.synthetic.main.fragment_movie_infos.*
 import prj.mob1.prjmob1.R
 
 import prj.mob1.prjmob1.databinding.FragmentMovieInfosBinding
@@ -54,8 +56,22 @@ class MovieInfosFragment: Fragment() {
         Log.e("TAG",movie.title)
         binding.movie = movie
 
+        //Ajout du lister de rate
         myView.findViewById<ImageView>(R.id.movie_infos_rate).setOnClickListener{
             listener.onRateClick()
+        }
+
+        //Ajout du listner de bookmark
+        myView.findViewById<ImageView>(R.id.movie_infos_bookmark1).setOnClickListener{
+            Snackbar.make(myView,"Added to favorites",Snackbar.LENGTH_SHORT).show()
+            movie_infos_bookmark2.visibility = View.VISIBLE
+            movie_infos_bookmark1.visibility = View.INVISIBLE
+        }
+
+        myView.findViewById<ImageView>(R.id.movie_infos_bookmark2).setOnClickListener{
+            Snackbar.make(myView,"Removed from favorites",Snackbar.LENGTH_SHORT).show()
+            movie_infos_bookmark1.visibility = View.VISIBLE
+            movie_infos_bookmark2.visibility = View.INVISIBLE
         }
 
         return myView

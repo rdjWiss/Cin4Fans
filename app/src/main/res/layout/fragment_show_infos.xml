@@ -62,13 +62,24 @@
                     app:srcCompat="@drawable/ic_star"
                     android:tint="@color/colorPrimary"/>
 
-                <ImageView
-                    android:id="@+id/show_infos_bookmark1"
+                <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dimen_ic_bookmark"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_bookmark_plus_outline"
-                    android:tint="@color/colorPrimary"/>
+                    android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/show_infos_bookmark1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/ic_bookmark_plus_outline"
+                        android:tint="@color/colorPrimary"/>
+                    <ImageView
+                        android:id="@+id/show_infos_bookmark2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/ic_bookmark_plus"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="invisible"/>
+                </FrameLayout>
 
 
             </LinearLayout>

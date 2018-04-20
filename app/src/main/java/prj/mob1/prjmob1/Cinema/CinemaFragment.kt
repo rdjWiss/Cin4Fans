@@ -14,7 +14,7 @@ class CinemaFragment: BaseFragment()
     }
     override fun initItem():Array<Item>
     {
-        var item= Item(R.drawable.cinema
+        var item= Item(R.drawable.image_cinema
                 ,resources.getString(R.string.cinema_rate).toInt(),
                 resources.getString(R.string.cinema_title),
                 resources.getString(R.string.cinema_adress).toString())
