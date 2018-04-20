@@ -65,7 +65,10 @@ abstract open class BaseFragment : android.support.v4.app.Fragment()
             else
                 recyclerView!!.layoutManager = GridLayoutManager(activity,2)
         }else{
-            recyclerView!!.layoutManager = GridLayoutManager(activity,2)
+            if (typeAdpter()==1)
+            recyclerView!!.layoutManager = GridLayoutManager(activity,5)
+            else
+                recyclerView!!.layoutManager = GridLayoutManager(activity,2)
         }
         recyclerView!!.addOnItemTouchListener(RecyclerTouchListener(activity, recyclerView!!, object : ClickListener {
             override fun onClick(view: View, position: Int) {
@@ -78,9 +81,6 @@ abstract open class BaseFragment : android.support.v4.app.Fragment()
 
         return views //to return the layout as a result
     }
-
-
-
 
 
     private fun populateList(): ArrayList<Item> {

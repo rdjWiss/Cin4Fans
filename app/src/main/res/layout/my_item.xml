@@ -26,6 +26,7 @@
             android:scaleType="fitXY"
             />
         <TextView
+            android:gravity="center"
             android:id="@+id/my_title"
             style="@style/TextAppearance.AppCompat.Subhead.Inverse"
             android:layout_width="match_parent"
