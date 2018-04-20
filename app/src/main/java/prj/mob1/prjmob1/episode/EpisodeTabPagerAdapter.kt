@@ -5,8 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.util.Log
-import android.widget.Toast
-import prj.mob1.prjmob1.CommentsFragment
+import prj.mob1.prjmob1.Comment.CommentsFragment
 
 /**
  * Created by sol on 27/03/2018.

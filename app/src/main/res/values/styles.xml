@@ -8,6 +8,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="autoCompleteTextViewStyle">@style/cursorColor</item>
     </style>
 
     <style name="Drawer" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -32,5 +33,12 @@
         <item name="android:textSize">@dimen/tab_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+
+    <!--- For the cursor of the search item-->
+    <style name="cursorColor" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:textCursorDrawable">@drawable/cursor</item>
+    </style>
+
 
 </resources>

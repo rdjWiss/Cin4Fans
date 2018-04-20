@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="prj.mob1.prjmob1">
-<!--android:icon="@mipmap/ic_launcher"-->
-    <!--android:roundIcon="@mipmap/ic_launcher_round"-->
+
+    <!-- android:icon="@mipmap/ic_launcher" -->
+    <!-- android:roundIcon="@mipmap/ic_launcher_round" -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,8 +26,8 @@
         <activity
             android:name=".Person.PersonActivity"
             android:theme="@style/Notitle" />
-
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/Notitle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,18 +35,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".Home.HomeActivity">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity android:name=".AllListShow.AllListShowActivity" />
         <activity android:name=".AllListMovies.Activity_all_list_movie" />
         <activity android:name=".MyMovies.MyMoviesActivity" />
-        <activity android:name=".MyShows.MyShowActivity"></activity>
+        <activity android:name=".MyShows.MyShowActivity" />
+        <activity android:name=".Cinema.CinemasActivity" />
+        <activity android:name=".MyCinema.MyCinemaActivity"></activity>
     </application>
 
 </manifest>

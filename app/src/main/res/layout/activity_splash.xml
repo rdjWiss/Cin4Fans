@@ -17,6 +17,7 @@
         app:srcCompat="@drawable/ic_movie"
 
         />
+
 <!-- android:tint="@color/colorBG"-->
 </LinearLayout>
 </FrameLayout>

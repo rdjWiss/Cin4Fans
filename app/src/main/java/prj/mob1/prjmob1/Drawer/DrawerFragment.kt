@@ -14,7 +14,9 @@ import android.content.Intent
 import android.util.Log
 import prj.mob1.prjmob1.AllListMovies.Activity_all_list_movie
 import prj.mob1.prjmob1.AllListShow.AllListShowActivity
+import prj.mob1.prjmob1.Cinema.CinemasActivity
 import prj.mob1.prjmob1.Home.HomeActivity
+import prj.mob1.prjmob1.MyCinema.MyCinemaActivity
 import prj.mob1.prjmob1.MyMovies.MyMoviesActivity
 import prj.mob1.prjmob1.MyShows.MyShowActivity
 
@@ -62,12 +64,9 @@ class DrawerFragment : Fragment() {
                 openFragment(position)
                 mDrawerLayout!!.closeDrawer(containerView)
             }
-
             override fun onLongClick(view: View?, position: Int) {
-
             }
         }))
-
         openFragment(-1)
 
         return views //to return the layout as a result
@@ -93,13 +92,18 @@ class DrawerFragment : Fragment() {
            2->
            {val intent = Intent (context, AllListShowActivity:: class.java)
                startActivity (intent)}
+           3->
+           {val intent = Intent (context, CinemasActivity:: class.java)
+               startActivity (intent)}
            4->
            {val intent = Intent (context, MyMoviesActivity:: class.java)
                startActivity (intent)}
            5->
            {val intent = Intent (context, MyShowActivity:: class.java)
                startActivity (intent)}
-
+           6->
+           {val intent = Intent (context, MyCinemaActivity:: class.java)
+               startActivity (intent)}
             else -> {
             }
         }

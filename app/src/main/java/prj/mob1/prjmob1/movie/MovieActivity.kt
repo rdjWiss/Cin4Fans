@@ -13,7 +13,7 @@ import android.widget.Toast
 import android.widget.VideoView
 
 import kotlinx.android.synthetic.main.activity_movie.*
-import prj.mob1.prjmob1.CrewFragment
+import prj.mob1.prjmob1.Crew.CrewFragment
 import prj.mob1.prjmob1.Person.PersonActivity
 import prj.mob1.prjmob1.rating.OnRateClick
 

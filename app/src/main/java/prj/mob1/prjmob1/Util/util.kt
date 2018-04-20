@@ -5,7 +5,9 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
+import android.view.Menu
 import android.view.View
 import prj.mob1.prjmob1.Drawer.DrawerFragment
 import prj.mob1.prjmob1.R
@@ -36,3 +38,9 @@ fun AppCompatActivity.initDrawer()
     val drawerFragment:DrawerFragment = supportFragmentManager.findFragmentById(R.id.fragment_navigation_drawer) as DrawerFragment
     drawerFragment!!.setUpDrawer(R.id.fragment_navigation_drawer, findViewById<View>(R.id.drawer_layout) as DrawerLayout, toolbar!!)
 }
+
+
+
+
+
+

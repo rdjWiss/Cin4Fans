@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import prj.mob1.prjmob1.CommentsFragment
-import prj.mob1.prjmob1.CrewFragment
+import prj.mob1.prjmob1.Cinema.CinemaFragment
+import prj.mob1.prjmob1.Comment.CommentsFragment
+import prj.mob1.prjmob1.Crew.CrewFragment
 import prj.mob1.prjmob1.Liste_movies.ListMoviesFragment
 
 /**
@@ -27,7 +28,8 @@ class MovieTabPagerAdapter(fm: FragmentManager, private var tabCount: Int, val m
                 frag.arguments = bundle
                 return frag
             }
-            2 -> return MovieCinemaFragment()
+           // 2 -> return MovieCinemaFragment()
+            2 -> return CinemaFragment()
             3 -> return CommentsFragment()
             4 -> return ListMoviesFragment()
             else -> return null
