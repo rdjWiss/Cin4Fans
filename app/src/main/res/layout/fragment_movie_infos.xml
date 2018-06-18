@@ -90,7 +90,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:fontFamily="Roboto"
-                android:text="@{movie.release + ` | ` + movie.duration + ` min`}"
+                android:text="@{movie.releaseDate + ` | ` + movie.duration + ` min`}"
                 android:textColor="@color/colorLine2"
                 android:textSize="@dimen/dim_infos_line2" />
 
@@ -126,7 +126,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="Roboto"
-                    android:text="@string/nbr_viewers"
+                    android:text="@{movie.rating + ` | ` + movie.voteCount}"
                     android:textColor="@color/colorLine3" />
             </LinearLayout>
 

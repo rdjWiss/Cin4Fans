@@ -8,11 +8,13 @@ import prj.mob1.prjmob1.Cinema.CinemaFragment
 import prj.mob1.prjmob1.Comment.CommentsFragment
 import prj.mob1.prjmob1.Crew.CrewFragment
 import prj.mob1.prjmob1.Liste_movies.ListMoviesFragment
+import prj.mob1.prjmob1.R
 
 /**
  * Created by sol on 26/03/2018.
  */
-class MovieTabPagerAdapter(fm: FragmentManager, private var tabCount: Int, val modeLand: Boolean) :
+class MovieTabPagerAdapter(fm: FragmentManager, private var tabCount: Int, val modeLand: Boolean,
+                          val id:Int,val movie:MovieClass) :
         FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment? {
@@ -20,13 +22,16 @@ class MovieTabPagerAdapter(fm: FragmentManager, private var tabCount: Int, val m
         if (modeLand) pos++
 
         when (pos) {
-            0 -> return MovieOverviewFragment()
+            0 -> {
+                return MovieOverviewFragment.newInstance(movie.overview)
+            }
             1 -> {
-                val bundle = Bundle()
+                /*val bundle = Bundle()
                 bundle.putInt("TypeCrew", 0)
                 val frag = CrewFragment()
                 frag.arguments = bundle
-                return frag
+                return frag*/
+                return CrewFragment.newInstance(0,movie.credits)
             }
            // 2 -> return MovieCinemaFragment()
             2 -> return CinemaFragment()

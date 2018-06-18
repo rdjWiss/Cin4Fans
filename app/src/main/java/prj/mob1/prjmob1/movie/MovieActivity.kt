@@ -7,25 +7,46 @@ import android.os.Bundle
 import prj.mob1.prjmob1.R
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import android.view.View
 import android.widget.RatingBar
 import android.widget.Toast
 import android.widget.VideoView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 import kotlinx.android.synthetic.main.activity_movie.*
+import prj.mob1.prjmob1.ActionsInterface
 import prj.mob1.prjmob1.Crew.CrewFragment
 import prj.mob1.prjmob1.Person.PersonActivity
 import prj.mob1.prjmob1.rating.OnRateClick
+import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 
-class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateClick {
+class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateClick, ActionsInterface {
 
     private var modeTab = false
+
+    private var id = 0
+    private var movie :MovieClass? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_movie)
+
         if (resources.getString(R.string.isLand) == "true") modeTab = true
+
+        val bundle = intent.getBundleExtra("bundle")
+        if(bundle != null){
+            id  = bundle.getInt("id")
+        }else{
+            //TODO: afficher erreur: id manquant / no bundle
+            //finish()
+            id = 550
+        }
+
+        //Get les infos du films
+        this.getMovieData(id)
 
         //Trailer
         val videoview = findViewById<VideoView>(R.id.movie_trailer)
@@ -55,21 +76,55 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
         movie_back_arrow!!.setOnClickListener{
             finish()
         }
-        //Fragment infos
-        supportFragmentManager.beginTransaction().add(R.id.movie_infos, MovieInfosFragment()).commit()
 
-        //Overview fragment for tablet
-        if (modeTab){
-            supportFragmentManager.beginTransaction()
-                    .add(R.id.movie_overview, MovieOverviewFragment()).commit()
-        }
 
-        //Tabs
-        configureTabLayout()
 
     }
 
-    private fun configureTabLayout() {
+    fun getMovieData(id:Int){
+        val apiService: RemoteApiService? = RemoteApiService.create()
+        apiService!!.getMovieInfosById(id)
+//        apiService!!.getMovieCreditsById(id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe ({
+                    result ->
+//                    Toast.makeText(this,"Response ${result}", Toast.LENGTH_LONG).show()
+                    Log.e("CREW",result.credits.cast.toString())
+                   // Toast.makeText(this,"Response ${result.cast}", Toast.LENGTH_LONG).show()
+                    initMovieInfosFrag(result)
+                    initOverviewFragTabMode(result.overview)
+                    configureTabLayout(result)
+                    //Toast.makeText(this,"Response ${result.credit}", Toast.LENGTH_LONG).show()
+                    movie = result
+                }, { error ->
+                    Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
+                    error.printStackTrace()
+
+                })
+
+
+    }
+
+    fun initMovieInfosFrag(movie: MovieClass){
+        //Fragment infos
+        val infosFragment =
+                MovieInfosFragment.newInstance(movie)
+        supportFragmentManager.beginTransaction().add(R.id.movie_infos, infosFragment).commit()
+    }
+
+    fun initOverviewFragTabMode(overview:String){
+        if (modeTab){
+            val overviewFrag =
+                    MovieOverviewFragment.newInstance(overview)
+            supportFragmentManager.beginTransaction().add(R.id.movie_overview, overviewFrag).commit()
+
+        }
+
+
+    }
+
+    private fun configureTabLayout(movie: MovieClass) {
         if(!modeTab) movie_tab_layout.addTab(movie_tab_layout.newTab().setText("Overview"))
         movie_tab_layout.addTab(movie_tab_layout.newTab().setText("Crew"))
         movie_tab_layout.addTab(movie_tab_layout.newTab().setText("Cinemas"))
@@ -77,7 +132,7 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
         movie_tab_layout.addTab(movie_tab_layout.newTab().setText("Related"))
 
         val adapter = MovieTabPagerAdapter(supportFragmentManager,
-                movie_tab_layout.tabCount,modeTab)
+                movie_tab_layout.tabCount,modeTab,id,movie)
         movie_viewpager.adapter = adapter
 
         movie_viewpager.addOnPageChangeListener(
@@ -99,12 +154,18 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
         })
     }
 
-    override fun onCrewSelected(name: String) {
+
+    override fun onCrewSelected(creditId:Int) {
+        Toast.makeText(this,
+                creditId.toString(), Toast.LENGTH_SHORT )
+                .show()
+        /*
+        TODO
         val intent = Intent(this, PersonActivity::class.java)
         val bundle = Bundle()
         bundle.putString("personName",name)
         intent.putExtra("bundle",bundle)
-        startActivity(intent)
+        startActivity(intent)*/
     }
 
     override fun onRateClick(){
@@ -113,7 +174,7 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
         val dialogRatingBar = dialogView.findViewById<RatingBar>(R.id.dialogRb)
 
         builder.setView(dialogView)
-                .setPositiveButton("OK") { dialogInterface, i ->
+                .setPositiveButton("OK") { _, _ ->
 
                     Toast.makeText(this,
                             "Rated: ${dialogRatingBar.rating}", Toast.LENGTH_SHORT )
@@ -124,5 +185,19 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
                 }
                 .show()
     }
+
+    override fun onAddBookmark(){
+
+    }
+
+    override fun onRemoveBookmark(){
+
+    }
+
+
+
+
+
+
 
 }

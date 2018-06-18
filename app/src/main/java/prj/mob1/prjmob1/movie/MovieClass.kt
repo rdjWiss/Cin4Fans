@@ -1,10 +1,75 @@
 package prj.mob1.prjmob1.movie
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
+import android.arch.persistence.room.PrimaryKey
+import android.os.Parcel
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import prj.mob1.prjmob1.retrofitUtil.models.CreditResponse
+
 /**
  * Created by sol on 25/03/2018.
  */
-data class MovieClass(val title:String, val release: String, val year: Int, val tags: String,
-                      val duration: Int, val posterId: Int, var overview: String) {
-    constructor() : this("","",0,"",0,0,"")
+@Entity(tableName = "Movie")
+data class MovieClass(@SerializedName("id") @PrimaryKey val id: Int,
+                      @SerializedName("original_title") val title: String,
+                      @SerializedName("release_date") val releaseDate: String,
+                      var year: String,
+                      @SerializedName("tagline") val tags: String,
+                      @SerializedName("runtime") val duration: Int,
+                      @SerializedName("poster_path") val posterId: String,
+                      @SerializedName("overview") var overview: String,
+                      @SerializedName("vote_average") var rating: Double,
+                      @SerializedName("vote_count") var voteCount: Int
+                      ,@SerializedName("credits") var credits: CreditResponse
+
+                      ) : Parcelable {
+    constructor(parcel: Parcel) : this(
+            parcel.readInt(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readInt(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readDouble(),
+            parcel.readInt(),
+            parcel.readParcelable(CreditResponse::class.java.classLoader)) {
+    }
+
+    @Ignore
+    constructor() : this(0, "", "", "", "", 0, "", "", 0.0, 0, CreditResponse(0, listOf(), listOf()))
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
+        parcel.writeString(title)
+        parcel.writeString(releaseDate)
+        parcel.writeString(year)
+        parcel.writeString(tags)
+        parcel.writeInt(duration)
+        parcel.writeString(posterId)
+        parcel.writeString(overview)
+        parcel.writeDouble(rating)
+        parcel.writeInt(voteCount)
+        parcel.writeParcelable(credits, flags)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<MovieClass> {
+        override fun createFromParcel(parcel: Parcel): MovieClass {
+            return MovieClass(parcel)
+        }
+
+        override fun newArray(size: Int): Array<MovieClass?> {
+            return arrayOfNulls(size)
+        }
+    }
+
+
 }
 
