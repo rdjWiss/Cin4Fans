@@ -19,6 +19,13 @@ import prj.mob1.prjmob1.rating.OnRateClick
 
 class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         SeasonEpisodesFragment.OnEpisodeSelected, OnRateClick {
+    override fun onAddBookmark() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onRemoveBookmark() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var season = Season()
     private var modeTab = false
@@ -89,12 +96,12 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         })
     }
 
-    override fun onCrewSelected(name: String) {
-        val intent = Intent(this, PersonActivity::class.java)
+    override fun onCrewSelected(creditId:Int) {
+/*        val intent = Intent(this, PersonActivity::class.java)
         val bundle = Bundle()
         bundle.putString("personName",name)
         intent.putExtra("bundle",bundle)
-        startActivity(intent)
+        startActivity(intent)*/
     }
 
     override fun onEpisodeSelected(episode : Episode) {

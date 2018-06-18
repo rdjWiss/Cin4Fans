@@ -26,7 +26,7 @@ class MyShowFragment: BaseFragment()
         return items
     }
     override fun openActivity(position: Int) {
-        val context: Context = getContext()
+        val context: Context? = getContext()
         val intent = Intent (context, ShowActivity:: class.java)
         startActivity (intent)
     }

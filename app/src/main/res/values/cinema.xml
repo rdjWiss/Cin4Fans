@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="cinema_title">Angelika Film Center and Café - New York</string>
+    <string name="cinema_title">Angelika Film Center and Café</string>
     <string name="cinema_nb_star">4.3</string>
-    <string name="cinema_rate"> 677  </string>
-    <string name="cinema_adress">New York, NY, USA</string>
+    <string name="cinema_rate">677  </string>
+    <string name="cinema_adress">New York, USA</string>
 </resources>

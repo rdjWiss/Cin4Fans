@@ -32,7 +32,7 @@ class SeasonInfosFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            season = arguments.getParcelable(ARG_Season)
+            season = arguments!!.getParcelable(ARG_Season)
         }
     }
 
@@ -46,7 +46,7 @@ class SeasonInfosFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         val binding : FragmentSeasonInfosBinding =
@@ -58,7 +58,7 @@ class SeasonInfosFragment : Fragment() {
             listener.onRateClick()
         }
 
-        val season = arguments.getParcelable<Season>(ARG_Season) as Season
+        val season = arguments!!.getParcelable<Season>(ARG_Season) as Season
         myView.findViewById<ImageView>(R.id.season_infos_poster).setImageResource(season.posterId)
         binding.season = season
 

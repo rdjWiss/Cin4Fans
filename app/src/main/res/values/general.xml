@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- labels -->
-    <string name="crew1">Directors</string>
-    <string name="crew2">Actors</string>
+    <string name="crew1">Cast</string>
+    <string name="crew2">Crew</string>
 </resources>

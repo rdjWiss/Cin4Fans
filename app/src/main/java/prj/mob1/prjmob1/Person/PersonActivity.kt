@@ -12,6 +12,7 @@ import prj.mob1.prjmob1.rating.OnRateClick
 
 class PersonActivity : AppCompatActivity(), OnRateClick {
 
+
     private var name :String= ""
     private var modeTab = false
 
@@ -87,5 +88,13 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
                 .setNegativeButton("Annuler") { dialogInterface, i ->
                 }
                 .show()
+    }
+
+    override fun onRemoveBookmark() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onAddBookmark() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

@@ -13,6 +13,7 @@ import prj.mob1.prjmob1.rating.OnRateClick
 
 class EpisodeActivity : AppCompatActivity(), OnRateClick {
 
+
     private var episode: Episode = Episode()
     private var modeTab = false
 
@@ -94,8 +95,16 @@ class EpisodeActivity : AppCompatActivity(), OnRateClick {
                             .show()
 
                 }
-                .setNegativeButton("Annuler") { dialogInterface, i ->
+                .setNegativeButton("Annuler") { _, _ ->
                 }
                 .show()
+    }
+
+    override fun onAddBookmark() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onRemoveBookmark() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

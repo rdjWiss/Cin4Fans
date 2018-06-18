@@ -17,7 +17,7 @@ import java.util.ArrayList
 /**
  * Created by LE on 17/04/2018.
  */
-abstract open class BaseFragment : android.support.v4.app.Fragment()
+abstract class BaseFragment : android.support.v4.app.Fragment()
 {
 
     private var views: View? = null
@@ -35,7 +35,7 @@ abstract open class BaseFragment : android.support.v4.app.Fragment()
     abstract fun typeAdpter():Int
     abstract fun openActivity(position:Int)
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         items=initItem()
@@ -45,15 +45,15 @@ abstract open class BaseFragment : android.support.v4.app.Fragment()
 
         when (typeAdpter())
         {
-            0-> { list_adapter = ListAdapter(activity, populateList())
+            0-> { list_adapter = ListAdapter(activity!!.applicationContext, populateList())
                 recyclerView!!.adapter = list_adapter }
-            1->{my_list_adpter= MyListAdapter(activity,populateList())
+            1->{my_list_adpter= MyListAdapter(activity!!.applicationContext,populateList())
                 recyclerView!!.adapter = my_list_adpter }
             2->{
-                cinema_adapter = ListCinemaAdpater(activity, populateList())
+                cinema_adapter = ListCinemaAdpater(activity!!.applicationContext, populateList())
                 recyclerView!!.adapter = cinema_adapter }
             else ->
-            { list_adapter = ListAdapter(activity, populateList())
+            { list_adapter = ListAdapter(activity!!.applicationContext, populateList())
                 recyclerView!!.adapter = list_adapter
             }
         }
@@ -70,7 +70,7 @@ abstract open class BaseFragment : android.support.v4.app.Fragment()
             else
                 recyclerView!!.layoutManager = GridLayoutManager(activity,2)
         }
-        recyclerView!!.addOnItemTouchListener(RecyclerTouchListener(activity, recyclerView!!, object : ClickListener {
+        recyclerView!!.addOnItemTouchListener(RecyclerTouchListener(activity!!.applicationContext, recyclerView!!, object : ClickListener {
             override fun onClick(view: View, position: Int) {
                 openActivity(position)
             }

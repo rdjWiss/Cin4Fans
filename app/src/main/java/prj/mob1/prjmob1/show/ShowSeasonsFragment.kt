@@ -32,7 +32,7 @@ class ShowSeasonsFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         val view: View =  inflater!!.inflate(R.layout.fragment_show_seasons, container, false)

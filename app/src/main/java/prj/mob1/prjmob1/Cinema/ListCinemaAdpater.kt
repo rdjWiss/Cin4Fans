@@ -30,7 +30,7 @@ class  ListCinemaAdpater(private val context: Context, arrayList: ArrayList<Item
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.cinema?.setImageResource(arrayList[position].poster)
-        holder.cinema_rate?.text=arrayList[position].year.toString()
+        holder.cinema_rate?.text=" (${arrayList[position].year.toString()})"
         holder.cinema_title?.text=arrayList[position].title
         holder.cinema_adress?.text=arrayList[position].tag
 

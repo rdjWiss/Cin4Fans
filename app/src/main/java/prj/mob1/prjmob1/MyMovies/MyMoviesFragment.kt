@@ -29,7 +29,7 @@ class  MyMoviesFragment: BaseFragment()
         return items
     }
     override fun openActivity(position: Int) {
-        val context: Context = getContext()
+        val context: Context? = getContext()
         val intent = Intent (context, MovieActivity:: class.java)
         startActivity (intent)
     }

@@ -32,7 +32,7 @@ class PersonInfosFragment : Fragment() {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
 
-            name = arguments.getString(ARG_namePerson)
+            name = arguments!!.getString(ARG_namePerson)
         }
     }
 
@@ -46,7 +46,7 @@ class PersonInfosFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val binding : FragmentPersonInfosBinding =
                 FragmentPersonInfosBinding.inflate(inflater!! ,container , false)

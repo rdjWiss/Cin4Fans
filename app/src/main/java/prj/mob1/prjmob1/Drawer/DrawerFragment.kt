@@ -50,19 +50,19 @@ class DrawerFragment : Fragment() {
 
     }*/
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         // Inflate the layout for this fragment
-        views = inflater!!.inflate(R.layout.fragment_drawer, container, false)
+        views = inflater.inflate(R.layout.fragment_drawer, container, false)
         recyclerView = views!!.findViewById<View>(R.id.listview) as RecyclerView
-        drawerAdapter = DrawerAdapter(activity, populateList())
+        drawerAdapter = DrawerAdapter(activity!!.applicationContext, populateList())
         recyclerView!!.adapter = drawerAdapter
         recyclerView!!.layoutManager = LinearLayoutManager(activity)
-        recyclerView!!.addOnItemTouchListener(RecyclerTouchListener(activity, recyclerView!!, object : ClickListener {
+        recyclerView!!.addOnItemTouchListener(RecyclerTouchListener(activity!!.applicationContext, recyclerView!!, object : ClickListener {
             override fun onClick(view: View, position: Int) {
                 openFragment(position)
-                mDrawerLayout!!.closeDrawer(containerView)
+                containerView?.let { mDrawerLayout!!.closeDrawer(it) }
             }
             override fun onLongClick(view: View?, position: Int) {
             }
@@ -73,7 +73,7 @@ class DrawerFragment : Fragment() {
     }
 
     private fun openFragment(position: Int) {
-        val context:Context= getContext()
+        val context:Context?= getContext()
        when (position) {
            // 0 -> removeAllFragment(FriendListFragment(), "Friends")
            // 1 -> removeAllFragment(NotificationFragment(), "Notifiaction")
@@ -119,20 +119,20 @@ class DrawerFragment : Fragment() {
     }*/
 
     fun setUpDrawer(fragmentId: Int, drawerLayout: DrawerLayout, toolbar: Toolbar) {
-        containerView = activity.findViewById(fragmentId)
+        containerView = activity!!.findViewById(fragmentId)
         mDrawerLayout = drawerLayout
         mDrawerToggle = object : ActionBarDrawerToggle(activity, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
-            override fun onDrawerOpened(drawerView: View?) {
+            override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
-                activity.invalidateOptionsMenu()
+                activity!!.invalidateOptionsMenu()
             }
 
-            override fun onDrawerClosed(drawerView: View?) {
+            override fun onDrawerClosed(drawerView: View) {
                 super.onDrawerClosed(drawerView)
-                activity.invalidateOptionsMenu()
+                activity!!.invalidateOptionsMenu()
             }
 
-            override fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                 super.onDrawerSlide(drawerView, slideOffset)
                 toolbar.alpha = 1 - slideOffset / 2
             }

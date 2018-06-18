@@ -35,7 +35,7 @@ class EpisodeInfosFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            episode = arguments.getParcelable(ARG_Episode)
+            episode = arguments!!.getParcelable(ARG_Episode)
         }
     }
 
@@ -49,7 +49,7 @@ class EpisodeInfosFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         val binding : FragmentEpisodeInfosBinding =
@@ -61,7 +61,7 @@ class EpisodeInfosFragment : Fragment() {
             listener.onRateClick()
         }
 
-        val episode = arguments.getParcelable<Episode>(ARG_Episode) as Episode
+        val episode = arguments!!.getParcelable<Episode>(ARG_Episode) as Episode
         binding.episode = episode
 
         return myView
