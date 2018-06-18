@@ -9,13 +9,32 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import prj.mob1.prjmob1.R
-//TODO REMOVE/REFACTORE
-class CommentsFragment : Fragment() {
+import prj.mob1.prjmob1.retrofitUtil.models.ReviewsResponse
+
+class ReviewsFragment : Fragment() {
+
+    private var reviews: ReviewsResponse? = null
+
+    companion object {
+
+        private val ARG_reviews = "Reviews"
+
+        fun newInstance(reviews: ReviewsResponse): ReviewsFragment {
+            val fragment = ReviewsFragment()
+            val args = Bundle()
+            args.putParcelable(ARG_reviews, reviews)
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        if (arguments != null) {
+            reviews = arguments!!.getParcelable(ARG_reviews)
+        }
     }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -26,29 +45,30 @@ class CommentsFragment : Fragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
-        val comment =Comment(getResources().getString(R.string.comment_username),
+        /*val comment =Comment(getResources().getString(R.string.comment_username),
                 getResources().getString(R.string.comment_body))
 
-        val commentsListAdapter = CommentsListAdapter(arrayListOf(comment,comment,comment,comment
-                ,comment,comment))
+        val commentsListAdapter = ReviewsListAdapter(arrayListOf(comment,comment,comment,comment
+                ,comment,comment))*/
+        val commentsListAdapter = ReviewsListAdapter(reviews!!.results)
         recyclerView.adapter =commentsListAdapter
 
         return view
     }
 
-    internal inner class CommentsListAdapter(val commentsList: ArrayList<Comment>)
-        : RecyclerView.Adapter<CommentsFragment.CommentsListAdapter.ViewHolder>() {
+    internal inner class ReviewsListAdapter(val commentsList: List<Review>)
+        : RecyclerView.Adapter<ReviewsFragment.ReviewsListAdapter.ViewHolder>() {
 
 
-        override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): CommentsFragment.CommentsListAdapter.ViewHolder {
+        override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ReviewsFragment.ReviewsListAdapter.ViewHolder {
             val v = LayoutInflater.from(viewGroup.context)
                     .inflate(R.layout.fragment_comments_item, viewGroup, false)
             return ViewHolder(v)
         }
 
-        override fun onBindViewHolder(viewHolder: CommentsFragment.CommentsListAdapter.ViewHolder, i: Int) {
-            viewHolder.itemUsername.text = commentsList[i].username
-            viewHolder.itemBody.text = commentsList[i].body
+        override fun onBindViewHolder(viewHolder: ReviewsFragment.ReviewsListAdapter.ViewHolder, i: Int) {
+            viewHolder.itemUsername.text = commentsList[i].author
+            viewHolder.itemBody.text = commentsList[i].content
 
             viewHolder.itemView.setOnClickListener { v: View  ->
 

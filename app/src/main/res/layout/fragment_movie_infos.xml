@@ -112,13 +112,20 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <ImageView
+               <!-- <ImageView
                     android:id="@+id/movie_infos_rating"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_rating2"
-                   />
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/ic_rating2" />-->
+
+                <!--<RatingBar
+                    android:id="@+id/movie_rating"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:numStars="5" />-->
 
                 <TextView
                     android:id="@+id/movie_infos_infos_rating_viewers"

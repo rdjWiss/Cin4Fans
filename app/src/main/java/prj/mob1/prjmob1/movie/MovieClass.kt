@@ -7,6 +7,8 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import prj.mob1.prjmob1.retrofitUtil.models.CreditResponse
+import prj.mob1.prjmob1.retrofitUtil.models.ReviewsResponse
+import prj.mob1.prjmob1.retrofitUtil.models.SimilarMoviesResponse
 
 /**
  * Created by sol on 25/03/2018.
@@ -21,9 +23,10 @@ data class MovieClass(@SerializedName("id") @PrimaryKey val id: Int,
                       @SerializedName("poster_path") val posterId: String,
                       @SerializedName("overview") var overview: String,
                       @SerializedName("vote_average") var rating: Double,
-                      @SerializedName("vote_count") var voteCount: Int
-                      ,@SerializedName("credits") var credits: CreditResponse
-
+                      @SerializedName("vote_count") var voteCount: Int,
+                      @SerializedName("credits") var credits: CreditResponse,
+                      @SerializedName("similar") var similar: SimilarMoviesResponse,
+                      @SerializedName("reviews") var reviews: ReviewsResponse
                       ) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
@@ -36,11 +39,14 @@ data class MovieClass(@SerializedName("id") @PrimaryKey val id: Int,
             parcel.readString(),
             parcel.readDouble(),
             parcel.readInt(),
-            parcel.readParcelable(CreditResponse::class.java.classLoader)) {
+            parcel.readParcelable(CreditResponse::class.java.classLoader),
+            parcel.readParcelable(SimilarMoviesResponse::class.java.classLoader),
+            parcel.readParcelable(ReviewsResponse::class.java.classLoader)) {
     }
 
     @Ignore
-    constructor() : this(0, "", "", "", "", 0, "", "", 0.0, 0, CreditResponse(0, listOf(), listOf()))
+    constructor() : this(0, "", "", "", "", 0, "", "", 0.0, 0, CreditResponse(0, listOf(), listOf()),
+            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()))
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)

@@ -22,11 +22,8 @@ import prj.mob1.prjmob1.movie.MovieClass
 
 interface RemoteApiService {
 
-    @GET("movie/{movie_id}?api_key=$API_KEY&append_to_response=credits")
+    @GET("movie/{movie_id}?api_key=$API_KEY&append_to_response=credits,similar,reviews")
     fun getMovieInfosById(@Path("movie_id") id: Int): Observable<MovieClass>
-
-    @GET("movie/{movie_id}/credits?api_key=$API_KEY")
-    fun getMovieCreditsById(@Path("movie_id") id: Int): Observable<CreditResponse>
 
     // Companion object to create the RemoteApiService,
     //Singleton

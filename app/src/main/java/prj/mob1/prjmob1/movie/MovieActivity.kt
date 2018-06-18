@@ -42,7 +42,7 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
         }else{
             //TODO: afficher erreur: id manquant / no bundle
             //finish()
-            id = 550
+            id = 200//550
         }
 
         //Get les infos du films
@@ -89,8 +89,8 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
                 .subscribeOn(Schedulers.io())
                 .subscribe ({
                     result ->
-//                    Toast.makeText(this,"Response ${result}", Toast.LENGTH_LONG).show()
-                    Log.e("CREW",result.credits.cast.toString())
+//                    Toast.makeText(this,"Response ${result.reviews.results}", Toast.LENGTH_LONG).show()
+//                    Log.e("CREW",result.reviews.results[0].content)
                    // Toast.makeText(this,"Response ${result.cast}", Toast.LENGTH_LONG).show()
                     initMovieInfosFrag(result)
                     initOverviewFragTabMode(result.overview)

@@ -21,6 +21,7 @@ import prj.mob1.prjmob1.retrofitUtil.models.CreditResponse
 
 class CrewFragment() : Fragment() {
 
+    //TODO: remove typeCrew
     private var typeCrew: Int? = null ///Movie ou show; juste pour tests sans db
     private var credits: CreditResponse? = null
 
