@@ -12,14 +12,14 @@ class CinemaFragment: BaseFragment()
     override fun typeAdpter(): Int {
         return 2
     }
-    override fun initItem():Array<Item>
+    override fun initItem():ArrayList<Item>
     {
-        var item= Item(R.drawable.image_cinema
-                ,resources.getString(R.string.cinema_rate).toInt(),
+        var item= Item(""
+                ,"",
                 resources.getString(R.string.cinema_title),
                 resources.getString(R.string.cinema_adress).toString())
 
-        var items= arrayOf(item,item,item,item,item,item,item,item,item,item)
+        var items= arrayListOf(item,item,item,item,item,item,item,item,item,item)
         return items
     }
     override fun openActivity(position: Int) {

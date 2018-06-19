@@ -1,13 +1,12 @@
 package prj.mob1.prjmob1.movie
 
-import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import prj.mob1.prjmob1.R
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AlertDialog
-import android.util.Log
+
 import android.view.View
 import android.widget.RatingBar
 import android.widget.Toast
@@ -18,7 +17,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_movie.*
 import prj.mob1.prjmob1.ActionsInterface
 import prj.mob1.prjmob1.Crew.CrewFragment
-import prj.mob1.prjmob1.Person.PersonActivity
+
 import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 

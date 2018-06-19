@@ -19,13 +19,13 @@ class  MyMoviesFragment: BaseFragment()
         return 1
     }
 
-    override fun initItem():Array<Item>
+    override fun initItem():ArrayList<Item>
     {
-        var item= Item(R.drawable.movie_poster
-                ,resources.getString(R.string.movie_year).toInt(),
+        var item= Item(""
+                ,"",
                 resources.getString(R.string.movie_title),
                 resources.getString(R.string.movie_tags).toString())
-        var items= arrayOf(item,item,item,item,item,item,item,item,item,item)
+        var items= arrayListOf(item,item,item,item,item,item,item,item,item,item)
         return items
     }
     override fun openActivity(position: Int) {

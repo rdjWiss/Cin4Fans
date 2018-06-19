@@ -1,13 +1,16 @@
 package prj.mob1.prjmob1.ListItem
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.RequestBuilder
 import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 
 /**
  * Created by LE on 20/04/2018.
@@ -29,7 +32,15 @@ class ListAdapter (private val context: Context, arrayList: ArrayList<Item>) : R
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.poster?.setImageResource(arrayList[position].poster)
+        /**
+
+        val poster = myView.findViewById<ImageView>(R.id.movie_infos_poster)
+        RemoteApiService.getRemoteImage(movie.posterId,this.context)!!.into(poster)
+
+         * */
+
+        //holder.poster?.setImageResource(arrayList[position].poster)
+        RemoteApiService.getRemoteImage(arrayList[position].poster,this.context)!!.into(holder.poster)
         holder.year?.text=arrayList[position].year.toString()
         holder.title?.text=arrayList[position].title
         holder.tag?.text=arrayList[position].tag
@@ -55,3 +66,4 @@ class ListAdapter (private val context: Context, arrayList: ArrayList<Item>) : R
         }
     }
 }
+

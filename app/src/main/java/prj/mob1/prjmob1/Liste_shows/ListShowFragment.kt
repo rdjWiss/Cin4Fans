@@ -15,13 +15,13 @@ import prj.mob1.prjmob1.show.ShowActivity
         return 0
     }
 
-    override fun initItem(): Array<Item> {
-        var item = Item(R.drawable.show_poster
-                , resources.getString(R.string.show_year).toInt(),
+    override fun initItem(): ArrayList<Item> {
+        var item = Item(""
+                , "",
                 resources.getString(R.string.show_title),
                 resources.getString(R.string.show_tags).toString())
 
-        var items = arrayOf(item, item, item, item, item, item, item, item, item, item)
+        var items = arrayListOf(item, item, item, item, item, item, item, item, item, item)
         return items
     }
     override fun openActivity(position: Int) {

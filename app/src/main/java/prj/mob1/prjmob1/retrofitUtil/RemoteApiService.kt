@@ -11,10 +11,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import com.google.gson.GsonBuilder
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import prj.mob1.prjmob1.retrofitUtil.models.CreditResponse
+import prj.mob1.prjmob1.ListItem.ListMovies
 import prj.mob1.prjmob1.movie.MovieClass
+import prj.mob1.prjmob1.retrofitUtil.RemoteApiService.Factory.API_KEY
+import retrofit2.Response
+import java.util.*
 
 
 //Created by sol on 14/06/2018.
@@ -24,6 +29,14 @@ interface RemoteApiService {
 
     @GET("movie/{movie_id}?api_key=$API_KEY&append_to_response=credits,similar,reviews")
     fun getMovieInfosById(@Path("movie_id") id: Int): Observable<MovieClass>
+
+    //Get list of films airing
+    @GET("movie/now_playing?api_key=$API_KEY&append_to_response=credits,similar,reviews")
+    fun getLatesMovies(): Observable<Response<ListMovies>>
+
+
+
+
 
     // Companion object to create the RemoteApiService,
     //Singleton
@@ -52,14 +65,21 @@ interface RemoteApiService {
                         .client(httpClient.build())
                         .build()
 
-                instance =  retrofit.create(RemoteApiService::class.java);
+                instance =  retrofit.create(RemoteApiService::class.java)
             }
             return instance
         }
 
+
+
+
         fun getRemoteImage(path:String, context: Context?): RequestBuilder<Drawable>?{
             val URL = BASE_IMAGE_URL + path
             return Glide.with(context).load(URL)
+        }
+        fun <T> sendRequest(observable:Observable<T>,success:(T)->Unit,failure:(Throwable)->Unit)
+        {
+            observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(success,failure)
         }
     }
 }

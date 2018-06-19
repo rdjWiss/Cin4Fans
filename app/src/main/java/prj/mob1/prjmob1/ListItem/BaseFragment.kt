@@ -28,9 +28,9 @@ abstract class BaseFragment : android.support.v4.app.Fragment()
 
     private var recyclerView: RecyclerView? = null
 
-    private lateinit var items:Array<Item>
+    private lateinit var items:ArrayList<Item>
 
-    abstract fun initItem():Array<Item>
+    abstract fun initItem():ArrayList<Item>
 
     abstract fun typeAdpter():Int
     abstract fun openActivity(position:Int)
