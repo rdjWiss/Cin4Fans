@@ -13,6 +13,7 @@ import retrofit2.http.Path
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import prj.mob1.prjmob1.Person.Person
 import prj.mob1.prjmob1.retrofitUtil.models.CreditResponse
 import prj.mob1.prjmob1.movie.MovieClass
 
@@ -22,8 +23,11 @@ import prj.mob1.prjmob1.movie.MovieClass
 
 interface RemoteApiService {
 
-    @GET("movie/{movie_id}?api_key=$API_KEY&append_to_response=credits,similar,reviews")
+    @GET("movie/{movie_id}?api_key=$API_KEY&append_to_response=credits,similar,reviews,genre")
     fun getMovieInfosById(@Path("movie_id") id: Int): Observable<MovieClass>
+
+    @GET("person/{person_id}?api_key=$API_KEY&append_to_response=movie_credits,tv_credits")
+    fun getPersonInfosById(@Path("person_id") id: Int): Observable<Person>
 
     // Companion object to create the RemoteApiService,
     //Singleton

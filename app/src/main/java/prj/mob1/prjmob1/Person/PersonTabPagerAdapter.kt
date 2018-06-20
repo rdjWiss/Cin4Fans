@@ -12,7 +12,7 @@ import prj.mob1.prjmob1.Liste_shows.ListShowFragment
  * Created by sol on 16/04/2018.
  */
 class PersonTabPagerAdapter (fm: FragmentManager, private var tabCount: Int,
-                             val name:String, val modeLand: Boolean) :
+                             val person:Person, val modeLand: Boolean) :
         FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment? {
@@ -20,13 +20,7 @@ class PersonTabPagerAdapter (fm: FragmentManager, private var tabCount: Int,
         if (modeLand) pos++
 
         when (pos) {
-            0 -> {
-                val bundle = Bundle()
-                bundle.putString("personName", name)
-                val frag = PersonOverviewFragment()
-                frag.arguments = bundle
-                return frag
-            }
+            0 -> return PersonOverviewFragment.newInstance(person.biography, person.birthday, person.origin)
             1 -> return ListMoviesFragment()
             2 -> return ListShowFragment()
             3 -> return CommentsFragment()

@@ -10,19 +10,20 @@ import android.widget.ImageView
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.databinding.FragmentPersonInfosBinding
 import prj.mob1.prjmob1.rating.OnRateClick
+import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 
 class PersonInfosFragment : Fragment() {
-    private var name = ""
+    private var person:Person? = null
     private lateinit var listener: OnRateClick
 
     companion object {
 
-        private val ARG_namePerson = "personName"
+        private val ARG_PERSON = "person"
 
-        fun newInstance(nom : String): PersonInfosFragment {
+        fun newInstance( person:Person): PersonInfosFragment {
             val fragment = PersonInfosFragment()
             val args = Bundle()
-            args.putString(ARG_namePerson , nom)
+            args.putParcelable(ARG_PERSON , person)
             fragment.arguments = args
             return fragment
         }
@@ -31,8 +32,7 @@ class PersonInfosFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-
-            name = arguments!!.getString(ARG_namePerson)
+            person= arguments!!.getParcelable(ARG_PERSON)
         }
     }
 
@@ -49,28 +49,18 @@ class PersonInfosFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val binding : FragmentPersonInfosBinding =
-                FragmentPersonInfosBinding.inflate(inflater!! ,container , false)
+                FragmentPersonInfosBinding.inflate(inflater ,container , false)
         val view : View  = binding.root
+
+        val image = view.findViewById<ImageView>(R.id.person_profil_image)
+        if(person!!.imageId !=null) RemoteApiService.getRemoteImage(person!!.imageId,this.context)!!.into(image)
+        binding.person = person
 
         //Set rating listener
         view.findViewById<ImageView>(R.id.person_infos_rate).setOnClickListener{
             listener.onRateClick()
         }
 
-        var indice= 0;
-        if(resources.getStringArray(R.array.person_names)[1] == name) indice = 1
-
-        val birthday = resources.getStringArray(R.array.person_birthdays)[indice]
-        val origin = resources.getStringArray(R.array.person_from)[indice]
-        val bio = resources.getStringArray(R.array.person_biographies)[indice]
-
-        val profil = resources.obtainTypedArray(R.array.person_profils).getResourceId(indice,0)
-        val image = resources.obtainTypedArray(R.array.person_images).getResourceId(indice,0)
-
-        view.findViewById<ImageView>(R.id.person_image_top).setImageResource(image)
-        view.findViewById<ImageView>(R.id.person_profil_image).setImageResource(profil)
-
-        binding.person = Person(name,birthday,origin,bio,0,0)
         return view
 
     }

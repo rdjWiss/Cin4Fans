@@ -166,6 +166,11 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
         bundle.putString("personName",name)
         intent.putExtra("bundle",bundle)
         startActivity(intent)*/
+        val intent = Intent(this, PersonActivity::class.java)
+        val bundle = Bundle()
+        bundle.putInt("personId",creditId)
+        intent.putExtra("bundle",bundle)
+        startActivity(intent)
     }
 
     override fun onRateClick(){
