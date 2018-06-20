@@ -97,7 +97,7 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
                 .subscribeOn(Schedulers.io())
                 .subscribe ({
                     result ->
-//                    Toast.makeText(this,"Response ${result.seasons}", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this,"Response ${result.networks[0].name}", Toast.LENGTH_LONG).show()
                     Log.e("SHOW",result.seasons.toString())
                     show = result
 
@@ -175,6 +175,8 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         bundle.putInt("showId",id)
         bundle.putString("showTitle",show.title)
         bundle.putInt("nbrEpisode",nbrEpisodes)
+        bundle.putInt("nbrEpisode",nbrEpisodes)
+        bundle.putString("network",show.networks[0].name)
         intent.putExtra("bundle",bundle)
         startActivity(intent)
 

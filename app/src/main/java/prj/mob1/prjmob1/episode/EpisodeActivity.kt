@@ -21,6 +21,7 @@ class EpisodeActivity : AppCompatActivity(), OnRateClick {
     private var seasonNum = 1
     private var episodeNum = 1
     private var showTitle = ""
+    private var network = ""
 
     private var episode: Episode = Episode()
     private var modeTab = false
@@ -38,6 +39,7 @@ class EpisodeActivity : AppCompatActivity(), OnRateClick {
             seasonNum = bundle.getInt("seasonNum")
             episodeNum = bundle.getInt("episodeNum")
             showTitle = bundle.getString("showTitle")
+            network = bundle.getString("network")
         }else{
             //TODO Show error and finish activity
         }
@@ -59,10 +61,11 @@ class EpisodeActivity : AppCompatActivity(), OnRateClick {
                 .subscribeOn(Schedulers.io())
                 .subscribe ({
                     result ->
-                    Toast.makeText(this,"Response ${result}", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this,"Response ${result}", Toast.LENGTH_LONG).show()
                     Log.e("EPSIODE",result.toString())
                     episode = result
                     episode.title_show = showTitle
+                    episode.channel = network
 
                     initEpisodeInfosFrag()
                     initOverviewFragTabMode()

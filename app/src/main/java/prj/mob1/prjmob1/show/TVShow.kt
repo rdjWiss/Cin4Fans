@@ -7,6 +7,7 @@ import prj.mob1.prjmob1.retrofitUtil.models.CreditResponse
 import prj.mob1.prjmob1.retrofitUtil.models.ReviewsResponse
 import prj.mob1.prjmob1.retrofitUtil.models.SimilarMoviesResponse
 import prj.mob1.prjmob1.season.Season
+import prj.mob1.prjmob1.episode.Network
 
 /**
  * Created by sol on 26/03/2018.
@@ -23,7 +24,8 @@ data class TVShow(@SerializedName("id") val id:Int,
                   @SerializedName("seasons") var seasons: List<Season>,
                   @SerializedName("credits") var credits: CreditResponse,
                   @SerializedName("similar") var similar: SimilarMoviesResponse,
-                  @SerializedName("reviews") var reviews: ReviewsResponse
+                  @SerializedName("reviews") var reviews: ReviewsResponse,
+                  @SerializedName("networks") var networks: List<Network>
                     ) : Parcelable {
 
 
@@ -40,11 +42,12 @@ data class TVShow(@SerializedName("id") val id:Int,
             parcel.createTypedArrayList(Season),
             parcel.readParcelable(CreditResponse::class.java.classLoader),
             parcel.readParcelable(SimilarMoviesResponse::class.java.classLoader),
-            parcel.readParcelable(ReviewsResponse::class.java.classLoader)) {
+            parcel.readParcelable(ReviewsResponse::class.java.classLoader),
+            parcel.createTypedArrayList(Network)) {
     }
 
     constructor() : this(0,"",0,"", intArrayOf(),"","",0,0.0, listOf<Season>(),CreditResponse(0, listOf(), listOf()),
-            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()))
+            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), listOf())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
@@ -56,10 +59,6 @@ data class TVShow(@SerializedName("id") val id:Int,
         parcel.writeString(overview)
         parcel.writeInt(voteCount)
         parcel.writeDouble(rating)
-        parcel.writeTypedList(seasons)
-        parcel.writeParcelable(credits, flags)
-        parcel.writeParcelable(similar, flags)
-        parcel.writeParcelable(reviews, flags)
     }
 
     override fun describeContents(): Int {

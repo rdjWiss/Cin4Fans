@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AlertDialog
 import android.util.Log
-import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.Toast
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -16,11 +15,9 @@ import kotlinx.android.synthetic.main.activity_season.*
 import prj.mob1.prjmob1.Crew.CrewFragment
 import prj.mob1.prjmob1.Person.PersonActivity
 import prj.mob1.prjmob1.R
-import prj.mob1.prjmob1.episode.Episode
 import prj.mob1.prjmob1.episode.EpisodeActivity
 import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
-import prj.mob1.prjmob1.show.ShowOverviewFragment
 
 class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         SeasonEpisodesFragment.OnEpisodeSelected, OnRateClick {
@@ -31,6 +28,7 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
 
     private var showTitle: String = ""
     private var nbrEpisode : Int = 0
+    private var network = ""
 
     private var modeTab = false
 
@@ -46,6 +44,7 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
             showId = bundle.getInt("showId",1399)
             showTitle = bundle.getString("showTitle")
             nbrEpisode = bundle.getInt("nbrEpisode")
+            network = bundle.getString("network")
         }else{
             seasonNum = 1
             showId = 1399
@@ -55,13 +54,7 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         getSeasonData()
         /*//Set image top
         findViewById<ImageView>(R.id.season_trailer).setImageResource(season.imageId)
-
-
-
-
-
-        //Tabs
-        configureTabLayout()*/
+*/
 
         back_arrow.setOnClickListener{
             finish()
@@ -154,6 +147,7 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         bundle.putString("showTitle",showTitle)
         bundle.putInt("seasonNum",seasonNum)
         bundle.putInt("episodeNum",episodeNum)
+        bundle.putString("network",network)
         intent.putExtra("bundle",bundle)
         startActivity(intent)
 
