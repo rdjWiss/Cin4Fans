@@ -35,37 +35,29 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
         }
 
         getPersonInfos()
-
-       /* TODO
-
-        /
-        }*/
-
-        //Tabs
-       // configureTabLayout()
     }
 
     fun getPersonInfos(){
         val apiService: RemoteApiService? = RemoteApiService.create()
         apiService!!.getPersonInfosById(personId)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe ({
-                    result ->
-                    Toast.makeText(this,"Response ${result.tvCredits.cast[0].title}", Toast.LENGTH_LONG).show()
-                    Log.e("Person",result.toString())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe ({
+                result ->
+//                    Toast.makeText(this,"Response ${result.tvCredits.cast[0].title}", Toast.LENGTH_LONG).show()
+                Log.e("Person",result.toString())
 
-                    person = result
-                    initMovieInfosFrag()
-                    initOverviewFragTabMode()
-                    configureTabLayout()
+                person = result
+                initMovieInfosFrag()
+                initOverviewFragTabMode()
+                configureTabLayout()
 
 
-                }, { error ->
-                    Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
-                    error.printStackTrace()
+            }, { error ->
+                Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
+                error.printStackTrace()
 
-                })
+            })
     }
 
     private fun initMovieInfosFrag(){

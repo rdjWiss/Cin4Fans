@@ -168,10 +168,13 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         startActivity(intent)
     }
 
-    override fun onSeasonSelected(season: Season) {
+    override fun onSeasonSelected(numSeason: String,nbrEpisodes:Int) {
         val intent = Intent(this, SeasonActivity::class.java)
         val bundle = Bundle()
-        bundle.putParcelable("season",season)
+        bundle.putInt("seasonNum",numSeason.toInt())
+        bundle.putInt("showId",id)
+        bundle.putString("showTitle",show.title)
+        bundle.putInt("nbrEpisode",nbrEpisodes)
         intent.putExtra("bundle",bundle)
         startActivity(intent)
 

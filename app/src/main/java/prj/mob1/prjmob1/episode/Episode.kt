@@ -2,12 +2,24 @@ package prj.mob1.prjmob1.episode
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 
 /**
  * Created by sol on 27/03/2018.
  */
-data class Episode (val episode_title: String, val num_episode:String,val title_show: String, val num_season: String, val date: String,
-               val channel: String, val posterId: Int, var overview: String) : Parcelable {
+data class Episode (@SerializedName("name") val episode_title: String,
+                    @SerializedName("episode_number") val num_episode:String,
+                    /*@SerializedName("id") */var title_show: String,
+                    @SerializedName("season_number") val num_season: String,
+                    @SerializedName("air_date") val date: String,
+                    /*@SerializedName("id")*/ val channel: String,
+                    @SerializedName("still_path") val posterId: String,
+                    @SerializedName("overview") var overview: String,
+                    @SerializedName("vote_count") var voteCount: Int,
+                    @SerializedName("vote_average") var rating: Double
+                    ) : Parcelable {
+
+
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
@@ -15,12 +27,14 @@ data class Episode (val episode_title: String, val num_episode:String,val title_
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
             parcel.readInt(),
-            parcel.readString()) {
+            parcel.readDouble()) {
     }
 
-    constructor() : this("","","","","","",0,"")
-    constructor(title:String, num :String, date:String): this(title,num,"","",date,"",0,"")
+    constructor() : this("","","","","","","","",0,0.0)
+    constructor(title:String, num :String, date:String): this(title,num,"","",date,"","","",0,0.0)
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(episode_title)
@@ -29,8 +43,10 @@ data class Episode (val episode_title: String, val num_episode:String,val title_
         parcel.writeString(num_season)
         parcel.writeString(date)
         parcel.writeString(channel)
-        parcel.writeInt(posterId)
+        parcel.writeString(posterId)
         parcel.writeString(overview)
+        parcel.writeInt(voteCount)
+        parcel.writeDouble(rating)
     }
 
     override fun describeContents(): Int {
@@ -46,4 +62,6 @@ data class Episode (val episode_title: String, val num_episode:String,val title_
             return arrayOfNulls(size)
         }
     }
+
+
 }

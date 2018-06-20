@@ -16,10 +16,25 @@ import prj.mob1.prjmob1.episode.Episode
 class SeasonEpisodesFragment : Fragment() {
 
     private lateinit var listener: SeasonEpisodesFragment.OnEpisodeSelected
+    private lateinit var episodes: ArrayList<Episode>
+
+    companion object {
+        private val ARG_LIST= "list"
+
+        fun newInstance(episodes: ArrayList<Episode>): SeasonEpisodesFragment {
+            val fragment = SeasonEpisodesFragment()
+            val args = Bundle()
+            args.putParcelableArrayList(ARG_LIST, episodes)
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        if (arguments != null) {
+            episodes = arguments!!.getParcelableArrayList(ARG_LIST)
+        }
     }
 
     override fun onAttach(context: Context?) {
@@ -35,13 +50,13 @@ class SeasonEpisodesFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val view: View =  inflater!!.inflate(R.layout.fragment_season_episodes, container, false)
+        val view: View =  inflater.inflate(R.layout.fragment_season_episodes, container, false)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.season_episodes_list) as
                 RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
-        var episodes: ArrayList<Episode> = ArrayList<Episode>()
+        /*var episodes: ArrayList<Episode> = ArrayList<Episode>()
         val episodeTitlesList = resources.getStringArray(R.array.episode_titles)
         val episodeNumsList = resources.getStringArray(R.array.episode_nums)
         val episodeDatesList = resources.getStringArray(R.array.episode_dates)
@@ -57,7 +72,7 @@ class SeasonEpisodesFragment : Fragment() {
 
         }
 
-
+*/
         recyclerView.adapter = EpisodeListAdapter(episodes)
 
         return view
@@ -80,7 +95,7 @@ class SeasonEpisodesFragment : Fragment() {
 
         override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
             viewHolder.itemTitles.text = episodeList[i].episode_title
-            val details = " ${episodeList[i].num_episode} | ${episodeList[i].date}"
+            val details = "Episode ${episodeList[i].num_episode} | ${episodeList[i].date}"
             viewHolder.itemDetails.text = details
 
 

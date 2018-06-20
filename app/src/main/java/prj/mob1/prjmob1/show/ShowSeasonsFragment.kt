@@ -66,7 +66,7 @@ class ShowSeasonsFragment : Fragment() {
     }
 
     interface OnSeasonSelected {
-        fun onSeasonSelected(season: Season)
+        fun onSeasonSelected(numSeason: String,nbrEpisodes:Int)
     }
     /**/
     internal inner class SeasonListAdapter(val seasonList: ArrayList<Season>)
@@ -87,7 +87,7 @@ class ShowSeasonsFragment : Fragment() {
 
             viewHolder.itemView.setOnClickListener { v: View  ->
 
-                listener.onSeasonSelected(seasonList[i])
+                listener.onSeasonSelected(seasonList[i].num_season,seasonList[i].nbr_episodes)
             }
         }
 

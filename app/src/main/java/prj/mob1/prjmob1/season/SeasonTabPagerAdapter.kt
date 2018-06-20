@@ -21,22 +21,9 @@ class SeasonTabPagerAdapter (fm: FragmentManager, private var tabCount: Int,
         if (modeLand) pos++
 
         when (pos) {
-            0 -> {
-                var bundle = Bundle()
-                Log.e("TAG", season.overview)
-                bundle.putString("overview", season.overview)
-                var frag = OverviewFragment()
-                frag.arguments = bundle
-                return frag
-            }
-            1 -> {
-                var bundle = Bundle()
-                bundle.putInt("TypeCrew", 1)
-                var frag = CrewFragment()
-                frag.arguments = bundle
-                return frag
-            }
-            2 -> return SeasonEpisodesFragment()
+            0 -> return  SeasonOverviewFragment.newInstance(season.overview)
+            1 -> return  CrewFragment.newInstance(0,season.credits)
+            2 -> return SeasonEpisodesFragment.newInstance(ArrayList(season.episodes))
             3 -> return CommentsFragment()
             else -> return null
         }

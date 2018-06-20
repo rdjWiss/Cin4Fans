@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="7"
                     android:fontFamily="Roboto"
-                    android:text="@{season.num_season}"
+                    android:text="@{`Season ` + season.num_season}"
                     android:textColor="@color/colorTitle"
                     android:textSize="@dimen/dim_infos_title"
                     android:textStyle="bold" />
