@@ -16,6 +16,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import prj.mob1.prjmob1.Person.Person
 import prj.mob1.prjmob1.retrofitUtil.models.CreditResponse
 import prj.mob1.prjmob1.movie.MovieClass
+import prj.mob1.prjmob1.show.TVShow
 
 
 //Created by sol on 14/06/2018.
@@ -23,12 +24,16 @@ import prj.mob1.prjmob1.movie.MovieClass
 
 interface RemoteApiService {
 
-    @GET("movie/{movie_id}?api_key=$API_KEY&append_to_response=credits,similar,reviews,genre")
+    @GET("movie/{movie_id}?api_key=$API_KEY&append_to_response=credits,similar,reviews")
     fun getMovieInfosById(@Path("movie_id") id: Int): Observable<MovieClass>
 
     @GET("person/{person_id}?api_key=$API_KEY&append_to_response=movie_credits,tv_credits")
     fun getPersonInfosById(@Path("person_id") id: Int): Observable<Person>
 
+    @GET("tv/{tv_id}?api_key=$API_KEY&append_to_response=credits,similar,reviews")//credits,similar,reviews,genre
+    fun getShowInfosById(@Path("tv_id") id: Int): Observable<TVShow>
+
+    //https://api.themoviedb.org/3/tv/1399?api_key=f8ecbc885ba42bd13eeceade9c8fcaf7
     // Companion object to create the RemoteApiService,
     //Singleton
     companion object Factory {

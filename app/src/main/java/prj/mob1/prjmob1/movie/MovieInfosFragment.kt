@@ -67,7 +67,7 @@ class MovieInfosFragment: Fragment() {
         binding.movie = movie
 
         val poster = myView.findViewById<ImageView>(R.id.movie_infos_poster)
-        RemoteApiService.getRemoteImage(movie.posterId,this.context)!!.into(poster)
+        if(movie.posterId != null) RemoteApiService.getRemoteImage(movie.posterId,this.context)!!.into(poster)
 
         //Ajout du lister de rate
         myView.findViewById<ImageView>(R.id.movie_infos_rate).setOnClickListener{

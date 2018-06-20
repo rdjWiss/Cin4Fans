@@ -59,7 +59,7 @@ class SeasonInfosFragment : Fragment() {
         }
 
         val season = arguments!!.getParcelable<Season>(ARG_Season) as Season
-        myView.findViewById<ImageView>(R.id.season_infos_poster).setImageResource(season.posterId)
+        //myView.findViewById<ImageView>(R.id.season_infos_poster).setImageResource(season.posterId)
         binding.season = season
 
         return myView

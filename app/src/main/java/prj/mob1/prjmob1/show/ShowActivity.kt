@@ -6,35 +6,46 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import android.view.View
 import android.widget.RatingBar
 import android.widget.Toast
 import android.widget.VideoView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_show.*
 import prj.mob1.prjmob1.Crew.CrewFragment
 import prj.mob1.prjmob1.Person.PersonActivity
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.rating.OnRateClick
+import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 import prj.mob1.prjmob1.season.Season
 import prj.mob1.prjmob1.season.SeasonActivity
 
 class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
                 ShowSeasonsFragment.OnSeasonSelected, OnRateClick {
-    override fun onAddBookmark() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onRemoveBookmark() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     private var modeTab = false
+    private var id: Int = 0
+    private var show: TVShow = TVShow()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_show)
         if (resources.getString(R.string.isLand) == "true") modeTab = true
+
+        val bundle = intent.getBundleExtra("bundle")
+        if(bundle != null){
+            id  = bundle.getInt("id")
+        }else{
+            //TODO: afficher erreur: id manquant / no bundle
+            //finish()
+            id = 1399//550
+        }
+
+        //Get les infos du show
+        this.getShowData()
 
         //Trailer
         val videoview = findViewById<VideoView>(R.id.show_trailer)
@@ -65,7 +76,7 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
             finish()
         }
 
-        //Fragment infos
+        /*//Fragment infos
         supportFragmentManager.beginTransaction().add(R.id.show_infos, ShowInfosFragment()).commit()
 
         //Overview fragment en mode tablette
@@ -75,8 +86,47 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         }
 
         //Tabs
-        configureTabLayout()
+        configureTabLayout()*/
 
+    }
+
+    private fun getShowData(){
+        val apiService: RemoteApiService? = RemoteApiService.create()
+        apiService!!.getShowInfosById(id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe ({
+                    result ->
+//                    Toast.makeText(this,"Response ${result.seasons}", Toast.LENGTH_LONG).show()
+                    Log.e("SHOW",result.seasons.toString())
+                    show = result
+
+                    initShowInfosFrag()
+                    initOverviewFragTabMode()
+                    configureTabLayout()
+                }, { error ->
+                    Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
+                    error.printStackTrace()
+
+                })
+
+    }
+
+    private fun initShowInfosFrag(){
+        //Fragment infos
+        val infosFragment =
+                ShowInfosFragment.newInstance(show)
+        supportFragmentManager.beginTransaction().add(R.id.show_infos, infosFragment).commit()
+    }
+
+    private fun initOverviewFragTabMode(){
+        //Overview fragment en mode tablette
+        if (modeTab){
+            val overviewFrag =
+                    ShowOverviewFragment.newInstance(show.overview)
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.show_overview, overviewFrag).commit()
+        }
     }
 
     private fun configureTabLayout() {
@@ -87,7 +137,7 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         show_tab_layout.addTab(show_tab_layout.newTab().setText(getString(R.string.show_tab5)))
 
         val adapter =ShowTabPagerAdapter(supportFragmentManager,
-                show_tab_layout.tabCount,modeTab)
+                show_tab_layout.tabCount,modeTab,show)
         show_viewpager.adapter = adapter
 
         show_viewpager.addOnPageChangeListener(
@@ -111,11 +161,11 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
     }
 
     override fun onCrewSelected(creditId:Int) {
-/*        val intent = Intent(this, PersonActivity::class.java)
+        val intent = Intent(this, PersonActivity::class.java)
         val bundle = Bundle()
-        bundle.putString("personName",name)
+        bundle.putInt("personId",creditId)
         intent.putExtra("bundle",bundle)
-        startActivity(intent)*/
+        startActivity(intent)
     }
 
     override fun onSeasonSelected(season: Season) {
@@ -144,4 +194,13 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
                 }
                 .show()
     }
+
+    override fun onAddBookmark() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onRemoveBookmark() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 }

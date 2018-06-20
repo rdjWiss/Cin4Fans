@@ -27,7 +27,7 @@ class MovieTabPagerAdapter(fm: FragmentManager, private var tabCount: Int, val m
             1 -> return CrewFragment.newInstance(0,movie.credits)
             2 -> return CinemaFragment()
             3 -> return ReviewsFragment.newInstance(movie.reviews)
-            4 -> return ListMoviesFragment()
+            4 -> return ListMoviesFragment()//TODO adapt to similar movies
             else -> return null
         }
     }

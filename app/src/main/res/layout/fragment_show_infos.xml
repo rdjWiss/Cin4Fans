@@ -90,7 +90,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:fontFamily="Roboto"
-                android:text="@{show.nbr_episodes + ` epsiodes | ` + show.duration + ` min`}"
+                android:text="@{show.nbr_episodes + ` epsiodes | ` + show.duration[0] + ` min`}"
                 android:textColor="@color/colorLine2"
                 android:textSize="@dimen/dim_infos_line2" />
 
@@ -126,7 +126,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="Roboto"
-                    android:text="@string/nbr_viewers"
+                    android:text="@{show.rating + ` | ` + show.voteCount}"
                     android:textColor="@color/colorLine3" />
             </LinearLayout>
 

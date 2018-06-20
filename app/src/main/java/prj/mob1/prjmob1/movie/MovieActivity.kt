@@ -84,18 +84,15 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
     fun getMovieData(id:Int){
         val apiService: RemoteApiService? = RemoteApiService.create()
         apiService!!.getMovieInfosById(id)
-//        apiService!!.getMovieCreditsById(id)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe ({
                     result ->
 //                    Toast.makeText(this,"Response ${result.reviews.results}", Toast.LENGTH_LONG).show()
-//                    Log.e("CREW",result.reviews.results[0].content)
-                   // Toast.makeText(this,"Response ${result.cast}", Toast.LENGTH_LONG).show()
+                    //TODO refactore, assign movie var and use it directly
                     initMovieInfosFrag(result)
                     initOverviewFragTabMode(result.overview)
                     configureTabLayout(result)
-                    //Toast.makeText(this,"Response ${result.credit}", Toast.LENGTH_LONG).show()
                     movie = result
                 }, { error ->
                     Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
@@ -159,13 +156,6 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
         Toast.makeText(this,
                 creditId.toString(), Toast.LENGTH_SHORT )
                 .show()
-        /*
-        TODO
-        val intent = Intent(this, PersonActivity::class.java)
-        val bundle = Bundle()
-        bundle.putString("personName",name)
-        intent.putExtra("bundle",bundle)
-        startActivity(intent)*/
         val intent = Intent(this, PersonActivity::class.java)
         val bundle = Bundle()
         bundle.putInt("personId",creditId)
