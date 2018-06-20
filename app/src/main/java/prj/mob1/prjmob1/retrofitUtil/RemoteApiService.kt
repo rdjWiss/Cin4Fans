@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import prj.mob1.prjmob1.Person.Person
+import prj.mob1.prjmob1.episode.Episode
 import prj.mob1.prjmob1.retrofitUtil.models.CreditResponse
 import prj.mob1.prjmob1.movie.MovieClass
 import prj.mob1.prjmob1.season.Season
@@ -36,6 +37,11 @@ interface RemoteApiService {
 
     @GET("tv/{tv_id}/season/{season_number}?api_key=$API_KEY&append_to_response=credits")
     fun getSeasonInfosById(@Path("tv_id") tvId: Int, @Path("season_number") seasonNum:Int): Observable<Season>
+
+    @GET("tv/{tv_id}/season/{season_number}/episode/{episode_number}?api_key=$API_KEY&append_to_response=credits")
+    fun getEpisodeInfosById(@Path("tv_id") tvId: Int,
+                            @Path("season_number") seasonNum:Int,
+                            @Path("episode_number") episodeNum:Int): Observable<Episode>
 
     // Companion object to create the RemoteApiService,
     //Singleton

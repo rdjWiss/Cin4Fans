@@ -79,7 +79,7 @@ class SeasonEpisodesFragment : Fragment() {
     }
 
     interface OnEpisodeSelected {
-        fun onEpisodeSelected(episode: Episode)
+        fun onEpisodeSelected(episodeNum: Int)
     }
 
     /**/
@@ -101,7 +101,7 @@ class SeasonEpisodesFragment : Fragment() {
 
             viewHolder.itemView.setOnClickListener { v: View  ->
 
-                listener.onEpisodeSelected(episodeList[i])
+                listener.onEpisodeSelected(episodeList[i].num_episode.toInt())
             }
         }
 
