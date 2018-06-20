@@ -46,7 +46,7 @@ data class TVShow(@SerializedName("id") val id:Int,
             parcel.createTypedArrayList(Network)) {
     }
 
-    constructor() : this(0,"",0,"", intArrayOf(),"","",0,0.0, listOf<Season>(),CreditResponse(0, listOf(), listOf()),
+    constructor() : this(0,"NA",0,"NA", intArrayOf(),"NA","NA",0,0.0, listOf<Season>(),CreditResponse(0, listOf(), listOf()),
             SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), listOf())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

@@ -72,5 +72,5 @@ data class Person ( @SerializedName("id") val id:Int,
         }
     }
 
-    constructor() : this(0,"","","","","",0,PersonMovieCredits(listOf()),PersonTVCredits(listOf()))
+    constructor() : this(0,"NA","NA","NA","NA","NA",0,PersonMovieCredits(listOf()),PersonTVCredits(listOf()))
 }

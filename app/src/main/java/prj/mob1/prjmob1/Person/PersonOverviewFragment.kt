@@ -16,9 +16,9 @@ import prj.mob1.prjmob1.databinding.FragmentPersonOverviewBinding
 
 class PersonOverviewFragment:Fragment() {
 
-    private var bio = ""
-    private var birthday = ""
-    private var origin = ""
+    private var bio: String? = ""
+    private var birthday: String? = ""
+    private var origin: String? = ""
 
     companion object {
 
@@ -26,7 +26,7 @@ class PersonOverviewFragment:Fragment() {
         private val ARG_BDAY = "birthday"
         private val ARG_ORIGIN = "origin"
 
-        fun newInstance(bio : String, birthday:String,origin:String  ): PersonOverviewFragment {
+        fun newInstance(bio : String?, birthday:String?,origin:String?  ): PersonOverviewFragment {
             val fragment = PersonOverviewFragment()
             val args = Bundle()
             args.putString(ARG_BIO , bio)
@@ -67,9 +67,9 @@ class PersonOverviewFragment:Fragment() {
         val origin = resources.getStringArray(R.array.person_from)[indice]
         val bio = resources.getStringArray(R.array.person_biographies)[indice]*/
         val person = Person()
-        person.biography = bio
-        person.birthday = birthday
-        person.origin = origin
+        person.biography = bio + ""
+         person.birthday = birthday +""
+        person.origin = origin+""
         binding.person = person
         return view
     }

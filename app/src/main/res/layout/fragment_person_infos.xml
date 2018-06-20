@@ -27,7 +27,7 @@
                 android:id="@+id/person_image_top"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dim_image_top_height"
-                app:srcCompat="@drawable/show_image"
+                app:srcCompat="@drawable/default_movie_pic"
                 android:layout_marginTop="0dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
@@ -48,7 +48,7 @@
                     android:id="@+id/person_profil_image"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    app:srcCompat="@drawable/andrew_profil"
+                    app:srcCompat="@drawable/default_profile_pic"
                     android:layout_alignParentTop="true"
                     android:scaleType="fitXY"
                     />

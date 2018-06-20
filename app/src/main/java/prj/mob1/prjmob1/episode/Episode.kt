@@ -33,8 +33,7 @@ data class Episode (@SerializedName("name") val episode_title: String,
             parcel.readDouble()) {
     }
 
-    constructor() : this("","","","","","","","",0,0.0)
-    constructor(title:String, num :String, date:String): this(title,num,"","",date,"","","",0,0.0)
+    constructor() : this("NA","NA","NA","NA","NA","NA","NA","NA",0,0.0)
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(episode_title)

@@ -45,7 +45,7 @@ data class MovieClass(@SerializedName("id") @PrimaryKey val id: Int,
     }
 
     @Ignore
-    constructor() : this(0, "", "", "", "", 0, "", "", 0.0, 0, CreditResponse(0, listOf(), listOf()),
+    constructor() : this(0, "NA", "NA", "NA", "NA", 0, "NA", "NA", 0.0, 0, CreditResponse(0, listOf(), listOf()),
             SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()))
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

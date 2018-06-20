@@ -22,7 +22,7 @@ data class Cast (@SerializedName("id") val id:Int,
             parcel.readString()) {
     }
 
-    constructor():this(0,0,"","","")
+    constructor():this(0,0,"NA","NA","NA")
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)

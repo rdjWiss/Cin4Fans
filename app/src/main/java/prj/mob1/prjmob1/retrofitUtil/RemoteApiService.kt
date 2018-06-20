@@ -38,7 +38,7 @@ interface RemoteApiService {
     @GET("tv/{tv_id}/season/{season_number}?api_key=$API_KEY&append_to_response=credits")
     fun getSeasonInfosById(@Path("tv_id") tvId: Int, @Path("season_number") seasonNum:Int): Observable<Season>
 
-    @GET("tv/{tv_id}/season/{season_number}/episode/{episode_number}?api_key=$API_KEY&append_to_response=credits")
+    @GET("tv/{tv_id}/season/{season_number}/episode/{episode_number}?api_key=$API_KEY&append_to_response=")
     fun getEpisodeInfosById(@Path("tv_id") tvId: Int,
                             @Path("season_number") seasonNum:Int,
                             @Path("episode_number") episodeNum:Int): Observable<Episode>

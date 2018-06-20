@@ -34,7 +34,7 @@ data class Season (@SerializedName("id") val id:Int,
             parcel.createTypedArrayList(Episode)) {
     }
 
-    constructor() : this(0,"","",0,"","","",0,"",CreditResponse(0, listOf(), listOf()), listOf())
+    constructor() : this(0,"NA","NA",0,"NA","NA","NA",0,"",CreditResponse(0, listOf(), listOf()), listOf())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(num_season)

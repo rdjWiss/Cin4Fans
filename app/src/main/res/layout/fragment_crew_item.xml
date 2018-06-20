@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:id="@+id/crew_item_card_view"
     android:layout_margin="5dp"
     android:layout_marginBottom="20dp"
@@ -39,6 +40,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="25dp"
             android:textSize="@dimen/dim_crew_item_name"
+            app:srcCompat="@drawable/default_credit_pic"
             android:textColor="@color/color_crew_text"
             android:textStyle="bold"/>
 
