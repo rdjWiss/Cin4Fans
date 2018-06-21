@@ -137,7 +137,7 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         val imageTop = findViewById<ImageView>(R.id.season_trailer)
         //if(season.posterId!=null) RemoteApiService.getRemoteImage(season.posterId,this)!!.into(poster)
         val episodes = season.episodes
-        var rand= { Random().nextInt(episodes.size + 1 - 1 ) + 1 }
+        var rand= { Random().nextInt(episodes.size + 1 - 1 ) + 1 } // TODO fix invalid index
         var i = rand()
         while (episodes[i].posterId == null) i= rand()
         RemoteApiService.getRemoteImage(episodes[i].posterId,this)!!.into(imageTop)

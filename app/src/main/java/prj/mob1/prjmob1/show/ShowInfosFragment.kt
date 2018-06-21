@@ -61,6 +61,10 @@ class ShowInfosFragment : Fragment() {
                 FragmentShowInfosBinding.inflate(inflater ,container , false)
         val myView : View  = binding.root
 
+        var tag = ""
+        for (i in 0..show!!.genres.size-1) tag+=show!!.genres[i].name+", "
+        show!!.tags = tag
+        binding.show = show
         binding.show = show
 
         val poster = myView.findViewById<ImageView>(R.id.show_infos_poster)

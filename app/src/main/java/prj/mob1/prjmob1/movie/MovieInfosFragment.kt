@@ -64,6 +64,9 @@ class MovieInfosFragment: Fragment() {
                 FragmentMovieInfosBinding.inflate(inflater ,container , false)
         val myView : View  = binding.root
 
+        var tag = ""
+        for (i in 0..movie.genres.size-1) tag+=movie.genres[i].name+", "
+        movie.tags = tag
         binding.movie = movie
 
         val poster = myView.findViewById<ImageView>(R.id.movie_infos_poster)
