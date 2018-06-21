@@ -7,9 +7,11 @@ import prj.mob1.prjmob1.season.Season
 import prj.mob1.prjmob1.episode.Network
 import prj.mob1.prjmob1.retrofitUtil.models.*
 
+
 /**
  * Created by sol on 26/03/2018.
  */
+
 data class TVShow(@SerializedName("id") val id:Int,
                   @SerializedName("name") val title:String,
                   @SerializedName("number_of_episodes") val nbr_episodes: Int,
@@ -53,6 +55,7 @@ data class TVShow(@SerializedName("id") val id:Int,
     constructor() : this(0,"NA",0,"NA", intArrayOf(),"NA","NA","NA",0,0.0, listOf<Season>(),CreditResponse(0, listOf(), listOf()),
             SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), listOf(),VideoResponse(listOf()),listOf())
 
+
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
         parcel.writeString(title)
@@ -65,6 +68,7 @@ data class TVShow(@SerializedName("id") val id:Int,
         parcel.writeInt(voteCount)
         parcel.writeDouble(rating)
         parcel.writeTypedList(genres)
+
     }
 
     override fun describeContents(): Int {
@@ -80,6 +84,4 @@ data class TVShow(@SerializedName("id") val id:Int,
             return arrayOfNulls(size)
         }
     }
-
-
 }

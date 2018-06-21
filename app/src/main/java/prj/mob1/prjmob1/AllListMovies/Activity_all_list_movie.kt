@@ -11,6 +11,9 @@ import prj.mob1.prjmob1.Util.initDrawer
 class Activity_all_list_movie : AppCompatActivity() {
 
 
+    val allListMoviesFragment=AllListMoviesFragment()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_list_movie)
@@ -18,8 +21,8 @@ class Activity_all_list_movie : AppCompatActivity() {
 
         apply {
             initDrawer()
-//            addFragment(AllListMoviesFragment(),R.id.container_body_all_movie)
-            addFragment(AllListMoviesFragment(),R.id.container_body_all_movie)
+           //addFragment(AllListMoviesFragment(),R.id.container_body_all_movie)
+            addFragment( allListMoviesFragment,R.id.container_body_all_movie)
         }
     }
 
@@ -34,12 +37,10 @@ class Activity_all_list_movie : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                //mAdapter.getFilter().filter(newText)
+                allListMoviesFragment.onQueryTextChange(newText)
                 return true
             }
         })
-
         return super.onCreateOptionsMenu(menu)
     }
-
 }

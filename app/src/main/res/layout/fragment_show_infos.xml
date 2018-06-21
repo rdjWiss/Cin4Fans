@@ -47,7 +47,7 @@
                 <TextView
                     android:id="@+id/movie_infos_infos_title"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="7"
                     android:fontFamily="Roboto"
                     android:text="@{show.title}"

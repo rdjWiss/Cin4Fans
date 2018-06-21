@@ -1,5 +1,6 @@
 package prj.mob1.prjmob1.show
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -22,7 +23,7 @@ class ShowInfosFragment : Fragment() {
 
     private lateinit var listener: OnRateClick
 
-    private /*lateinit*/ var show: TVShow? = null
+    private var show: TVShow? = null
 
     companion object {
 
@@ -54,6 +55,7 @@ class ShowInfosFragment : Fragment() {
         }
     }
 
+    @SuppressLint("ResourceType")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -89,6 +91,24 @@ class ShowInfosFragment : Fragment() {
             show_infos_bookmark2.visibility = View.INVISIBLE
         }
 
+/*<<<<<<< HEAD
+=======
+        // setting values to model
+        val title:String = getString(R.string.show_title)
+        val episodes = getString(R.string.show_episodes).toInt()
+        val tags = getString(R.string.show_tags)
+        val duration = getString(R.string.show_duration).toInt()
+        val show = TVShow()
+        *//*val show = TVShow(title, episodes ,
+                tags, duration,1,"")*//*
+
+        val poster = resources.obtainTypedArray(R.array.show_images).getResourceId(1,0)
+        myView.findViewById<ImageView>(R.id.show_infos_poster).setImageResource(poster)
+
+        Log.e("TAG",show.title)
+        binding.show = show
+
+>>>>>>> 5090e7887016804d7eaca29504dacda43df2d5ec*/
         return myView
     }
 }// Required empty public constructor
