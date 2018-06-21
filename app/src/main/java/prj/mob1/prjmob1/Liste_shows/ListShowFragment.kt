@@ -21,6 +21,7 @@ import retrofit2.Response
 
     private lateinit var list_adapter : MyListAdapter
     private var  mRecyclerView: RecyclerView? = null
+    var ArrayShow=ArrayList<Item>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,15 +63,21 @@ import retrofit2.Response
     fun onCreateMovieDataSuccess(result: Response<ListShow>)
     {
         if (result.isSuccessful) {
-            val show_now =ArrayList<Item>()
+
             for (show  in result.body()!!.shows) {
-               var item = Item(show.id,show.posterId)
-               show_now.add(item)
+               var item = Item(show.id,show.posterId,show.title)
+                ArrayShow.add(item)
             }
-            list_adapter= MyListAdapter(context as AppCompatActivity,show_now )
+            list_adapter= MyListAdapter(context as AppCompatActivity,ArrayShow )
             mRecyclerView?.adapter= list_adapter
 
         } else //error 400-500
             Log.e("erroor","err" +result.body().toString())
     }
+
+    override fun  onQueryTextChange(text: String)
+    {
+        filter(text,ArrayShow,list_adapter)
+    }
+
 }

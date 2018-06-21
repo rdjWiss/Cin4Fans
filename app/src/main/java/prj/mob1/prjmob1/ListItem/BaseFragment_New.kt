@@ -17,6 +17,7 @@ abstract class BaseFragment_New: android.support.v4.app.Fragment(){
 
     abstract  fun getData()
     abstract fun openActivity(position:Int)
+    abstract fun  onQueryTextChange(text: String)
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -72,4 +73,20 @@ abstract class BaseFragment_New: android.support.v4.app.Fragment(){
         }
     }
 
+   fun filter(text: String,ArrayMovies:ArrayList<Item>,list_adapter:MyListAdapter) {
+        //new array list that will hold the filtered data
+        val filterdNames = ArrayList<Item>()
+
+        //looping through existing elements
+        for (movie in ArrayMovies) {
+            //if the existing elements contains the search input
+            if (movie.title.startsWith(text.toLowerCase(),true)) {
+                //adding the element to filtered list
+                filterdNames.add(movie)
+            }
+        }
+
+        //calling a method of the adapter class and passing the filtered list
+        list_adapter.filterList(filterdNames)
+    }
 }

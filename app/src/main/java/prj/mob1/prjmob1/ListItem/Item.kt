@@ -11,7 +11,7 @@ package prj.mob1.prjmob1.ListItem
 }*/
 
 
-data class Item (val id:Int,val poster: String)
+data class Item (val id:Int,val poster: String,val title:String)
 {
-    constructor() : this(200,"")
+    constructor() : this(200,"","")
 }

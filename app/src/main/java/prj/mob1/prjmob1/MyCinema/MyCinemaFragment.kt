@@ -15,7 +15,7 @@ class MyCinemaFragment:BaseFragment()
     }
     override fun initItem():ArrayList<Item>
     {
-        var item= Item(200,"")
+        var item= Item(200,"","")
 
         var items= arrayListOf(item,item,item,item,item,item,item,item,item,item)
         return items

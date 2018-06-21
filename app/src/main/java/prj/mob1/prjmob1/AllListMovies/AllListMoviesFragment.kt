@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.View
 import prj.mob1.prjmob1.ListItem.*
 import prj.mob1.prjmob1.R
-import prj.mob1.prjmob1.R.layout.item
+
 import prj.mob1.prjmob1.movie.MovieActivity
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 import retrofit2.Response
@@ -22,6 +22,7 @@ class AllListMoviesFragment: BaseFragment_New()
 {
     private lateinit var list_adapter : MyListAdapter
     private var  mRecyclerView: RecyclerView? = null
+    private var ArrayMovies=ArrayList<Item>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -63,13 +64,13 @@ class AllListMoviesFragment: BaseFragment_New()
     fun onCreateMovieDataSuccess(result: Response<ListMovies>)
     {
         if (result.isSuccessful) {
-            val movies_now =ArrayList<Item>()
+           // val movies_now =ArrayList<Item>()
             for (movie  in result.body()!!.movies) {
                // var item = Item(movie.id,movie.posterId, movie.year, movie.title, movie.tags)
-                var item = Item(movie.id,movie.posterId)
-                movies_now.add(item)
+                var item = Item(movie.id,movie.posterId,movie.title)
+                ArrayMovies.add(item)
             }
-            list_adapter= MyListAdapter(context as AppCompatActivity,movies_now )
+            list_adapter= MyListAdapter(context as AppCompatActivity,ArrayMovies )
             mRecyclerView?.adapter= list_adapter
 
         } else //error 400-500
@@ -77,6 +78,28 @@ class AllListMoviesFragment: BaseFragment_New()
     }
    /* fun onCreateMovieLatestFail(error:Throwable) {
         Log.e("erroor","errror"+ error.message.toString())
+    }*/
+
+  override fun  onQueryTextChange(text: String)
+   {
+       filter(text,ArrayMovies,list_adapter)
+   }
+
+    /*private fun filter(text: String) {
+        //new array list that will hold the filtered data
+        val filterdNames = ArrayList<Item>()
+
+        //looping through existing elements
+        for (movie in ArrayMovies) {
+            //if the existing elements contains the search input
+            if (movie.title.startsWith(text.toLowerCase(),true)) {
+                //adding the element to filtered list
+                filterdNames.add(movie)
+            }
+        }
+
+        //calling a method of the adapter class and passing the filtered list
+        list_adapter.filterList(filterdNames)
     }*/
 
 }

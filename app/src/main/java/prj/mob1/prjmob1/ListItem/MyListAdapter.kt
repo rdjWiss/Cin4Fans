@@ -40,6 +40,15 @@ class MyListAdapter(private val context: Context, arrayList: ArrayList<Item>) : 
     override fun getItemCount(): Int {
         return arrayList.size
     }
+
+    //This method will filter the list
+    //here we are passing the filtered data
+    //and assigning it to the list with notifydatasetchanged method
+    fun filterList(filterdNames: ArrayList<Item>) {
+        this.arrayList= filterdNames
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var my_poster: ImageView?=null
        // var my_title: TextView?=null

@@ -34,7 +34,7 @@ class ListMoviesFragment: BaseFragment_New()
     private lateinit var list_adapter : MyListAdapter
 
     private var  mRecyclerView: RecyclerView? = null
-
+    private var ArrayMovies=ArrayList<Item>()
 
 
 
@@ -78,13 +78,13 @@ class ListMoviesFragment: BaseFragment_New()
     fun onCreateMovieDataSuccess(result: Response<ListMovies>)
     {
         if (result.isSuccessful) {
-            val movies_now =ArrayList<Item>()
+
             for (movie  in result.body()!!.movies) {
                 //var item = Item(movie.id,movie.posterId, movie.year, movie.title, movie.tags)
-                var item = Item(movie.id,movie.posterId)
-                movies_now.add(item)
+                var item = Item(movie.id,movie.posterId,movie.title)
+                ArrayMovies.add(item)
             }
-            list_adapter= MyListAdapter(context as AppCompatActivity,movies_now )
+            list_adapter= MyListAdapter(context as AppCompatActivity, ArrayMovies )
             mRecyclerView?.adapter= list_adapter
 
         } else //error 400-500
@@ -92,6 +92,10 @@ class ListMoviesFragment: BaseFragment_New()
     }
 
 
+   override fun  onQueryTextChange(text: String)
+    {
+        filter(text,ArrayMovies,list_adapter)
+    }
 
 
 }
