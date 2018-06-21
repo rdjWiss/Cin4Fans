@@ -26,16 +26,16 @@ import prj.mob1.prjmob1.show.TVShow
 
 interface RemoteApiService {
 
-    @GET("movie/{movie_id}?api_key=$API_KEY&append_to_response=credits,similar,reviews")
+    @GET("movie/{movie_id}?api_key=$API_KEY&append_to_response=credits,similar,reviews,videos")
     fun getMovieInfosById(@Path("movie_id") id: Int): Observable<MovieClass>
 
     @GET("person/{person_id}?api_key=$API_KEY&append_to_response=movie_credits,tv_credits")
     fun getPersonInfosById(@Path("person_id") id: Int): Observable<Person>
 
-    @GET("tv/{tv_id}?api_key=$API_KEY&append_to_response=credits,similar,reviews")
+    @GET("tv/{tv_id}?api_key=$API_KEY&append_to_response=credits,similar,reviews,videos")
     fun getShowInfosById(@Path("tv_id") id: Int): Observable<TVShow>
 
-    @GET("tv/{tv_id}/season/{season_number}?api_key=$API_KEY&append_to_response=credits")
+    @GET("tv/{tv_id}/season/{season_number}?api_key=$API_KEY&append_to_response=credits,videos")
     fun getSeasonInfosById(@Path("tv_id") tvId: Int, @Path("season_number") seasonNum:Int): Observable<Season>
 
     @GET("tv/{tv_id}/season/{season_number}/episode/{episode_number}?api_key=$API_KEY&append_to_response=")
@@ -46,9 +46,11 @@ interface RemoteApiService {
     // Companion object to create the RemoteApiService,
     //Singleton
     companion object Factory {
-        val BASE_URL = "https://api.themoviedb.org/3/"
-        val BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500"
+        const val BASE_URL = "https://api.themoviedb.org/3/"
+        const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500"
         const val API_KEY = "f8ecbc885ba42bd13eeceade9c8fcaf7"
+        const val BASE_YOUTUBE_URL = "http://www.youtube.com/watch?v="
+
         private var instance:RemoteApiService? = null
 
         fun create(): RemoteApiService? {
@@ -78,6 +80,10 @@ interface RemoteApiService {
         fun getRemoteImage(path:String, context: Context?): RequestBuilder<Drawable>?{
             val URL = BASE_IMAGE_URL + path
             return Glide.with(context).load(URL)
+        }
+
+        fun getYoutubeURL(path:String):String{
+            return BASE_YOUTUBE_URL + path
         }
     }
 }

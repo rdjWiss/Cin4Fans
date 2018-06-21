@@ -8,6 +8,7 @@ import prj.mob1.prjmob1.retrofitUtil.models.ReviewsResponse
 import prj.mob1.prjmob1.retrofitUtil.models.SimilarMoviesResponse
 import prj.mob1.prjmob1.season.Season
 import prj.mob1.prjmob1.episode.Network
+import prj.mob1.prjmob1.retrofitUtil.models.VideoResponse
 
 /**
  * Created by sol on 26/03/2018.
@@ -18,6 +19,7 @@ data class TVShow(@SerializedName("id") val id:Int,
                   val tags: String,
                   @SerializedName("episode_run_time") val duration: IntArray,
                   @SerializedName("poster_path") val posterId: String,
+                  @SerializedName("backdrop_path") val imagePath: String,
                   @SerializedName("overview") var overview: String,
                   @SerializedName("vote_count") var voteCount: Int,
                   @SerializedName("vote_average") var rating: Double,
@@ -25,7 +27,8 @@ data class TVShow(@SerializedName("id") val id:Int,
                   @SerializedName("credits") var credits: CreditResponse,
                   @SerializedName("similar") var similar: SimilarMoviesResponse,
                   @SerializedName("reviews") var reviews: ReviewsResponse,
-                  @SerializedName("networks") var networks: List<Network>
+                  @SerializedName("networks") var networks: List<Network>,
+                  @SerializedName("videos")  var videos: VideoResponse
                     ) : Parcelable {
 
 
@@ -37,17 +40,19 @@ data class TVShow(@SerializedName("id") val id:Int,
             parcel.createIntArray(),
             parcel.readString(),
             parcel.readString(),
+            parcel.readString(),
             parcel.readInt(),
             parcel.readDouble(),
             parcel.createTypedArrayList(Season),
             parcel.readParcelable(CreditResponse::class.java.classLoader),
             parcel.readParcelable(SimilarMoviesResponse::class.java.classLoader),
             parcel.readParcelable(ReviewsResponse::class.java.classLoader),
-            parcel.createTypedArrayList(Network)) {
+            parcel.createTypedArrayList(Network),
+            parcel.readParcelable(VideoResponse::class.java.classLoader)) {
     }
 
-    constructor() : this(0,"NA",0,"NA", intArrayOf(),"NA","NA",0,0.0, listOf<Season>(),CreditResponse(0, listOf(), listOf()),
-            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), listOf())
+    constructor() : this(0,"NA",0,"NA", intArrayOf(),"NA","NA","NA",0,0.0, listOf<Season>(),CreditResponse(0, listOf(), listOf()),
+            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), listOf(),VideoResponse(listOf()))
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
@@ -56,6 +61,7 @@ data class TVShow(@SerializedName("id") val id:Int,
         parcel.writeString(tags)
         parcel.writeIntArray(duration)
         parcel.writeString(posterId)
+        parcel.writeString(imagePath)
         parcel.writeString(overview)
         parcel.writeInt(voteCount)
         parcel.writeDouble(rating)

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AlertDialog
 import android.util.Log
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.Toast
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,6 +19,7 @@ import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.episode.EpisodeActivity
 import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
+import java.util.*
 
 class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         SeasonEpisodesFragment.OnEpisodeSelected, OnRateClick {
@@ -52,9 +54,6 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         }
 
         getSeasonData()
-        /*//Set image top
-        findViewById<ImageView>(R.id.season_trailer).setImageResource(season.imageId)
-*/
 
         back_arrow.setOnClickListener{
             finish()
@@ -78,6 +77,8 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
                     initSeasonInfosFrag()
                     initOverviewFragTabMode()
                     configureTabLayout()
+
+                    initImageTop()
                 }, { error ->
                     Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
                     error.printStackTrace()
@@ -130,6 +131,16 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
             }
 
         })
+    }
+
+    private fun initImageTop(){
+        val imageTop = findViewById<ImageView>(R.id.season_trailer)
+        //if(season.posterId!=null) RemoteApiService.getRemoteImage(season.posterId,this)!!.into(poster)
+        val episodes = season.episodes
+        var rand= { Random().nextInt(episodes.size + 1 - 1 ) + 1 }
+        var i = rand()
+        while (episodes[i].posterId == null) i= rand()
+        RemoteApiService.getRemoteImage(episodes[i].posterId,this)!!.into(imageTop)
     }
 
     override fun onCrewSelected(creditId:Int) {

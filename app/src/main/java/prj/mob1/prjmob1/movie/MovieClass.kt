@@ -9,6 +9,7 @@ import com.google.gson.annotations.SerializedName
 import prj.mob1.prjmob1.retrofitUtil.models.CreditResponse
 import prj.mob1.prjmob1.retrofitUtil.models.ReviewsResponse
 import prj.mob1.prjmob1.retrofitUtil.models.SimilarMoviesResponse
+import prj.mob1.prjmob1.retrofitUtil.models.VideoResponse
 
 /**
  * Created by sol on 25/03/2018.
@@ -21,12 +22,14 @@ data class MovieClass(@SerializedName("id") @PrimaryKey val id: Int,
                       @SerializedName("tagline") val tags: String,
                       @SerializedName("runtime") val duration: Int,
                       @SerializedName("poster_path") val posterId: String,
+                      @SerializedName("backdrop_path") val imagePath: String,
                       @SerializedName("overview") var overview: String,
                       @SerializedName("vote_average") var rating: Double,
                       @SerializedName("vote_count") var voteCount: Int,
                       @SerializedName("credits") var credits: CreditResponse,
                       @SerializedName("similar") var similar: SimilarMoviesResponse,
-                      @SerializedName("reviews") var reviews: ReviewsResponse
+                      @SerializedName("reviews") var reviews: ReviewsResponse,
+                      @SerializedName("videos")  var videos:VideoResponse
                       ) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
@@ -37,16 +40,18 @@ data class MovieClass(@SerializedName("id") @PrimaryKey val id: Int,
             parcel.readInt(),
             parcel.readString(),
             parcel.readString(),
+            parcel.readString(),
             parcel.readDouble(),
             parcel.readInt(),
             parcel.readParcelable(CreditResponse::class.java.classLoader),
             parcel.readParcelable(SimilarMoviesResponse::class.java.classLoader),
-            parcel.readParcelable(ReviewsResponse::class.java.classLoader)) {
+            parcel.readParcelable(ReviewsResponse::class.java.classLoader),
+            parcel.readParcelable(VideoResponse::class.java.classLoader)) {
     }
 
     @Ignore
-    constructor() : this(0, "NA", "NA", "NA", "NA", 0, "NA", "NA", 0.0, 0, CreditResponse(0, listOf(), listOf()),
-            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()))
+    constructor() : this(0, "NA", "NA", "NA", "NA", 0, "NA","NA", "NA", 0.0, 0, CreditResponse(0, listOf(), listOf()),
+            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), VideoResponse(listOf()))
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
@@ -56,6 +61,7 @@ data class MovieClass(@SerializedName("id") @PrimaryKey val id: Int,
         parcel.writeString(tags)
         parcel.writeInt(duration)
         parcel.writeString(posterId)
+        parcel.writeString(imagePath)
         parcel.writeString(overview)
         parcel.writeDouble(rating)
         parcel.writeInt(voteCount)

@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.Toast
 import android.widget.VideoView
@@ -48,30 +49,6 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
         //Get les infos du films
         this.getMovieData(id)
 
-        //Trailer
-        val videoview = findViewById<VideoView>(R.id.movie_trailer)
-        val uri = Uri.parse("android.resource://" + packageName + "/" + R.raw.black)
-        videoview.setVideoURI(uri)
-
-        var firstPlay = true
-        btn_play!!.setOnClickListener {
-            btn_play!!.visibility = View.INVISIBLE
-            btn_pause!!.visibility = View.VISIBLE
-            if(firstPlay) {
-                movie_image!!.visibility = View.INVISIBLE
-                movie_trailer!!.visibility = View.VISIBLE
-                firstPlay = false
-            }
-            videoview.start()
-        }
-
-        btn_pause!!.setOnClickListener {
-            btn_pause!!.visibility = View.INVISIBLE
-            btn_play!!.visibility = View.VISIBLE
-            videoview.pause()
-        }
-        //END trailer
-
         //Go back arrow
         movie_back_arrow!!.setOnClickListener{
             finish()
@@ -90,10 +67,12 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
                     result ->
 //                    Toast.makeText(this,"Response ${result.reviews.results}", Toast.LENGTH_LONG).show()
                     //TODO refactore, assign movie var and use it directly
+                    movie = result
                     initMovieInfosFrag(result)
                     initOverviewFragTabMode(result.overview)
                     configureTabLayout(result)
-                    movie = result
+                    initTrailer()
+
                 }, { error ->
                     Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
                     error.printStackTrace()
@@ -149,6 +128,25 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
 
             }
         })
+    }
+
+    private fun initTrailer(){
+        //Trailer
+        val image = findViewById<ImageView>(R.id.movie_image)
+        if(movie!!.imagePath != null) RemoteApiService.getRemoteImage(movie!!.imagePath,this)!!.into(image)
+
+        val videos = movie!!.videos.results
+        var i =0
+        while (i<videos.size && videos[i].type != "Trailer") i++
+        if(i==videos.size) return
+        if(videos[i].site != "YouTube") btn_play!!.visibility = View.INVISIBLE
+        else{
+            val URL = RemoteApiService.getYoutubeURL(videos[i].key)
+            btn_play!!.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(URL)))
+            }
+        }
+
     }
 
 

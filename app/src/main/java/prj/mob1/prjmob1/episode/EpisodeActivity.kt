@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AlertDialog
 import android.util.Log
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.Toast
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -70,6 +71,10 @@ class EpisodeActivity : AppCompatActivity(), OnRateClick {
                     initEpisodeInfosFrag()
                     initOverviewFragTabMode()
                     configureTabLayout()
+
+                    val poster = findViewById<ImageView>(R.id.episode_image)
+                    if(episode.posterId!=null) RemoteApiService.getRemoteImage(episode.posterId,this)!!.into(poster)
+
                 }, { error ->
                     Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
                     error.printStackTrace()
