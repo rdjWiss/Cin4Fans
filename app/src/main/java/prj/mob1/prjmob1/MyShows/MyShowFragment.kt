@@ -17,10 +17,7 @@ class MyShowFragment: BaseFragment()
     }
     override fun initItem():ArrayList<Item>
     {
-        var item= Item(""
-                ,"",
-                resources.getString(R.string.show_title),
-                resources.getString(R.string.show_tags).toString())
+        var item= Item(200,"")
 
         var items= arrayListOf(item,item,item,item,item,item,item,item,item,item)
         return items

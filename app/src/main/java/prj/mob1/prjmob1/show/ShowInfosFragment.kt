@@ -1,5 +1,6 @@
 package prj.mob1.prjmob1.show
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -30,6 +31,7 @@ class ShowInfosFragment : Fragment() {
         }
     }
 
+    @SuppressLint("ResourceType")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -60,8 +62,9 @@ class ShowInfosFragment : Fragment() {
         val episodes = getString(R.string.show_episodes).toInt()
         val tags = getString(R.string.show_tags)
         val duration = getString(R.string.show_duration).toInt()
-        val show = TVShow(title, episodes ,
-                tags, duration,1,"")
+        val show = TVShow()
+        /*val show = TVShow(title, episodes ,
+                tags, duration,1,"")*/
 
         val poster = resources.obtainTypedArray(R.array.show_images).getResourceId(1,0)
         myView.findViewById<ImageView>(R.id.show_infos_poster).setImageResource(poster)

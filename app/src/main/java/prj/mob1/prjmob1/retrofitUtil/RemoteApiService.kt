@@ -16,6 +16,7 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import prj.mob1.prjmob1.ListItem.ListMovies
+import prj.mob1.prjmob1.ListItem.ListShow
 import prj.mob1.prjmob1.movie.MovieClass
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService.Factory.API_KEY
 import retrofit2.Response
@@ -31,11 +32,20 @@ interface RemoteApiService {
     fun getMovieInfosById(@Path("movie_id") id: Int): Observable<MovieClass>
 
     //Get list of films airing
-    @GET("movie/now_playing?api_key=$API_KEY&append_to_response=credits,similar,reviews")
+    @GET("movie/now_playing?api_key=$API_KEY")
     fun getLatesMovies(): Observable<Response<ListMovies>>
 
+    //Get all list of films airing
+    @GET("discover/movie?api_key=$API_KEY&include_adult=false")
+    fun getAllMovies(): Observable<Response<ListMovies>>
 
+    //Get all list of TV SHOW airing
+    @GET("tv/airing_today?api_key=$API_KEY")
+    fun getTVShow_now(): Observable<Response<ListShow>>
 
+    //Get all list of TV SHOW airing
+    @GET("discover/tv?api_key=$API_KEY")
+    fun getAllShow(): Observable<Response<ListShow>>
 
 
     // Companion object to create the RemoteApiService,

@@ -67,7 +67,7 @@ class CrewFragment() : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_crew,
                 container, false)
 
-        Log.e("CREWFrag",credits!!.cast.toString())
+        //Log.e("CREWFrag",credits!!.cast.toString())
         /*TODO show crew*/
 
         var modeTab = false

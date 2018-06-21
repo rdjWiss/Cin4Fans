@@ -27,7 +27,8 @@ class ShowOverviewFragment : Fragment() {
         // setting values to model
         val overview = getResources().getString(R.string.show_overview)
 
-        val show = TVShow(overview)
+       // val show = TVShow(overview)
+        val show = TVShow()
         Log.e("TAG",show.title)
         binding.show = show
 
