@@ -14,7 +14,7 @@ import android.os.Parcelable
 }*/
 
 
-data class Item (val id:Int,val poster: String,val title:String):Parcelable
+data class Item (val id:Int,val poster: String?,val title:String):Parcelable
 {
     constructor(parcel: Parcel) : this(
             parcel.readInt(),

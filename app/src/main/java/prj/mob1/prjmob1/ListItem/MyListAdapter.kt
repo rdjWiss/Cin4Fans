@@ -33,7 +33,7 @@ class MyListAdapter(private val context: Context, arrayList: ArrayList<Item>) : 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
        // holder.my_poster?.setImageResource(arrayList[position].poster)
-        RemoteApiService.getRemoteImage(arrayList[position].poster,this.context)!!.into(holder.my_poster)
+        if(arrayList[position].poster!=null) RemoteApiService.getRemoteImage(arrayList[position].poster!!,this.context)!!.into(holder.my_poster)
        // holder.my_title?.text=arrayList[position].title
 
     }

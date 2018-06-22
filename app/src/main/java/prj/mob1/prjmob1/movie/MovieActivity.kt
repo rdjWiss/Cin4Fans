@@ -152,9 +152,6 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, OnRateCl
 
 
     override fun onCrewSelected(creditId:Int) {
-        Toast.makeText(this,
-                creditId.toString(), Toast.LENGTH_SHORT )
-                .show()
         val intent = Intent(this, PersonActivity::class.java)
         val bundle = Bundle()
         bundle.putInt("personId",creditId)
