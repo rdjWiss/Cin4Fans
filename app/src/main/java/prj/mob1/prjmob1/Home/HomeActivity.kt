@@ -7,10 +7,12 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.SearchView
 
 import android.view.Menu
+import android.widget.Toast
 import kotlinx.android.synthetic.main.movie_tab.*
 import prj.mob1.prjmob1.Liste_movies.ListMoviesFragment
 import prj.mob1.prjmob1.Liste_shows.ListShowFragment
 import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.Util.ConnectivityChecker
 import prj.mob1.prjmob1.Util.initDrawer
 
 
@@ -26,6 +28,10 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         setTitle("Home")
 
+        if(!ConnectivityChecker.isNetworkAvailable(this)){
+            Toast.makeText(this, "No connection",Toast.LENGTH_LONG).show()
+
+        }
         apply {
             initDrawer()
             // The tab
