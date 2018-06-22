@@ -28,10 +28,10 @@ class MovieTabPagerAdapter(fm: FragmentManager, private var tabCount: Int, val m
         when (pos) {
             0 -> return MovieOverviewFragment.newInstance(movie.overview)
             1 -> return CrewFragment.newInstance(0,movie.credits)
-            2 -> return CinemaFragment()
+            2 -> return CinemaFragment()//TODO NOTHING MUCH TODO
             3 -> return ReviewsFragment.newInstance(movie.reviews)
             4 -> return ListMoviesFragment
-                    .newInstance(similarMoviesResponseToArrayItem(movie.similar), true)//TODO adapt to similar movies
+                    .newInstance(similarMoviesResponseToArrayItem(movie.similar), true)
             else -> return null
         }
     }
@@ -44,7 +44,6 @@ class MovieTabPagerAdapter(fm: FragmentManager, private var tabCount: Int, val m
 
         val movieArray = ArrayList<Item>()
         for (movie  in similarMovies.results) {
-            //var item = Item(movie.id,movie.posterId, movie.year, movie.title, movie.tags)
             val item = Item(movie.id,movie.posterId,movie.title)
             movieArray.add(item)
         }

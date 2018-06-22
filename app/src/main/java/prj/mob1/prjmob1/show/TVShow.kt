@@ -24,7 +24,7 @@ data class TVShow(@SerializedName("id") val id:Int,
                   @SerializedName("vote_average") var rating: Double,
                   @SerializedName("seasons") var seasons: List<Season>,
                   @SerializedName("credits") var credits: CreditResponse,
-                  @SerializedName("similar") var similar: SimilarMoviesResponse,
+                  @SerializedName("similar") var similar: SimilarShowsResponse,
                   @SerializedName("reviews") var reviews: ReviewsResponse,
                   @SerializedName("networks") var networks: List<Network>,
                   @SerializedName("videos")  var videos: VideoResponse,
@@ -45,7 +45,7 @@ data class TVShow(@SerializedName("id") val id:Int,
             parcel.readDouble(),
             parcel.createTypedArrayList(Season),
             parcel.readParcelable(CreditResponse::class.java.classLoader),
-            parcel.readParcelable(SimilarMoviesResponse::class.java.classLoader),
+            parcel.readParcelable(SimilarShowsResponse::class.java.classLoader),
             parcel.readParcelable(ReviewsResponse::class.java.classLoader),
             parcel.createTypedArrayList(Network),
             parcel.readParcelable(VideoResponse::class.java.classLoader),
@@ -53,7 +53,7 @@ data class TVShow(@SerializedName("id") val id:Int,
     }
 
     constructor() : this(0,"NA",0,"NA", intArrayOf(),"NA","NA","NA",0,0.0, listOf<Season>(),CreditResponse(0, listOf(), listOf()),
-            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), listOf(),VideoResponse(listOf()),listOf())
+            SimilarShowsResponse(0, listOf()),ReviewsResponse(0, listOf()), listOf(),VideoResponse(listOf()),listOf())
 
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

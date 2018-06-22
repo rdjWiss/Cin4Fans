@@ -23,10 +23,39 @@ import retrofit2.Response
     private var  mRecyclerView: RecyclerView? = null
     var ArrayShow=ArrayList<Item>()
 
+    private var showListInput: Boolean = false
+
+    companion object {
+
+        private val ARG_LIST = "list"
+        private val ARG_IN = "in"
+
+        fun newInstance(shows: ArrayList<Item>,showListInput:Boolean): ListShowFragment {
+            val fragment = ListShowFragment()
+            val args = Bundle()
+            args.putParcelableArrayList(ARG_LIST, shows)
+            args.putBoolean(ARG_IN,showListInput)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (arguments != null) {
+            ArrayShow = arguments!!.getParcelableArrayList(ARG_LIST)
+            showListInput = arguments!!.getBoolean(ARG_IN)
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView(view)
-        getData()
+        if(!showListInput) getData()
+        else{
+            list_adapter= MyListAdapter(context as AppCompatActivity,ArrayShow )
+            mRecyclerView?.adapter= list_adapter
+        }
     }
 
     private fun initRecyclerView(view : View) {

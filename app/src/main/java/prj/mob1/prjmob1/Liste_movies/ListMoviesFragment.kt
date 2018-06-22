@@ -74,7 +74,7 @@ class ListMoviesFragment: BaseFragment_New()
         mRecyclerView = view.findViewById<View>(R.id.item_listview) as RecyclerView
         mRecyclerView?.setHasFixedSize(true)
         if (resources.getString(R.string.isLand) == "false")
-            mRecyclerView!!.layoutManager = GridLayoutManager(context as AppCompatActivity,2)
+            mRecyclerView!!.layoutManager = GridLayoutManager(context as AppCompatActivity,2) as RecyclerView.LayoutManager?
         else
               mRecyclerView!!.layoutManager = GridLayoutManager(activity,4)
         mRecyclerView!!.addOnItemTouchListener(BaseFragment.RecyclerTouchListener(activity!!.applicationContext,  mRecyclerView!!, object : BaseFragment.ClickListener {
