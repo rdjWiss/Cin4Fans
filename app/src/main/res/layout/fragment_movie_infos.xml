@@ -134,7 +134,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="Roboto"
-                    android:text="@{movie.rating + ` | ` + movie.voteCount}"
+                    android:text="@{`Rating: ` +movie.rating + ` (` + movie.voteCount + ` votes)`}"
                     android:textColor="@color/colorLine3" />
             </LinearLayout>
 

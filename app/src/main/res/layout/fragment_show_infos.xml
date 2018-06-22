@@ -114,13 +114,13 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <ImageView
+                <!--<ImageView
                     android:id="@+id/show_infos_rating"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_rating2"
-                    />
+                    />-->
 
                 <TextView
                     android:id="@+id/show_infos_infos_rating_viewers"
@@ -128,7 +128,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="Roboto"
-                    android:text="@{show.rating + ` | ` + show.voteCount}"
+                    android:text="@{`Rating: ` +show.rating + ` (` + show.voteCount + ` votes)`}"
                     android:textColor="@color/colorLine3" />
             </LinearLayout>
 
