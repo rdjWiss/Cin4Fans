@@ -18,7 +18,7 @@ class PersonMovieCastCredits(@SerializedName("credit_id")val credit_id:String,
 
 
 class PersonTVCastCredits(@SerializedName("credit_id")val credit_id:String,
-                         @SerializedName("id") val movieId:Int,
+                         @SerializedName("id") val showId:Int,
                          @SerializedName("name") val title:String,
                          @SerializedName("character") val character:String,
                          @SerializedName("first_air_date") val releaseDate: String,

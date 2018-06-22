@@ -9,6 +9,7 @@ import prj.mob1.prjmob1.ListItem.Item
 import prj.mob1.prjmob1.Liste_movies.ListMoviesFragment
 import prj.mob1.prjmob1.Liste_shows.ListShowFragment
 import prj.mob1.prjmob1.retrofitUtil.models.PersonMovieCredits
+import prj.mob1.prjmob1.retrofitUtil.models.PersonTVCredits
 
 /**
  * Created by sol on 16/04/2018.
@@ -25,7 +26,7 @@ class PersonTabPagerAdapter (fm: FragmentManager, private var tabCount: Int,
             0 -> return PersonOverviewFragment.newInstance(person.biography, person.birthday, person.origin)
             1 -> return ListMoviesFragment
                     .newInstance(movieCreditsToArrayMovie(person.movieCredits),true)
-            2 -> return ListShowFragment()
+            2 -> return ListShowFragment.newInstance(tvCreditsToArrayMovie(person.tvCredits),true)
             3 -> return CommentsFragment()
             else -> return null
         }
@@ -38,11 +39,22 @@ class PersonTabPagerAdapter (fm: FragmentManager, private var tabCount: Int,
     private fun movieCreditsToArrayMovie(movieCredits: PersonMovieCredits):ArrayList<Item>{
         val movieArray = ArrayList<Item>()
         for (movie  in movieCredits.cast) {
-            //var item = Item(movie.id,movie.posterId, movie.year, movie.title, movie.tags)
             val item = Item(movie.movieId,movie.poster,movie.title)
             movieArray.add(item)
         }
         return movieArray
 
     }
+
+    private fun tvCreditsToArrayMovie(tvCredits: PersonTVCredits):ArrayList<Item>{
+        val showArray = ArrayList<Item>()
+        for (show  in tvCredits.cast) {
+            val item = Item(show.showId,show.poster,show.title)
+            showArray.add(item)
+        }
+        return showArray
+
+    }
+
+
 }
