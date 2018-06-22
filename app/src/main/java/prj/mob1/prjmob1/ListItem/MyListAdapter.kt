@@ -17,7 +17,7 @@ import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
  */
 class MyListAdapter(private val context: Context, arrayList: ArrayList<Item>) : RecyclerView.Adapter<MyListAdapter.ViewHolder>()
 {
-    internal var arrayList = ArrayList<Item>()
+    internal var arrayList:ArrayList<Item> = ArrayList<Item>()
     private val inflater: LayoutInflater
 
     init {

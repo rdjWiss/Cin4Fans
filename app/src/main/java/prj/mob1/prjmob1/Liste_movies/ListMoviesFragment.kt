@@ -35,13 +35,39 @@ class ListMoviesFragment: BaseFragment_New()
 
     private var  mRecyclerView: RecyclerView? = null
     private var ArrayMovies=ArrayList<Item>()
+    private var movieListInput: Boolean = false
 
+    companion object {
 
+        private val ARG_LIST = "list"
+        private val ARG_IN = "in"
+
+        fun newInstance(movies: ArrayList<Item>,movieListInput:Boolean): ListMoviesFragment {
+            val fragment = ListMoviesFragment()
+            val args = Bundle()
+            args.putParcelableArrayList(ARG_LIST, movies)
+            args.putBoolean(ARG_IN,movieListInput)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (arguments != null) {
+            ArrayMovies = arguments!!.getParcelableArrayList(ARG_LIST)
+            movieListInput = arguments!!.getBoolean(ARG_IN)
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView(view)
-        getData()
+        if(!movieListInput) getData()
+        else{
+            list_adapter= MyListAdapter(context as AppCompatActivity, ArrayMovies )
+            mRecyclerView?.adapter= list_adapter
+        }
     }
 
     private fun initRecyclerView(view : View ) {
@@ -68,8 +94,6 @@ class ListMoviesFragment: BaseFragment_New()
         intent.putExtra("bundle",bundle)
         startActivity(intent)
     }
-
-
 
    override fun getData(){
         RemoteApiService.apply { sendRequest(create()!!.getLatesMovies(), { onCreateMovieDataSuccess(it) },{onCreateMovieLatestFail(it)}) }
