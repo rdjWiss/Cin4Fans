@@ -5,6 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import prj.mob1.prjmob1.Crew.Cast
 import prj.mob1.prjmob1.Crew.Crew
+import prj.mob1.prjmob1.roomComponenets.models.CastRoomAdapter
 
 /**
  * Created by sol on 18/06/2018.
@@ -19,6 +20,8 @@ class CreditResponse(val id:Int,
             parcel.createTypedArrayList(Crew),
             parcel.createTypedArrayList(Cast)) {
     }
+
+    constructor(cast:List<Cast>): this(0, listOf(), cast)
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)

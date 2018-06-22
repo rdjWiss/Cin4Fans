@@ -208,7 +208,8 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
     }
 
     override fun onAddBookmark() {
-         RoomDataUtil.addMovieToFav(this, MovieRoomAdapter(movie),{  ->
+
+         RoomDataUtil.addMovieToFav(this, movie,{  ->
              /*RoomDataUtil.getFavMoviesList(this, { movieList ->
                  for (movie in movieList!!.iterator()) Log.e("List",movie.title.toString())
              })*/
@@ -231,10 +232,11 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
     private fun getMovieDataOffline(){
         RoomDataUtil.getFavMovieById(this, id, { movieAdapter ->
             if(movieAdapter!=null) {
-                movie = MovieClass(movieAdapter)
-                Toast.makeText(this,movieAdapter.tags, Toast.LENGTH_SHORT).show()
-                Toast.makeText(this,movie.tags, Toast.LENGTH_SHORT).show()
+                movie = movieAdapter//MovieClass(movieAdapter)
+//                Toast.makeText(this,movieAdapter.tags, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this,movie.tags, Toast.LENGTH_SHORT).show()
                 initMovieInfosFrag()
+                infosFragment.setBookmarkOff()
                 initOverviewFragTabMode()
                 configureTabLayout()
                 initTrailer()

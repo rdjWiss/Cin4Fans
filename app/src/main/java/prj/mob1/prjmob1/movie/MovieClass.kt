@@ -7,6 +7,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import prj.mob1.prjmob1.retrofitUtil.models.*
+import prj.mob1.prjmob1.roomComponenets.models.CastRoomAdapter
 import prj.mob1.prjmob1.roomComponenets.models.MovieRoomAdapter
 
 /**
@@ -51,7 +52,8 @@ data class MovieClass(@SerializedName("id") val id: Int,
     constructor() : this(0, "NA", "NA", "NA", "NA", 0, "NA","NA", "NA", 0.0, 0, CreditResponse(0, listOf(), listOf()),
             SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), VideoResponse(listOf()),listOf())
 
-    constructor(movie:MovieRoomAdapter?):this(movie!!.id,movie.title,movie.releaseDate,movie.year,movie.tags,movie.duration,
+    constructor(movie:MovieRoomAdapter?)
+            :this(movie!!.id,movie.title,movie.releaseDate,movie.year,movie.tags,movie.duration,
             movie.posterId,movie.imagePath,movie.overview,movie.rating,movie.voteCount,CreditResponse(0, listOf(), listOf()),
             SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), VideoResponse(listOf()),listOf())
 

@@ -4,15 +4,16 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import prj.mob1.prjmob1.roomComponenets.daos.MovieDAO
-import prj.mob1.prjmob1.roomComponenets.models.MovieRoomAdapter
+import prj.mob1.prjmob1.roomComponenets.daos.*
+import prj.mob1.prjmob1.roomComponenets.models.*
 
 /**
  * Created by sol on 22/06/2018.
  */
-@Database(entities = arrayOf(MovieRoomAdapter::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(MovieRoomAdapter::class, CastRoomAdapter::class), version = 2, exportSchema = false)
 abstract class CinFanDB() : RoomDatabase() {
     abstract fun movieDAO(): MovieDAO
+    abstract fun castDAO(): CastDAO
 
     companion object {
         private var instance: CinFanDB? = null
