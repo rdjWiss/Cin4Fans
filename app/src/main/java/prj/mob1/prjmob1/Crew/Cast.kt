@@ -12,7 +12,7 @@ data class Cast (@SerializedName("id") val id:Int,
                  @SerializedName("cast_id") val castId:Int,
                  @SerializedName("name") val name:String,
                  @SerializedName("character") val character:String,
-                 @SerializedName("profile_path") val image:String)
+                 @SerializedName("profile_path") val image:String?)
    : Parcelable {
 
     constructor(parcel: Parcel) : this(

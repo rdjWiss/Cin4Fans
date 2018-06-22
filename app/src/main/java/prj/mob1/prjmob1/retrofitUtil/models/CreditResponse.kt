@@ -11,8 +11,8 @@ import prj.mob1.prjmob1.roomComponenets.models.CastRoomAdapter
  * Created by sol on 18/06/2018.
  */
 class CreditResponse(val id:Int,
-                     @SerializedName("crew") val crew: List<Crew>
-                     ,@SerializedName("cast") val cast:List<Cast>
+                     @SerializedName("crew") var crew: List<Crew>
+                     ,@SerializedName("cast") var cast:List<Cast>
                     )
     : Parcelable {
     constructor(parcel: Parcel) : this(

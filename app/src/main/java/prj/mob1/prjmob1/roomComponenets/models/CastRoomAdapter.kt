@@ -15,7 +15,7 @@ class CastRoomAdapter(@PrimaryKey()  val id:Int,
                       @ColumnInfo(name ="cast_id") val castId:Int,
                       @ColumnInfo(name ="name") val name:String,
                       @ColumnInfo(name ="character") val character:String,
-                      @ColumnInfo(name ="profile_path") val image:String,
+                      @ColumnInfo(name ="profile_path") val image:String?,
                       @ColumnInfo(name ="related_id") val relatedId:Int) {
 
     @Ignore

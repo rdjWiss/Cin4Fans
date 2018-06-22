@@ -10,10 +10,11 @@ import prj.mob1.prjmob1.roomComponenets.models.*
 /**
  * Created by sol on 22/06/2018.
  */
-@Database(entities = arrayOf(MovieRoomAdapter::class, CastRoomAdapter::class), version = 2, exportSchema = false)
+@Database(entities = arrayOf(MovieRoomAdapter::class, CastRoomAdapter::class, CommentRoomAdapter::class), version = 3, exportSchema = false)
 abstract class CinFanDB() : RoomDatabase() {
     abstract fun movieDAO(): MovieDAO
     abstract fun castDAO(): CastDAO
+    abstract fun commentDAO(): CommentDAO
 
     companion object {
         private var instance: CinFanDB? = null

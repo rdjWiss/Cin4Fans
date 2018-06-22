@@ -5,10 +5,13 @@ import android.graphics.Movie
 import android.os.AsyncTask
 import android.util.Log
 import android.widget.Toast
+import prj.mob1.prjmob1.Comment.Review
 import prj.mob1.prjmob1.Crew.Cast
 import prj.mob1.prjmob1.movie.MovieClass
 import prj.mob1.prjmob1.retrofitUtil.models.CreditResponse
+import prj.mob1.prjmob1.retrofitUtil.models.ReviewsResponse
 import prj.mob1.prjmob1.roomComponenets.models.CastRoomAdapter
+import prj.mob1.prjmob1.roomComponenets.models.CommentRoomAdapter
 import prj.mob1.prjmob1.roomComponenets.models.MovieRoomAdapter
 
 // Created by sol on 14/06/2018.
@@ -28,12 +31,14 @@ class RoomDataUtil {
 
                     for(cast in movie.credits.cast)
                         db?.castDAO()!!.addCast(CastRoomAdapter(cast,movie.id))
+                    for(comment in movie.reviews.results)
+                        db?.commentDAO()!!.addComment(CommentRoomAdapter(comment,movie.id))
 
                     return null
                 }
 
                 override fun onPostExecute(result: Void?) {
-                    Toast.makeText(act, "ADD MOVIE TO FAV",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(act, "ADD MOVIE TO FAV",Toast.LENGTH_SHORT).show()
                     callback()
                 }
             }.execute()
@@ -50,7 +55,7 @@ class RoomDataUtil {
                 }
 
                 override fun onPostExecute(result: Void?) {
-                    Toast.makeText(act, "REMOVE MOVIE FROM FAV",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(act, "REMOVE MOVIE FROM FAV",Toast.LENGTH_SHORT).show()
                     callback()
                 }
             }.execute()
@@ -69,7 +74,7 @@ class RoomDataUtil {
 
 
                 override fun onPostExecute(result: Void?) {
-                    Toast.makeText(act, "GET FAV MOVIES LIST",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(act, "GET FAV MOVIES LIST",Toast.LENGTH_SHORT).show()
                     callback(movies)
                 }
             }.execute()
@@ -91,7 +96,15 @@ class RoomDataUtil {
                         if(castList!=null){
                             for(cast in castList)
                                 castCreditList.add(Cast(cast))
-                            movie!!.credits = CreditResponse(castCreditList)
+                            movie!!.credits.cast = castCreditList
+                        }
+
+                        val commentAdapterList = db?.commentDAO()?.getMovieCommentList(movie!!.id)
+                        val reviewList = ArrayList<Review>()
+                        if(commentAdapterList!=null){
+                            for(review in commentAdapterList)
+                                reviewList.add(Review(review))
+                            movie!!.reviews.results = reviewList
                         }
 
                     }
@@ -101,7 +114,7 @@ class RoomDataUtil {
                 }
 
                 override fun onPostExecute(result: Void?) {
-                    Toast.makeText(act, "GET FAV MOVIE BY ID",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(act, "GET FAV MOVIE BY ID",Toast.LENGTH_SHORT).show()
                     callback(movie)
                 }
             }.execute()

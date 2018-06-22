@@ -23,6 +23,7 @@ import retrofit2.Response
 import prj.mob1.prjmob1.Person.Person
 import prj.mob1.prjmob1.show.TVShow
 import prj.mob1.prjmob1.movie.MovieClass
+import retrofit2.http.Query
 
 
 //Created by sol on 14/06/2018.
@@ -55,19 +56,19 @@ interface RemoteApiService {
 
     //Get list of films airing
     @GET("movie/now_playing?api_key=$API_KEY")
-    fun getLatesMovies(): Observable<Response<ListMovies>>
+    fun getLatesMovies(@Query("page")page:Int = 1): Observable<Response<ListMovies>>
 
-    //Get all list of films airing
+    //Get all list of films
     @GET("discover/movie?api_key=$API_KEY&include_adult=false")
-    fun getAllMovies(): Observable<Response<ListMovies>>
+    fun getAllMovies(@Query("page")page:Int = 1): Observable<Response<ListMovies>>
 
     //Get all list of TV SHOW airing
     @GET("tv/airing_today?api_key=$API_KEY")
-    fun getTVShow_now(): Observable<Response<ListShow>>
+    fun getTVShow_now(@Query("page")page:Int = 1): Observable<Response<ListShow>>
 
     //Get all list of TV SHOW airing
     @GET("discover/tv?api_key=$API_KEY")
-    fun getAllShow(): Observable<Response<ListShow>>
+    fun getAllShow(@Query("page")page:Int = 1): Observable<Response<ListShow>>
 
 
     // Companion object to create the RemoteApiService,

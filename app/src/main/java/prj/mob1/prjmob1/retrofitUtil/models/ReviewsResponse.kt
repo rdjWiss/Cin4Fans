@@ -8,7 +8,7 @@ import prj.mob1.prjmob1.Comment.Review
  * Created by sol on 18/06/2018.
  */
 class ReviewsResponse(val page:Int,
-                      val results:List<Review>):Parcelable{
+                      var results:List<Review>):Parcelable{
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
             parcel.createTypedArrayList(Review)) {
