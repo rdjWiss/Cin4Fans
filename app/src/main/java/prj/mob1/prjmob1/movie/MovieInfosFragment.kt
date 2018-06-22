@@ -5,6 +5,7 @@ import android.graphics.Movie
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,15 +27,18 @@ class MovieInfosFragment: Fragment() {
     private lateinit var listener: ActionsInterface
 
     private lateinit var movie: MovieClass
+    private var movieInFav = false
 
     companion object {
 
         private val ARG_movie = "Movie"
+        private val ARG_FAV = "fav"
 
-        fun newInstance(movie: MovieClass): MovieInfosFragment {
+        fun newInstance(movie: MovieClass, movieInFav: Boolean): MovieInfosFragment {
             val fragment = MovieInfosFragment()
             val args = Bundle()
             args.putParcelable(ARG_movie, movie)
+            args.putBoolean(ARG_FAV,movieInFav)
             fragment.arguments = args
             return fragment
         }
@@ -44,6 +48,7 @@ class MovieInfosFragment: Fragment() {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
             movie = arguments!!.getParcelable(ARG_movie)
+            movieInFav= arguments!!.getBoolean(ARG_FAV)
         }
     }
 
@@ -69,6 +74,13 @@ class MovieInfosFragment: Fragment() {
         val poster = myView.findViewById<ImageView>(R.id.movie_infos_poster)
         if(movie.posterId != null) RemoteApiService.getRemoteImage(movie.posterId,this.context)!!.into(poster)
 
+        if(movieInFav) {
+            Log.e("FAV",movieInFav.toString())
+            movie_infos_bookmark2?.visibility = View.VISIBLE
+            movie_infos_bookmark1?.visibility = View.INVISIBLE
+            setBookmarkOff()
+        }
+
         //Ajout du lister de rate
         myView.findViewById<ImageView>(R.id.movie_infos_rate).setOnClickListener{
             listener.onRateClick()
@@ -76,8 +88,9 @@ class MovieInfosFragment: Fragment() {
 
         //Ajout du listner de bookmark
         myView.findViewById<ImageView>(R.id.movie_infos_bookmark1).setOnClickListener{
-            Snackbar.make(myView,"Added to favorites",Snackbar.LENGTH_SHORT).show()
-            setBookmarkOff()
+//            Snackbar.make(myView,"Added to favorites",Snackbar.LENGTH_SHORT).show()
+            movie_infos_bookmark2?.visibility = View.VISIBLE
+            movie_infos_bookmark1?.visibility = View.INVISIBLE
             listener.onAddBookmark()
         }
 
@@ -93,8 +106,11 @@ class MovieInfosFragment: Fragment() {
     }
 
     fun setBookmarkOff(){
-        movie_infos_bookmark2.visibility = View.VISIBLE
-        movie_infos_bookmark1.visibility = View.INVISIBLE
+//        view?.findViewById<ImageView>(R.id.movie_infos_bookmark2)?.visibility = View.VISIBLE
+//        view?.findViewById<ImageView>(R.id.movie_infos_bookmark1)?.visibility = View.INVISIBLE
+//        Toast.makeText(activity,"here"+layoutInflater,Toast.LENGTH_LONG).show()
+        movie_infos_bookmark2?.visibility = View.VISIBLE
+        movie_infos_bookmark1?.visibility = View.INVISIBLE
     }
 
 }

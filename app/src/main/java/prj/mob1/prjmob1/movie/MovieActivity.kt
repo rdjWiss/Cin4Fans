@@ -1,9 +1,13 @@
 package prj.mob1.prjmob1.movie
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import prj.mob1.prjmob1.R
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AlertDialog
@@ -80,7 +84,7 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
                     for (tag in movie.genres) tags+=tag.name + ", "
                     movie.tags = tags
 
-                    initMovieInfosFrag()
+                    initMovieInfosFrag(false)
                     initOverviewFragTabMode()
                     configureTabLayout()
                     initTrailer()
@@ -95,11 +99,11 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
 
     }
 
-    fun initMovieInfosFrag() {
+    fun initMovieInfosFrag(inFav:Boolean) {
         //Fragment infos
 
         /*val */infosFragment =
-                MovieInfosFragment.newInstance(movie)
+                MovieInfosFragment.newInstance(movie,inFav)
         supportFragmentManager.beginTransaction().add(R.id.movie_infos, infosFragment).commit()
     }
 
@@ -210,21 +214,13 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
     override fun onAddBookmark() {
 
          RoomDataUtil.addMovieToFav(this, movie,{  ->
-             /*RoomDataUtil.getFavMoviesList(this, { movieList ->
-                 for (movie in movieList!!.iterator()) Log.e("List",movie.title.toString())
-             })*/
-
+             Snackbar.make(linearLayout,"Added to favorites", Snackbar.LENGTH_SHORT).show()
          })
-
-
     }
 
     override fun onRemoveBookmark() {
          RoomDataUtil.removeMovieFromFav(this, MovieRoomAdapter(movie),{
-             /*RoomDataUtil.getFavMoviesList(this, { movieList ->
-                 for (movie in movieList!!.iterator()) Log.e("List",movie.title.toString())
-
-             })*/
+             Snackbar.make(linearLayout,"Removed from favorites", Snackbar.LENGTH_SHORT).show()
          })
 
     }
@@ -235,8 +231,8 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
                 movie = movieAdapter//MovieClass(movieAdapter)
 //                Toast.makeText(this,movieAdapter.tags, Toast.LENGTH_SHORT).show()
 //                Toast.makeText(this,movie.tags, Toast.LENGTH_SHORT).show()
-                initMovieInfosFrag()
-                infosFragment.setBookmarkOff()
+                initMovieInfosFrag(true)
+//
                 initOverviewFragTabMode()
                 configureTabLayout()
                 initTrailer()
@@ -244,6 +240,7 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
 
         })
     }
+
 
 
 }
