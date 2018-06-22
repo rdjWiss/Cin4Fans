@@ -6,9 +6,13 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import prj.mob1.prjmob1.ListItem.*
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.R.layout.item
+import prj.mob1.prjmob1.Util.EndlessRecyclerViewScrollListener
 import prj.mob1.prjmob1.movie.MovieActivity
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 import prj.mob1.prjmob1.show.ShowActivity
@@ -72,7 +76,41 @@ import retrofit2.Response
             override fun onLongClick(view: View?, position: Int) {
             }
         }))
+
+        if(!showListInput){
+            val scrollListener = object : EndlessRecyclerViewScrollListener(mRecyclerView!!.layoutManager as GridLayoutManager) {
+                override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                    // Triggered only when new data needs to be appended to the list
+                    // Add whatever code is needed to append new items to the bottom of the list
+                    loadNextDataFromApi(page)
+                }
+            }
+            // Adds the scroll listener to RecyclerView
+            mRecyclerView?.addOnScrollListener(scrollListener)
+        }
     }
+
+    private fun loadNextDataFromApi(page:Int){
+//        Toast.makeText(activity,"Loading data page $page", Toast.LENGTH_LONG).show()
+        val apiService: RemoteApiService? = RemoteApiService.create()
+        apiService!!.getTVShow_now(page)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ result ->
+                    //                Toast.makeText(activity,"Response ${result.body()!!}", Toast.LENGTH_LONG).show()
+                    Log.e("LOAD",result.toString())
+                    for (show  in result.body()!!.shows) {
+                        val item = Item(show.id,show.posterId,show.title)
+                        ArrayShow.add(item)
+                    }
+                    mRecyclerView!!.adapter.notifyDataSetChanged()
+                }, { error ->
+                    Toast.makeText(activity, "Error ${error.message}", Toast.LENGTH_LONG).show()
+                    error.printStackTrace()
+
+                })
+    }
+
 
     override fun openActivity(position:Int)
     {

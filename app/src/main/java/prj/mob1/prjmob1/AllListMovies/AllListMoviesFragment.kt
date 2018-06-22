@@ -7,8 +7,12 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import prj.mob1.prjmob1.ListItem.*
 import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.Util.EndlessRecyclerViewScrollListener
 
 import prj.mob1.prjmob1.movie.MovieActivity
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
@@ -26,7 +30,7 @@ class AllListMoviesFragment: BaseFragment_New()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initRecyclerView(view!!)
+        initRecyclerView(view)
         getData()
     }
 
@@ -44,7 +48,40 @@ class AllListMoviesFragment: BaseFragment_New()
             override fun onLongClick(view: View?, position: Int) {
             }
         }))
+
+        val scrollListener = object : EndlessRecyclerViewScrollListener(mRecyclerView!!.layoutManager as GridLayoutManager) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to the bottom of the list
+                loadNextDataFromApi(page)
+            }
+        }
+        // Adds the scroll listener to RecyclerView
+        mRecyclerView?.addOnScrollListener(scrollListener)
+
     }
+
+    private fun loadNextDataFromApi(page:Int){
+//        Toast.makeText(activity,"Loading data page $page", Toast.LENGTH_LONG).show()
+        val apiService: RemoteApiService? = RemoteApiService.create()
+        apiService!!.getAllMovies(page)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ result ->
+                    Log.e("LOAD",result.toString())
+//                    Toast.makeText(activity,"Total ${result}", Toast.LENGTH_LONG).show()
+                    for (movie  in result.body()!!.movies) {
+                        val item = Item(movie.id,movie.posterId,movie.title)
+                        ArrayMovies.add(item)
+                    }
+                    mRecyclerView!!.adapter.notifyDataSetChanged()
+                }, { error ->
+                    Toast.makeText(activity, "Error ${error.message}", Toast.LENGTH_LONG).show()
+                    error.printStackTrace()
+
+                })
+    }
+
 
     override fun openActivity(position:Int)
     {
@@ -67,7 +104,7 @@ class AllListMoviesFragment: BaseFragment_New()
            // val movies_now =ArrayList<Item>()
             for (movie  in result.body()!!.movies) {
                // var item = Item(movie.id,movie.posterId, movie.year, movie.title, movie.tags)
-                var item = Item(movie.id,movie.posterId,movie.title)
+                val item = Item(movie.id,movie.posterId,movie.title)
                 ArrayMovies.add(item)
             }
             list_adapter= MyListAdapter(context as AppCompatActivity,ArrayMovies )
