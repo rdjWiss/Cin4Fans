@@ -3,10 +3,13 @@ package prj.mob1.prjmob1.MyMovies
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.SearchView
+import android.util.Log
 import android.view.Menu
+import prj.mob1.prjmob1.ListItem.Item
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.Util.addFragment
 import prj.mob1.prjmob1.Util.initDrawer
+import prj.mob1.prjmob1.roomComponenets.RoomDataUtil
 
 class MyMoviesActivity : AppCompatActivity() {
 
@@ -17,7 +20,8 @@ class MyMoviesActivity : AppCompatActivity() {
 
         apply {
             initDrawer()
-            addFragment(MyMoviesFragment(),R.id.container_body_my_movie)
+            initMyMoviesFrag()
+
         }
     }
     override fun onCreateOptionsMenu(menu: Menu) :Boolean{
@@ -36,6 +40,22 @@ class MyMoviesActivity : AppCompatActivity() {
             }
         })
         return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun initMyMoviesFrag(){
+        RoomDataUtil.getFavMoviesList(this, { movieList ->
+            for (movie in movieList!!.iterator()) Log.e("List",movie.title)
+
+            val movieArray = ArrayList<Item>()
+            for (movie  in movieList) {
+                val item = Item(movie.id,movie.posterId,movie.title)
+                movieArray.add(item)
+            }
+
+            val favMovies = MyMoviesFragment.newInstance(movieArray)
+            addFragment(favMovies,R.id.container_body_my_movie)
+
+        })
     }
 
 }

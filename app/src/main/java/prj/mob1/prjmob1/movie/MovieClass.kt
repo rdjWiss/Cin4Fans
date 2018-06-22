@@ -7,12 +7,12 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import prj.mob1.prjmob1.retrofitUtil.models.*
+import prj.mob1.prjmob1.roomComponenets.models.MovieRoomAdapter
 
 /**
  * Created by sol on 25/03/2018.
  */
-@Entity(tableName = "Movie")
-data class MovieClass(@SerializedName("id") @PrimaryKey val id: Int,
+data class MovieClass(@SerializedName("id") val id: Int,
                       @SerializedName("original_title") val title: String,
                       @SerializedName("release_date") val releaseDate: String,
                       var year: String,
@@ -48,8 +48,11 @@ data class MovieClass(@SerializedName("id") @PrimaryKey val id: Int,
             parcel.createTypedArrayList(Genre)) {
     }
 
-    @Ignore
     constructor() : this(0, "NA", "NA", "NA", "NA", 0, "NA","NA", "NA", 0.0, 0, CreditResponse(0, listOf(), listOf()),
+            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), VideoResponse(listOf()),listOf())
+
+    constructor(movie:MovieRoomAdapter?):this(movie!!.id,movie.title,movie.releaseDate,movie.year,movie.tags,movie.duration,
+            movie.posterId,movie.imagePath,movie.overview,movie.rating,movie.voteCount,CreditResponse(0, listOf(), listOf()),
             SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), VideoResponse(listOf()),listOf())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

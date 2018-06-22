@@ -64,9 +64,6 @@ class MovieInfosFragment: Fragment() {
                 FragmentMovieInfosBinding.inflate(inflater ,container , false)
         val myView : View  = binding.root
 
-        var tag = ""
-        for (i in 0..movie.genres.size-1) tag+=movie.genres[i].name+", "
-        movie.tags = tag
         binding.movie = movie
 
         val poster = myView.findViewById<ImageView>(R.id.movie_infos_poster)
@@ -80,9 +77,8 @@ class MovieInfosFragment: Fragment() {
         //Ajout du listner de bookmark
         myView.findViewById<ImageView>(R.id.movie_infos_bookmark1).setOnClickListener{
             Snackbar.make(myView,"Added to favorites",Snackbar.LENGTH_SHORT).show()
-            movie_infos_bookmark2.visibility = View.VISIBLE
-            movie_infos_bookmark1.visibility = View.INVISIBLE
-
+            setBookmarkOff()
+            listener.onAddBookmark()
         }
 
         //Remove from fav
@@ -90,9 +86,15 @@ class MovieInfosFragment: Fragment() {
             Snackbar.make(myView,"Removed from favorites",Snackbar.LENGTH_SHORT).show()
             movie_infos_bookmark1.visibility = View.VISIBLE
             movie_infos_bookmark2.visibility = View.INVISIBLE
+            listener.onRemoveBookmark()
         }
 
         return myView
+    }
+
+    fun setBookmarkOff(){
+        movie_infos_bookmark2.visibility = View.VISIBLE
+        movie_infos_bookmark1.visibility = View.INVISIBLE
     }
 
 }

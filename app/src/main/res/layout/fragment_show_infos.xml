@@ -50,6 +50,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="7"
                     android:fontFamily="Roboto"
+                    android:autoSizeTextType="uniform"
                     android:text="@{show.title}"
                     android:textColor="@color/colorTitle"
                     android:textSize="@dimen/dim_infos_title"
