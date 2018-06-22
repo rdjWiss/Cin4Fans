@@ -13,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 
 import kotlinx.android.synthetic.main.activity_episode.*
 import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.Util.ConnectivityChecker
 import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 
@@ -50,7 +51,12 @@ class EpisodeActivity : AppCompatActivity(), OnRateClick {
             finish()
         }
 
-        getEpisodeData()
+        if(ConnectivityChecker.isNetworkAvailable(this)) this. getEpisodeData()
+        else{
+            Toast.makeText(this,"Can't get episode infos. No Network Connection",Toast.LENGTH_SHORT).show()
+            finish()
+        }
+
 
     }
 
@@ -78,6 +84,7 @@ class EpisodeActivity : AppCompatActivity(), OnRateClick {
                 }, { error ->
                     Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
                     error.printStackTrace()
+                    finish()
 
                 })
 

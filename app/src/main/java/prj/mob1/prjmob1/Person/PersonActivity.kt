@@ -11,6 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_person.*
 import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.Util.ConnectivityChecker
 import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 
@@ -34,7 +35,12 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
             personId = 20
         }
 
-        getPersonInfos()
+        if(ConnectivityChecker.isNetworkAvailable(this)) this.getPersonInfos()
+        else{
+            Toast.makeText(this,"Can't get person infos. No Network Connection",Toast.LENGTH_SHORT).show()
+            finish()
+        }
+
     }
 
     fun getPersonInfos(){
@@ -56,6 +62,7 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
             }, { error ->
                 Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
                 error.printStackTrace()
+                finish()
 
             })
     }

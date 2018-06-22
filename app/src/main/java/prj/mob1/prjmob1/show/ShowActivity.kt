@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_show.*
 import prj.mob1.prjmob1.Crew.CrewFragment
 import prj.mob1.prjmob1.Person.PersonActivity
 import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.Util.ConnectivityChecker
 import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 import prj.mob1.prjmob1.season.Season
@@ -46,7 +47,11 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         }
 
         //Get les infos du show
-        this.getShowData()
+        if(ConnectivityChecker.isNetworkAvailable(this)) this.getShowData()
+        else{
+            Toast.makeText(this,"Can't get show infos. No Network Connection",Toast.LENGTH_LONG).show()
+            finish()
+        }
 
         //Go back arrow
         back_arrow.setOnClickListener{
@@ -73,6 +78,7 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
                 }, { error ->
                     Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
                     error.printStackTrace()
+                    finish()
 
                 })
 

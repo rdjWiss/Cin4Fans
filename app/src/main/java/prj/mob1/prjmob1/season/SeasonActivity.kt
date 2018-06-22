@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_season.*
 import prj.mob1.prjmob1.Crew.CrewFragment
 import prj.mob1.prjmob1.Person.PersonActivity
 import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.Util.ConnectivityChecker
 import prj.mob1.prjmob1.episode.EpisodeActivity
 import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
@@ -53,7 +54,12 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
             //TODO if null show erro then finish act
         }
 
-        getSeasonData()
+        if(ConnectivityChecker.isNetworkAvailable(this)) this.getSeasonData()
+        else{
+            Toast.makeText(this,"Can't get season infos. No Network Connection",Toast.LENGTH_SHORT).show()
+            finish()
+        }
+
 
         back_arrow.setOnClickListener{
             finish()
@@ -82,6 +88,7 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
                 }, { error ->
                     Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
                     error.printStackTrace()
+                    finish()
 
                 })
 
@@ -137,7 +144,7 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         val imageTop = findViewById<ImageView>(R.id.season_trailer)
         //if(season.posterId!=null) RemoteApiService.getRemoteImage(season.posterId,this)!!.into(poster)
         val episodes = season.episodes
-        var rand= { Random().nextInt(episodes.size + 1 - 1 ) + 1 } // TODO fix invalid index
+        val rand= { Random().nextInt(episodes.size-1 + 1 - 1 ) + 1 } // TODO fix invalid index
         var i = rand()
         while (episodes[i].posterId == null) i= rand()
         RemoteApiService.getRemoteImage(episodes[i].posterId,this)!!.into(imageTop)

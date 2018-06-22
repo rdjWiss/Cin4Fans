@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.activity_movie.*
 import prj.mob1.prjmob1.ActionsInterface
 import prj.mob1.prjmob1.Crew.CrewFragment
 import prj.mob1.prjmob1.Person.PersonActivity
+import prj.mob1.prjmob1.Util.ConnectivityChecker
 
 import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
@@ -60,9 +61,12 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
             id = 200//550
         }
 
-        //Get les infos du films
-        if(modeConnexion != MODE_OFFLINE)this.getMovieData(id)
-        else this.getMovieDataOffline()
+        if(ConnectivityChecker.isNetworkAvailable(this)) this.getMovieData(id)
+        else if(modeConnexion == MODE_OFFLINE) this.getMovieDataOffline()
+        else{
+            Toast.makeText(this,"Can't get movie infos. No Network Connection",Toast.LENGTH_LONG).show()
+            finish()
+        }
 
         //Go back arrow
         movie_back_arrow!!.setOnClickListener {
@@ -91,8 +95,9 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
                     initBookmarkIcon()
 
                 }, { error ->
-                    Toast.makeText(this, "Error ${error.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Error ${error.message}", Toast.LENGTH_SHORT).show()
                     error.printStackTrace()
+                    finish()
 
                 })
 

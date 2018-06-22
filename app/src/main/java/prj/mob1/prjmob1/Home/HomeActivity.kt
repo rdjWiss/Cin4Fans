@@ -29,7 +29,7 @@ class HomeActivity : AppCompatActivity() {
         setTitle("Home")
 
         if(!ConnectivityChecker.isNetworkAvailable(this)){
-            Toast.makeText(this, "No connection",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "No Network Connection",Toast.LENGTH_LONG).show()
 
         }
         apply {
