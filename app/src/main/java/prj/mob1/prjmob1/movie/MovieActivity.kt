@@ -31,6 +31,10 @@ import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 import prj.mob1.prjmob1.roomComponenets.RoomDataUtil
 import prj.mob1.prjmob1.roomComponenets.models.MovieRoomAdapter
+import android.widget.ProgressBar
+import android.app.ProgressDialog
+import prj.mob1.prjmob1.Util.LoadingDialog
+
 
 class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsInterface {
 /*    val MODE_ONLINE = "Online"*/
@@ -76,6 +80,8 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
     }
 
     fun getMovieData(id: Int) {
+        val loadingDialog= LoadingDialog.showLoadingDialog(this)
+
         val apiService: RemoteApiService? = RemoteApiService.create()
         apiService!!.getMovieInfosById(id)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -88,15 +94,19 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
                     for (tag in movie.genres) tags+=tag.name + ", "
                     movie.tags = tags
 
+                    loadingDialog.dismiss()
+
                     initMovieInfosFrag(false)
                     initOverviewFragTabMode()
                     configureTabLayout()
                     initTrailer()
                     initBookmarkIcon()
 
+
                 }, { error ->
                     Toast.makeText(this, "Error ${error.message}", Toast.LENGTH_SHORT).show()
                     error.printStackTrace()
+                    loadingDialog.dismiss()
                     finish()
 
                 })
@@ -194,6 +204,7 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
         val intent = Intent(this, PersonActivity::class.java)
         val bundle = Bundle()
         bundle.putInt("personId", creditId)
+        bundle.putString("image",movie.imagePath)
         intent.putExtra("bundle", bundle)
         startActivity(intent)
     }

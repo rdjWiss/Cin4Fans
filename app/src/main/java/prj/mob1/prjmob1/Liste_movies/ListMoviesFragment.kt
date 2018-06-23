@@ -1,5 +1,6 @@
 package prj.mob1.prjmob1.Liste_movies
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -17,6 +18,7 @@ import prj.mob1.prjmob1.movie.MovieActivity
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 import retrofit2.Response
 import prj.mob1.prjmob1.Util.EndlessRecyclerViewScrollListener
+import prj.mob1.prjmob1.Util.LoadingDialog
 
 
 /**
@@ -29,6 +31,8 @@ class ListMoviesFragment: BaseFragment_New()
     private var  mRecyclerView: RecyclerView? = null
     private var ArrayMovies=ArrayList<Item>()
     private var movieListInput: Boolean = false
+
+    private lateinit var loadingDialog :ProgressDialog
 
     companion object {
 
@@ -123,6 +127,7 @@ class ListMoviesFragment: BaseFragment_New()
     }
 
    override fun getData(){
+       loadingDialog= LoadingDialog.showLoadingDialog(this.context)
         RemoteApiService.apply { sendRequest(create()!!.getLatesMovies(), { onCreateMovieDataSuccess(it) },{onCreateMovieLatestFail(it)}) }
     }
 
@@ -137,6 +142,7 @@ class ListMoviesFragment: BaseFragment_New()
             }
             list_adapter= MyListAdapter(context as AppCompatActivity, ArrayMovies )
             mRecyclerView?.adapter= list_adapter
+            loadingDialog.dismiss()
 
         } else //error 400-500
             Log.e("erroor","err" +result.body().toString())

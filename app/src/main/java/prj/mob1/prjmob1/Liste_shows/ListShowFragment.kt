@@ -1,4 +1,5 @@
 package prj.mob1.prjmob1.Liste_shows
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -13,6 +14,7 @@ import prj.mob1.prjmob1.ListItem.*
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.R.layout.item
 import prj.mob1.prjmob1.Util.EndlessRecyclerViewScrollListener
+import prj.mob1.prjmob1.Util.LoadingDialog
 import prj.mob1.prjmob1.movie.MovieActivity
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 import prj.mob1.prjmob1.show.ShowActivity
@@ -26,6 +28,8 @@ import retrofit2.Response
     private lateinit var list_adapter : MyListAdapter
     private var  mRecyclerView: RecyclerView? = null
     var ArrayShow=ArrayList<Item>()
+
+    private lateinit var loadingDialog :ProgressDialog
 
     private var showListInput: Boolean = false
 
@@ -122,6 +126,7 @@ import retrofit2.Response
     }
 
     override fun getData(){
+        loadingDialog= LoadingDialog.showLoadingDialog(this.context)
         RemoteApiService.apply { sendRequest(create()!!.getTVShow_now(), { onCreateMovieDataSuccess(it) },{onCreateMovieLatestFail(it)}) }
     }
 
@@ -135,6 +140,7 @@ import retrofit2.Response
             }
             list_adapter= MyListAdapter(context as AppCompatActivity,ArrayShow )
             mRecyclerView?.adapter= list_adapter
+            loadingDialog.dismiss()
 
         } else //error 400-500
             Log.e("erroor","err" +result.body().toString())

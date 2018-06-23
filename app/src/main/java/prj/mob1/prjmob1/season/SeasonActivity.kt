@@ -17,6 +17,7 @@ import prj.mob1.prjmob1.Crew.CrewFragment
 import prj.mob1.prjmob1.Person.PersonActivity
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.Util.ConnectivityChecker
+import prj.mob1.prjmob1.Util.LoadingDialog
 import prj.mob1.prjmob1.episode.EpisodeActivity
 import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
@@ -68,6 +69,8 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
     }
 
     private fun getSeasonData() {
+        val loadingDialog= LoadingDialog.showLoadingDialog(this)
+
         val apiService: RemoteApiService? = RemoteApiService.create()
         apiService!!.getSeasonInfosById(showId, seasonNum)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -80,6 +83,7 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
                     season.title_show = showTitle
                     season.nbr_episodes = nbrEpisode
 
+                    loadingDialog.dismiss()
                     initSeasonInfosFrag()
                     initOverviewFragTabMode()
                     configureTabLayout()
@@ -88,6 +92,7 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
                 }, { error ->
                     Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
                     error.printStackTrace()
+                    loadingDialog.dismiss()
                     finish()
 
                 })
@@ -144,7 +149,7 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         val imageTop = findViewById<ImageView>(R.id.season_trailer)
         //if(season.posterId!=null) RemoteApiService.getRemoteImage(season.posterId,this)!!.into(poster)
         val episodes = season.episodes
-        val rand= { Random().nextInt(episodes.size-1 + 1 - 1 ) + 1 } // TODO fix invalid index
+        val rand= { Random().nextInt(episodes.size-1 + 1 ) } // TODO fix invalid index -> Fixed ... maybe
         var i = rand()
         while (episodes[i].posterId == null) i= rand()
         RemoteApiService.getRemoteImage(episodes[i].posterId,this)!!.into(imageTop)

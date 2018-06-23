@@ -14,6 +14,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_episode.*
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.Util.ConnectivityChecker
+import prj.mob1.prjmob1.Util.LoadingDialog
 import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 
@@ -61,6 +62,7 @@ class EpisodeActivity : AppCompatActivity(), OnRateClick {
     }
 
     private fun getEpisodeData(){
+        val loadingDialog= LoadingDialog.showLoadingDialog(this)
 
         val apiService: RemoteApiService? = RemoteApiService.create()
         apiService!!.getEpisodeInfosById(showId, seasonNum,episodeNum)
@@ -74,6 +76,7 @@ class EpisodeActivity : AppCompatActivity(), OnRateClick {
                     episode.title_show = showTitle
                     episode.channel = network
 
+                    loadingDialog.dismiss()
                     initEpisodeInfosFrag()
                     initOverviewFragTabMode()
                     configureTabLayout()
@@ -84,6 +87,7 @@ class EpisodeActivity : AppCompatActivity(), OnRateClick {
                 }, { error ->
                     Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
                     error.printStackTrace()
+                    loadingDialog.dismiss()
                     finish()
 
                 })

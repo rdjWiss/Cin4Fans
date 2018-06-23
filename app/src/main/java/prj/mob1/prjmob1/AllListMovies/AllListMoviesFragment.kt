@@ -1,5 +1,6 @@
 package prj.mob1.prjmob1.AllListMovies
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -7,12 +8,14 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import prj.mob1.prjmob1.ListItem.*
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.Util.EndlessRecyclerViewScrollListener
+import prj.mob1.prjmob1.Util.LoadingDialog
 
 import prj.mob1.prjmob1.movie.MovieActivity
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
@@ -27,6 +30,8 @@ class AllListMoviesFragment: BaseFragment_New()
     private lateinit var list_adapter : MyListAdapter
     private var  mRecyclerView: RecyclerView? = null
     private var ArrayMovies=ArrayList<Item>()
+
+    private lateinit var loadingDialog :ProgressDialog
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -95,6 +100,7 @@ class AllListMoviesFragment: BaseFragment_New()
 
 
     override fun getData(){
+        loadingDialog= LoadingDialog.showLoadingDialog(this.context)
         RemoteApiService.apply { sendRequest(create()!!.getAllMovies(), { onCreateMovieDataSuccess(it) },{onCreateMovieLatestFail(it)}) }
     }
 
@@ -109,6 +115,7 @@ class AllListMoviesFragment: BaseFragment_New()
             }
             list_adapter= MyListAdapter(context as AppCompatActivity,ArrayMovies )
             mRecyclerView?.adapter= list_adapter
+            loadingDialog.dismiss()
 
         } else //error 400-500
             Log.e("erroor","err" +result.body().toString())

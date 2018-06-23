@@ -19,6 +19,7 @@ import prj.mob1.prjmob1.Crew.CrewFragment
 import prj.mob1.prjmob1.Person.PersonActivity
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.Util.ConnectivityChecker
+import prj.mob1.prjmob1.Util.LoadingDialog
 import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 import prj.mob1.prjmob1.season.Season
@@ -61,6 +62,8 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
     }
 
     private fun getShowData(){
+        val loadingDialog= LoadingDialog.showLoadingDialog(this)
+
         val apiService: RemoteApiService? = RemoteApiService.create()
         apiService!!.getShowInfosById(id)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -71,6 +74,7 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
                     Log.e("SHOW",result.seasons.toString())
                     show = result
 
+                    loadingDialog.dismiss()
                     initShowInfosFrag()
                     initOverviewFragTabMode()
                     configureTabLayout()
@@ -78,6 +82,7 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
                 }, { error ->
                     Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
                     error.printStackTrace()
+                    loadingDialog.dismiss()
                     finish()
 
                 })

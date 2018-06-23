@@ -30,6 +30,7 @@ abstract class BaseFragment_New: android.support.v4.app.Fragment(){
 
     fun onCreateMovieLatestFail(error:Throwable) {
         Log.e("erroor","errror"+ error.message.toString())
+
     }
 
     interface ClickListener {

@@ -12,6 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_person.*
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.Util.ConnectivityChecker
+import prj.mob1.prjmob1.Util.LoadingDialog
 import prj.mob1.prjmob1.rating.OnRateClick
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 
@@ -44,6 +45,8 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
     }
 
     fun getPersonInfos(){
+        val loadingDialog= LoadingDialog.showLoadingDialog(this)
+
         val apiService: RemoteApiService? = RemoteApiService.create()
         apiService!!.getPersonInfosById(personId)
             .observeOn(AndroidSchedulers.mainThread())
@@ -53,6 +56,7 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
 //                    Toast.makeText(this,"Response ${result.tvCredits.cast[0].title}", Toast.LENGTH_LONG).show()
                 Log.e("Person",result.toString())
 
+                loadingDialog.dismiss()
                 person = result
                 initMovieInfosFrag()
                 initOverviewFragTabMode()
@@ -62,6 +66,7 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
             }, { error ->
                 Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
                 error.printStackTrace()
+                loadingDialog.dismiss()
                 finish()
 
             })
