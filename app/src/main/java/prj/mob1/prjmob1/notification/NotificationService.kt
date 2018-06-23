@@ -83,9 +83,11 @@ class NotificationService : IntentService("NotificationService") {
                     val bundle = Bundle()
                     bundle.putInt("id",movie.id)
                     movieIntent.putExtra("bundle",bundle)
+
+                    val id= System.currentTimeMillis().toInt()
                     val pendingIntent = PendingIntent.getActivity(
                             this,
-                            0,
+                            id,
                             movieIntent,
                             PendingIntent.FLAG_UPDATE_CURRENT
                     )
@@ -95,7 +97,7 @@ class NotificationService : IntentService("NotificationService") {
                             .setContentIntent(pendingIntent)
                             .build()
 
-                    val id= System.currentTimeMillis().toInt()
+
                     Log.e("NotificationService","FAV ${movie.id} $id")
                     notificationManager.notify(id, notif)
 
