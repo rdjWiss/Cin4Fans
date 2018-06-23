@@ -125,8 +125,6 @@ class HomeActivity : AppCompatActivity() {
             }
             override fun onTabReselected(tab: TabLayout.Tab) {
             }
-
-
         })
     }
 

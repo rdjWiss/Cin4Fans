@@ -17,14 +17,15 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import prj.mob1.prjmob1.ListItem.ListMovies
 import prj.mob1.prjmob1.ListItem.ListShow
-import prj.mob1.prjmob1.episode.Episode
-import prj.mob1.prjmob1.season.Season
-import retrofit2.Response
 import prj.mob1.prjmob1.Person.Person
+
 import prj.mob1.prjmob1.Settings.ListeItemChoice
-import prj.mob1.prjmob1.show.TVShow
+import prj.mob1.prjmob1.episode.Episode
 import prj.mob1.prjmob1.movie.MovieClass
-import prj.mob1.prjmob1.retrofitUtil.models.Genre
+
+import prj.mob1.prjmob1.season.Season
+import prj.mob1.prjmob1.show.TVShow
+import retrofit2.Response
 import retrofit2.http.Query
 
 
@@ -71,6 +72,7 @@ interface RemoteApiService {
     //Get all list of TV SHOW airing
     @GET("discover/tv?api_key=$API_KEY")
     fun getAllShow(@Query("page")page:Int = 1): Observable<Response<ListShow>>
+
 
     @GET("movie/upcoming?api_key=$API_KEY&include_adult=false")
     fun getNewMovie(): Observable<Response<ListMovies>>
