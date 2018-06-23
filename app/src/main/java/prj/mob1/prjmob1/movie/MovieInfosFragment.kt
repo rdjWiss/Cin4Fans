@@ -76,8 +76,8 @@ class MovieInfosFragment: Fragment() {
 
         if(movieInFav) {
             Log.e("FAV",movieInFav.toString())
-            movie_infos_bookmark2?.visibility = View.VISIBLE
-            movie_infos_bookmark1?.visibility = View.INVISIBLE
+            myView.findViewById<ImageView>(R.id.movie_infos_bookmark2)?.visibility = View.VISIBLE
+            myView.findViewById<ImageView>(R.id.movie_infos_bookmark1)?.visibility = View.INVISIBLE
             setBookmarkOff()
         }
 
