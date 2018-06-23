@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,8 @@ import prj.mob1.prjmob1.movie.MovieActivity
 import prj.mob1.prjmob1.movie.MovieClass
 import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 import prj.mob1.prjmob1.retrofitUtil.models.Genre
+import java.util.*
+
 
 /**
  * An [IntentService] subclass for handling asynchronous task requests in
@@ -29,33 +32,33 @@ import prj.mob1.prjmob1.retrofitUtil.models.Genre
  */
 class NotificationService : IntentService("NotificationService") {
 
-    private lateinit var genresList : List<ItemChoice>
-    private var favGenres = listOf("Romance","Adventure")
+//    private lateinit var genresList : List<ItemChoice>
+    private var favGenres = ArrayList<String>()
 
     override fun onHandleIntent(intent: Intent?) {
         Log.i("NotificationService", "Service running");
 
         val apiService: RemoteApiService? = RemoteApiService.create()
-        apiService!!.getGenres()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({ result ->
-                    Log.e("NotificationService",result.toString())
-                    genresList = result.body()!!.choices
+//        apiService!!.getGenres()
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe({ result ->
+////                    Log.e("NotificationService",result.toString())
+//                    genresList = result.body()!!.choices
 
-                    Log.e("NotificationService",genresList.toString())
-                    apiService.getNewMovie()
+//                    Log.e("NotificationService",genresList.toString())
+                    apiService!!.getNewMovie()
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.io())
                             .subscribe({ movies ->
-                                Log.e("NotificationService",movies.body()!!.toString())
+//                                Log.e("NotificationService",movies.body()!!.toString())
                                 handleResponseSuccess(movies.body()!!,intent)
                             }, { error ->
 
                             })
-                }, { error ->
-
-                })
+//                }, { error ->
+//
+//                })
 
 
     }
@@ -66,12 +69,15 @@ class NotificationService : IntentService("NotificationService") {
         val builder = NotificationBuilder.builder(notificationManager, pIntent,this)
         var notif: Notification
 
-        for(movie in result.movies){
-            Log.e("NotificationService","Movie ${movie.title}: ")
+        getFavGenre()
 
+        for(movie in result.movies){
             if(movieOfFavGenre(movie.genreIds)){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    Log.e("NotificationService","FAV ${movie.id} released on ${movie.releaseDate}")
+
+                    var gen = movie.genreIds[0].toString()+","
+                    for(i in 1..movie.genreIds.size-1)  gen+=movie.genreIds[i].toString()+","
+                    Log.e("NotificationService","FAV ${movie.title} $gen")
 
                     val movieIntent = Intent(this, MovieActivity::class.java)
                     val bundle = Bundle()
@@ -83,11 +89,17 @@ class NotificationService : IntentService("NotificationService") {
                             movieIntent,
                             PendingIntent.FLAG_UPDATE_CURRENT
                     )
+
                     notif = builder!!.setContentTitle("New movie of your favorite genre")
                             .setContentText("${movie.title} released on ${movie.releaseDate}")
                             .setContentIntent(pendingIntent)
                             .build()
-                    notificationManager.notify(0, notif)
+
+                    val id= System.currentTimeMillis().toInt()
+                    Log.e("NotificationService","FAV ${movie.id} $id")
+                    notificationManager.notify(id, notif)
+
+                    Thread.sleep(100)
                 }
             }
         }
@@ -99,14 +111,28 @@ class NotificationService : IntentService("NotificationService") {
         var i=0
         var isFav = false
         while (i<movieGenres.size &&!isFav ){
-            val genreName:String  = genresList.find{j -> j.id == movieGenres[i]}!!.name
-            Log.e("NotificationService","${movieGenres[i]} ${genreName}")
-            if(favGenres.indexOf(genreName)!=-1) isFav=true
+//            val genreName:String  = genresList.find{j -> j.id == movieGenres[i]}!!.name
+//            Log.e("NotificationService","${movieGenres[i]} ${genreName}")
+//            if(favGenres.indexOf(genreName)!=-1) isFav=true
+            if(favGenres.indexOf(movieGenres[i].toString())!=-1) isFav=true
             i++
         }
         return isFav
     }
 
+    private fun getFavGenre(){
+        val prefs: SharedPreferences = getSharedPreferences("GENRES", 0)
+//        Log.e("NotificationService",prefs.getInt("choices_size",0).toString())
+        val size = prefs.getInt("choices_size", 0)
+        if (size >0)
+        {
+            for (i in 0 .. (size - 1))
+            {
+                favGenres.add(prefs.getString(i.toString(),""))
+            }
+        }
+        Log.e("NotificationService",favGenres.toString())
+    }
 //    private fun getGenreName(genre:ItemChoice) = { }
 
     companion object {
@@ -117,6 +143,8 @@ class NotificationService : IntentService("NotificationService") {
             intent.action = ACTION_SERVICE
             context.startService(intent)
         }
+
+
     }
 
     /*override fun onHandleIntent(intent: Intent?) {
