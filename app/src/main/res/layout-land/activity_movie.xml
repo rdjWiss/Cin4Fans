@@ -45,12 +45,12 @@
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/movie_image" />
 
-                    <VideoView
+                    <!--<VideoView
                         android:id="@+id/movie_trailer"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:visibility="invisible" />
+                        android:visibility="invisible" />-->
                 </FrameLayout>
 
                 <ImageView
@@ -64,7 +64,7 @@
                     android:tint="@color/colorBG"
                     app:srcCompat="@drawable/ic_play_circle" />
 
-                <ImageView
+                <!--<ImageView
                     android:id="@+id/btn_pause"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
                     android:alpha=".50"
                     android:tint="@color/colorBG"
                     android:visibility="invisible"
-                    app:srcCompat="@drawable/ic_pause_button_outline" />
+                    app:srcCompat="@drawable/ic_pause_button_outline" />-->
 
                 <ImageView
                     android:id="@+id/movie_back_arrow"

@@ -26,7 +26,7 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="2"
             android:adjustViewBounds="false"
-            app:srcCompat="@drawable/movie_poster"
+            app:srcCompat="@drawable/default_poster"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
         <LinearLayout
@@ -50,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="7"
                     android:fontFamily="Roboto"
+                    android:autoSizeTextType="uniform"
                     android:text="@{movie.title}"
                     android:textColor="@color/colorTitle"
                     android:textSize="@dimen/dim_infos_title"
@@ -133,7 +134,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="Roboto"
-                    android:text="@{movie.rating + ` | ` + movie.voteCount}"
+                    android:text="@{`Rating: ` +movie.rating + ` (` + movie.voteCount + ` votes)`}"
                     android:textColor="@color/colorLine3" />
             </LinearLayout>
 

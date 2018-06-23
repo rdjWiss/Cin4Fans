@@ -22,7 +22,7 @@ abstract class BaseFragment_New: android.support.v4.app.Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        views = inflater!!.inflate(R.layout.fragment_list, container, false)
+        views = inflater.inflate(R.layout.fragment_list, container, false)
         return views
     }
 
@@ -30,6 +30,7 @@ abstract class BaseFragment_New: android.support.v4.app.Fragment(){
 
     fun onCreateMovieLatestFail(error:Throwable) {
         Log.e("erroor","errror"+ error.message.toString())
+
     }
 
     interface ClickListener {

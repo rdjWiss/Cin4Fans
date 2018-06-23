@@ -2,17 +2,21 @@ package prj.mob1.prjmob1.Home
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v7.widget.SearchView
 
 import android.view.Menu
-import kotlinx.android.synthetic.main.movie_tab.*
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_home.*
+//import kotlinx.android.synthetic.main.movie_tab.*
 import prj.mob1.prjmob1.Liste_movies.ListMoviesFragment
 import prj.mob1.prjmob1.Liste_shows.ListShowFragment
 import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.Util.ConnectivityChecker
 import prj.mob1.prjmob1.Util.initDrawer
-
+import java.util.*
 
 
 class HomeActivity : AppCompatActivity() {
@@ -20,17 +24,43 @@ class HomeActivity : AppCompatActivity() {
 
     lateinit var  adapter:HomeTabPagerAdapter
 
+/*    private lateinit var mHandler: Handler
+    private lateinit var mRunnable:Runnable*/
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setTitle("Home")
 
+        if(!ConnectivityChecker.isNetworkAvailable(this)){
+            Toast.makeText(this, "No Network Connection",Toast.LENGTH_LONG).show()
+
+        }
         apply {
             initDrawer()
             // The tab
             configureTabLayout()
         }
+
+        /*// Initialize the handler instance
+        mHandler = Handler()
+
+
+        // Set an on refresh listener for swipe refresh layout
+        swipe_refresh_layout.setOnRefreshListener {
+            // Initialize a new Runnable
+            mRunnable = Runnable {
+                // Hide swipe to refresh icon animation
+                swipe_refresh_layout.isRefreshing = false
+            }
+
+            // Execute the task after specified time
+            mHandler.postDelayed(
+                    mRunnable,
+                    (randomInRange(1,5)*1000).toLong() // Delay 1 to 5 seconds
+            )
+        }*/
     }
 
 
@@ -92,6 +122,14 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
+    private fun randomInRange(min:Int, max:Int):Int{
+        // Define a new Random class
+        val r = Random()
+
+        // Get the next random number within range
+        // Including both minimum and maximum number
+        return r.nextInt((max - min) + 1) + min;
+    }
 
 }
 

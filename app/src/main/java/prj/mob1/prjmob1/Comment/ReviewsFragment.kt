@@ -70,7 +70,7 @@ class ReviewsFragment : Fragment() {
             viewHolder.itemUsername.text = commentsList[i].author
             viewHolder.itemBody.text = commentsList[i].content
 
-            viewHolder.itemView.setOnClickListener { v: View  ->
+            viewHolder.itemView.setOnClickListener { _: View  ->
 
                 /*Snackbar.make(v, "Click detected on item $i",
                         Snackbar.LENGTH_LONG).setAction("Action", null).show()

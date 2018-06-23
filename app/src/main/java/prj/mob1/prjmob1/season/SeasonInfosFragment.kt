@@ -10,11 +10,14 @@ import android.widget.ImageView
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.databinding.FragmentSeasonInfosBinding
 import prj.mob1.prjmob1.rating.OnRateClick
+import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 
 class SeasonInfosFragment : Fragment() {
 
-    private var season: Season? = null
+
     private lateinit var listener: OnRateClick
+
+    private var season: Season? = null
 
     companion object {
 
@@ -50,7 +53,7 @@ class SeasonInfosFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         val binding : FragmentSeasonInfosBinding =
-                FragmentSeasonInfosBinding.inflate(inflater!! ,container , false)
+                FragmentSeasonInfosBinding.inflate(inflater ,container , false)
         val myView : View  = binding.root
 
         //Rate listner
@@ -58,9 +61,11 @@ class SeasonInfosFragment : Fragment() {
             listener.onRateClick()
         }
 
-        val season = arguments!!.getParcelable<Season>(ARG_Season) as Season
-        myView.findViewById<ImageView>(R.id.season_infos_poster).setImageResource(season.posterId)
+        //myView.findViewById<ImageView>(R.id.season_infos_poster).setImageResource(season.posterId)
         binding.season = season
+
+        val poster = myView.findViewById<ImageView>(R.id.season_infos_poster)
+        if(season!!.posterId!=null) RemoteApiService.getRemoteImage(season!!.posterId,this.context)!!.into(poster)
 
         return myView
     }

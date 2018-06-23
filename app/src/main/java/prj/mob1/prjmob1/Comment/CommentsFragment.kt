@@ -50,7 +50,7 @@ class CommentsFragment : Fragment() {
             viewHolder.itemUsername.text = commentsList[i].username
             viewHolder.itemBody.text = commentsList[i].body
 
-            viewHolder.itemView.setOnClickListener { v: View  ->
+            viewHolder.itemView.setOnClickListener { _: View  ->
 
                 /*Snackbar.make(v, "Click detected on item $i",
                         Snackbar.LENGTH_LONG).setAction("Action", null).show()

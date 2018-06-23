@@ -17,7 +17,7 @@ import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
  */
 class MyListAdapter(private val context: Context, arrayList: ArrayList<Item>) : RecyclerView.Adapter<MyListAdapter.ViewHolder>()
 {
-    internal var arrayList = ArrayList<Item>()
+    internal var arrayList:ArrayList<Item> = ArrayList<Item>()
     private val inflater: LayoutInflater
 
     init {
@@ -33,7 +33,7 @@ class MyListAdapter(private val context: Context, arrayList: ArrayList<Item>) : 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
        // holder.my_poster?.setImageResource(arrayList[position].poster)
-        RemoteApiService.getRemoteImage(arrayList[position].poster,this.context)!!.into(holder.my_poster)
+        if(arrayList[position].poster!=null) RemoteApiService.getRemoteImage(arrayList[position].poster!!,this.context)!!.into(holder.my_poster)
        // holder.my_title?.text=arrayList[position].title
 
     }

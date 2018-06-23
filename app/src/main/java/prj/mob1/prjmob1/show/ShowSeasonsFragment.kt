@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.season.Season
@@ -17,10 +18,28 @@ class ShowSeasonsFragment : Fragment() {
 
     private lateinit var listener: ShowSeasonsFragment.OnSeasonSelected
 
+    private lateinit var seasons: ArrayList<Season>
+
+    companion object {
+
+        private val ARG_LIST = "list"
+
+        fun newInstance(seasons: ArrayList<Season>): ShowSeasonsFragment {
+            val fragment = ShowSeasonsFragment()
+            val args = Bundle()
+            args.putParcelableArrayList(ARG_LIST, seasons)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        if (arguments != null) {
+            seasons = arguments!!.getParcelableArrayList(ARG_LIST)
+        }
     }
+
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -35,33 +54,11 @@ class ShowSeasonsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val view: View =  inflater!!.inflate(R.layout.fragment_show_seasons, container, false)
+        val view: View =  inflater.inflate(R.layout.fragment_show_seasons, container, false)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.show_seasons_list) as
                 RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(activity)
-
-        val seasons: ArrayList<Season> = ArrayList<Season>()
-        val seasonNumsList = resources.getStringArray(R.array.seasons_nums)
-        val seasonEpsList = resources.getStringArray(R.array.seasons_eps)
-        val seasonDateBeginList = resources.getStringArray(R.array.seasons_date_begin)
-        val seasonDateEndList = resources.getStringArray(R.array.seasons_date_end)
-        val seasonOverviewsList = resources.getStringArray(R.array.seasons_overviews)
-
-        val posters = resources.obtainTypedArray(R.array.season_posters)
-        val images = resources.obtainTypedArray(R.array.season_images)
-
-        val titleShow= getString(R.string.season_title_show)
-        for(i in 0 .. seasonEpsList.size-1){
-            seasons.add(Season(seasonNumsList[i],titleShow, seasonEpsList[i].toInt(), seasonDateBeginList[i],
-                    seasonDateEndList[i],
-                    posters.getResourceId(i,0),
-                    images.getResourceId(i,0),
-                    seasonOverviewsList[i]))
-
-        }
-        posters.recycle()
-        images.recycle()
 
         recyclerView.adapter = SeasonListAdapter(seasons)
 
@@ -69,7 +66,7 @@ class ShowSeasonsFragment : Fragment() {
     }
 
     interface OnSeasonSelected {
-        fun onSeasonSelected(season: Season)
+        fun onSeasonSelected(numSeason: String,nbrEpisodes:Int)
     }
     /**/
     internal inner class SeasonListAdapter(val seasonList: ArrayList<Season>)
@@ -83,13 +80,14 @@ class ShowSeasonsFragment : Fragment() {
         }
 
         override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-            viewHolder.itemNums.text = seasonList[i].num_season
+            val seasonNum = "Season ${seasonList[i].num_season}"
+            viewHolder.itemNums.text = seasonNum
             val seasonEp = " ${seasonList[i].nbr_episodes.toString()} episodes"
             viewHolder.itemEps.text = seasonEp
 
             viewHolder.itemView.setOnClickListener { v: View  ->
 
-                listener.onSeasonSelected(seasonList[i])
+                listener.onSeasonSelected(seasonList[i].num_season,seasonList[i].nbr_episodes)
             }
         }
 

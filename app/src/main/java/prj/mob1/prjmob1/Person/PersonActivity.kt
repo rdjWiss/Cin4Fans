@@ -4,17 +4,25 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import android.widget.RatingBar
 import android.widget.Toast
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_person.*
 import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.Util.ConnectivityChecker
+import prj.mob1.prjmob1.Util.LoadingDialog
 import prj.mob1.prjmob1.rating.OnRateClick
+import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 
 class PersonActivity : AppCompatActivity(), OnRateClick {
 
 
-    private var name :String= ""
+    private var personId :Int= 0
+    private var person = Person()
     private var modeTab = false
+    private var imageTop:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,22 +32,62 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
         val bundle = intent.getBundleExtra("bundle")
         /*TODO: not null*/
         if(bundle != null){
-            name = bundle.getString("personName","")
+            personId = bundle.getInt("personId",0)
+            imageTop = bundle.getString("image")
+        }else{
+            personId = 20
         }
 
-        val infosFragment =
-                PersonInfosFragment.newInstance(name)
-        supportFragmentManager.beginTransaction().add(R.id.person_infos, infosFragment).commit()
+        if(ConnectivityChecker.isNetworkAvailable(this)) this.getPersonInfos()
+        else{
+            Toast.makeText(this,"Can't get person infos. No Network Connection",Toast.LENGTH_SHORT).show()
+            finish()
+        }
 
+    }
+
+    fun getPersonInfos(){
+        val loadingDialog= LoadingDialog.showLoadingDialog(this)
+
+        val apiService: RemoteApiService? = RemoteApiService.create()
+        apiService!!.getPersonInfosById(personId)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe ({
+                result ->
+//                    Toast.makeText(this,"Response ${result.tvCredits.cast[0].title}", Toast.LENGTH_LONG).show()
+                Log.e("Person",result.toString())
+
+                loadingDialog.dismiss()
+                person = result
+                person.imageTop = imageTop
+                initMovieInfosFrag()
+                initOverviewFragTabMode()
+                configureTabLayout()
+
+
+            }, { error ->
+                Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
+                error.printStackTrace()
+                loadingDialog.dismiss()
+                finish()
+
+            })
+    }
+
+    private fun initMovieInfosFrag(){
+        val infosFragment =
+                PersonInfosFragment.newInstance(person)
+        supportFragmentManager.beginTransaction().add(R.id.person_infos, infosFragment).commit()
+    }
+
+    private fun initOverviewFragTabMode() {
         //Overview fragment en mode tablette
-        if (modeTab){
-            val overview = PersonOverviewFragment.newInstance(name)
+        if (modeTab) {
+            val overview = PersonOverviewFragment.newInstance(person.biography, person.birthday, person.origin )
             supportFragmentManager.beginTransaction()
                     .add(R.id.person_overview, overview).commit()
         }
-
-        //Tabs
-        configureTabLayout()
     }
 
     private fun configureTabLayout() {
@@ -49,7 +97,7 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
         person_tab_layout.addTab(person_tab_layout.newTab().setText("Comments"))
 
         val adapter = PersonTabPagerAdapter(supportFragmentManager,
-                person_tab_layout.tabCount,name,modeTab)
+                person_tab_layout.tabCount,person,modeTab)
         person_viewpager.adapter = adapter
 
         person_viewpager.addOnPageChangeListener(

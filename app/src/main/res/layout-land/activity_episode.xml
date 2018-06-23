@@ -31,7 +31,7 @@
                 android:id="@+id/episode_image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dim_trailer_height"
-                app:srcCompat="@drawable/episode_image"
+                app:srcCompat="@drawable/default_movie_pic"
                 android:layout_marginTop="0dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"

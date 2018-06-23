@@ -12,23 +12,39 @@ import prj.mob1.prjmob1.databinding.FragmentSeasonOverviewBinding
 
 class SeasonOverviewFragment : Fragment() {
 
+    private lateinit var overview: String
+
+    companion object {
+
+        private val ARG_OVERVIEW = "overview"
+
+        fun newInstance(overview: String): SeasonOverviewFragment {
+            val fragment = SeasonOverviewFragment()
+            val args = Bundle()
+            args.putString(ARG_OVERVIEW, overview)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        if (arguments != null) {
+            overview = arguments!!.getString(ARG_OVERVIEW)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         val binding : FragmentSeasonOverviewBinding =
-                FragmentSeasonOverviewBinding.inflate(inflater!! ,container , false)
+                FragmentSeasonOverviewBinding.inflate(inflater ,container , false)
         val myView : View  = binding.root
 
-        val overview = getResources().getString(R.string.season_overview)
+//        val overview = getResources().getString(R.string.season_overview)
 
         val season = Season()
         season.overview = overview
-        Log.e("TAG",season.num_season)
         binding.season = season
 
         return myView

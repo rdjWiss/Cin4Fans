@@ -40,7 +40,7 @@ class ListAdapter (private val context: Context, arrayList: ArrayList<Item>) : R
          * */
 
         //holder.poster?.setImageResource(arrayList[position].poster)
-        RemoteApiService.getRemoteImage(arrayList[position].poster,this.context)!!.into(holder.poster)
+        if(arrayList[position].poster!=null) RemoteApiService.getRemoteImage(arrayList[position].poster!!,this.context)!!.into(holder.poster)
        /* holder.year?.text=arrayList[position].year.toString()
         holder.title?.text=arrayList[position].title
         holder.tag?.text=arrayList[position].tag*/

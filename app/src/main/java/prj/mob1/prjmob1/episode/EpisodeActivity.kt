@@ -4,15 +4,27 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AlertDialog
+import android.util.Log
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.Toast
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 import kotlinx.android.synthetic.main.activity_episode.*
 import prj.mob1.prjmob1.R
+import prj.mob1.prjmob1.Util.ConnectivityChecker
+import prj.mob1.prjmob1.Util.LoadingDialog
 import prj.mob1.prjmob1.rating.OnRateClick
+import prj.mob1.prjmob1.retrofitUtil.RemoteApiService
 
 class EpisodeActivity : AppCompatActivity(), OnRateClick {
 
+    private var showId = 1
+    private var seasonNum = 1
+    private var episodeNum = 1
+    private var showTitle = ""
+    private var network = ""
 
     private var episode: Episode = Episode()
     private var modeTab = false
@@ -26,30 +38,76 @@ class EpisodeActivity : AppCompatActivity(), OnRateClick {
         val bundle = intent.getBundleExtra("bundle")
         /*TODO: not null*/
         if(bundle != null){
-            episode  = bundle.getParcelable<Episode>("episode") as Episode
+            showId = bundle.getInt("showId")
+            seasonNum = bundle.getInt("seasonNum")
+            episodeNum = bundle.getInt("episodeNum")
+            showTitle = bundle.getString("showTitle")
+            network = bundle.getString("network")
         }else{
-            episode= Episode()
+            //TODO Show error and finish activity
         }
-
-        //Fragment infos
-        val infosFragment =
-                EpisodeInfosFragment.newInstance(episode)
-        supportFragmentManager.beginTransaction().add(R.id.episode_infos, infosFragment).commit()
 
         //Back arrow
         back_arrow.setOnClickListener{
             finish()
         }
 
+        if(ConnectivityChecker.isNetworkAvailable(this)) this. getEpisodeData()
+        else{
+            Toast.makeText(this,"Can't get episode infos. No Network Connection",Toast.LENGTH_SHORT).show()
+            finish()
+        }
+
+
+    }
+
+    private fun getEpisodeData(){
+        val loadingDialog= LoadingDialog.showLoadingDialog(this)
+
+        val apiService: RemoteApiService? = RemoteApiService.create()
+        apiService!!.getEpisodeInfosById(showId, seasonNum,episodeNum)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe ({
+                    result ->
+//                    Toast.makeText(this,"Response ${result}", Toast.LENGTH_LONG).show()
+                    Log.e("EPSIODE",result.toString())
+                    episode = result
+                    episode.title_show = showTitle
+                    episode.channel = network
+
+                    loadingDialog.dismiss()
+                    initEpisodeInfosFrag()
+                    initOverviewFragTabMode()
+                    configureTabLayout()
+
+                    val poster = findViewById<ImageView>(R.id.episode_image)
+                    if(episode.posterId!=null) RemoteApiService.getRemoteImage(episode.posterId,this)!!.into(poster)
+
+                }, { error ->
+                    Toast.makeText(this,"Error ${error.message}", Toast.LENGTH_LONG).show()
+                    error.printStackTrace()
+                    loadingDialog.dismiss()
+                    finish()
+
+                })
+
+    }
+
+    private fun initEpisodeInfosFrag(){
+        //Fragment infos
+        val infosFragment =
+                EpisodeInfosFragment.newInstance(episode)
+        supportFragmentManager.beginTransaction().add(R.id.episode_infos, infosFragment).commit()
+    }
+
+    private fun initOverviewFragTabMode(){
         //Overview fragment for tablet
         if (modeTab){
             val overviewFrag = OverviewFragment.newInstance(episode.overview)
             supportFragmentManager.beginTransaction()
                     .add(R.id.episode_overview, overviewFrag).commit()
         }
-
-        //Tabs
-        configureTabLayout()
 
     }
 

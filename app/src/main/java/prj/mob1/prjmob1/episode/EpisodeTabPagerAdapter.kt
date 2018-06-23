@@ -20,14 +20,7 @@ class EpisodeTabPagerAdapter (fm: FragmentManager, private var tabCount: Int,
         if (modeLand) pos++
 
         when (pos) {
-            0 -> {
-                var bundle = Bundle()
-                Log.e("TAG", episode.overview)
-                bundle.putString("overview", episode.overview)
-                var frag = OverviewFragment()
-                frag.arguments = bundle
-                return frag
-            }
+            0 -> return OverviewFragment.newInstance(episode.overview)
             1 -> return CommentsFragment()
             else -> return null
         }
