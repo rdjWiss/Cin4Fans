@@ -152,6 +152,7 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         val rand= { Random().nextInt(episodes.size-1 + 1 ) } // TODO fix invalid index -> Fixed ... maybe
         var i = rand()
         while (episodes[i].posterId == null) i= rand()
+        season.imageId = episodes[i].posterId
         RemoteApiService.getRemoteImage(episodes[i].posterId,this)!!.into(imageTop)
     }
 
@@ -159,6 +160,7 @@ class SeasonActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         val intent = Intent(this, PersonActivity::class.java)
         val bundle = Bundle()
         bundle.putInt("personId",creditId)
+        bundle.putString("image",season.imageId)
         intent.putExtra("bundle",bundle)
         startActivity(intent)
     }

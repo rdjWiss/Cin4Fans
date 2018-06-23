@@ -31,10 +31,11 @@ data class Person ( @SerializedName("id") val id:Int,
                     @SerializedName("birthday") var birthday:String,
                     @SerializedName("place_of_birth") var origin : String,
                     @SerializedName("biography") var biography:String,
-                    @SerializedName("profile_path") val imageId: String,
+                    @SerializedName("profile_path") val imageId: String?,
                     val posterId:Int,
                     @SerializedName("movie_credits") val movieCredits: PersonMovieCredits,
-                    @SerializedName("tv_credits") val tvCredits: PersonTVCredits) : Parcelable{
+                    @SerializedName("tv_credits") val tvCredits: PersonTVCredits,
+                    var imageTop:String?) : Parcelable{
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
             parcel.readString(),
@@ -44,7 +45,8 @@ data class Person ( @SerializedName("id") val id:Int,
             parcel.readString(),
             parcel.readInt(),
             PersonMovieCredits(listOf()),
-            PersonTVCredits(listOf())
+            PersonTVCredits(listOf()),
+            parcel.readString()
             ) {
     }
 
@@ -56,6 +58,7 @@ data class Person ( @SerializedName("id") val id:Int,
         parcel.writeString(biography)
         parcel.writeString(imageId)
         parcel.writeInt(posterId)
+        parcel.writeString(imageTop)
     }
 
     override fun describeContents(): Int {
@@ -72,5 +75,5 @@ data class Person ( @SerializedName("id") val id:Int,
         }
     }
 
-    constructor() : this(0,"NA","NA","NA","NA","NA",0,PersonMovieCredits(listOf()),PersonTVCredits(listOf()))
+    constructor() : this(0,"NA","NA","NA","NA","NA",0,PersonMovieCredits(listOf()),PersonTVCredits(listOf()),"")
 }

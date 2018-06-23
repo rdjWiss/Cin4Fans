@@ -22,6 +22,7 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
     private var personId :Int= 0
     private var person = Person()
     private var modeTab = false
+    private var imageTop:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,7 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
         /*TODO: not null*/
         if(bundle != null){
             personId = bundle.getInt("personId",0)
+            imageTop = bundle.getString("image")
         }else{
             personId = 20
         }
@@ -58,6 +60,7 @@ class PersonActivity : AppCompatActivity(), OnRateClick {
 
                 loadingDialog.dismiss()
                 person = result
+                person.imageTop = imageTop
                 initMovieInfosFrag()
                 initOverviewFragTabMode()
                 configureTabLayout()

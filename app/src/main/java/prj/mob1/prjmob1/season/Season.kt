@@ -16,7 +16,7 @@ data class Season (@SerializedName("id") val id:Int,
                    @SerializedName("air_date") val date_begin: String,
                     /*@SerializedName("id")*/ val date_end: String,
                    @SerializedName("poster_path") val posterId: String,
-                   /* @SerializedName("id")*/ val imageId: Int,
+                   /* @SerializedName("id")*/ var imageId: String,
                    @SerializedName("overview") var overview: String,
                    @SerializedName("credits") var credits: CreditResponse,
                    @SerializedName("episodes") var episodes: List<Episode>) : Parcelable {
@@ -28,13 +28,13 @@ data class Season (@SerializedName("id") val id:Int,
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readInt(),
+            parcel.readString(),
             parcel.readString(),
             parcel.readParcelable(CreditResponse::class.java.classLoader),
             parcel.createTypedArrayList(Episode)) {
     }
 
-    constructor() : this(0,"NA","NA",0,"NA","NA","NA",0,"",CreditResponse(0, listOf(), listOf()), listOf())
+    constructor() : this(0,"NA","NA",0,"NA","NA","NA","","",CreditResponse(0, listOf(), listOf()), listOf())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(num_season)
@@ -43,7 +43,7 @@ data class Season (@SerializedName("id") val id:Int,
         parcel.writeString(date_begin)
         parcel.writeString(date_end)
         parcel.writeString(posterId)
-        parcel.writeInt(imageId)
+        parcel.writeString(imageId)
         parcel.writeString(overview)
         parcel.writeParcelable(credits, flags)
         parcel.writeTypedList(episodes)

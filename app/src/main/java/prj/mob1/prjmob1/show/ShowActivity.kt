@@ -161,6 +161,7 @@ class ShowActivity : AppCompatActivity(), CrewFragment.OnCrewSelected,
         val intent = Intent(this, PersonActivity::class.java)
         val bundle = Bundle()
         bundle.putInt("personId",creditId)
+        bundle.putString("image",show.imagePath)
         intent.putExtra("bundle",bundle)
         startActivity(intent)
     }

@@ -52,8 +52,11 @@ class PersonInfosFragment : Fragment() {
                 FragmentPersonInfosBinding.inflate(inflater ,container , false)
         val view : View  = binding.root
 
-        val image = view.findViewById<ImageView>(R.id.person_profil_image)
-        if(person!!.imageId !=null) RemoteApiService.getRemoteImage(person!!.imageId,this.context)!!.into(image)
+        var image = view.findViewById<ImageView>(R.id.person_profil_image)
+        if(person!!.imageId !=null) RemoteApiService.getRemoteImage(person?.imageId!!,this.context)!!.into(image)
+
+        image = view.findViewById<ImageView>(R.id.person_image_top)
+        if(person!!.imageTop !=null) RemoteApiService.getRemoteImage(person?.imageTop!!,this.context)!!.into(image)
         binding.person = person
 
         //Set rating listener
