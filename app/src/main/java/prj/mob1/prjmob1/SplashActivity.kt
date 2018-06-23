@@ -9,7 +9,7 @@ import prj.mob1.prjmob1.Home.HomeActivity
 class SplashActivity : AppCompatActivity() {
 
     private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 2 //TODO 2 seconds = 2000
+    private val SPLASH_DELAY: Long = 2000 //TODO 2 seconds = 2000
 
     internal val mRunnable: Runnable = Runnable {
         if (!isFinishing) {

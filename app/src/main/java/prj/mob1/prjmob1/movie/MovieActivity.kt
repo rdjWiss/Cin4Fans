@@ -179,10 +179,10 @@ class MovieActivity : AppCompatActivity(), CrewFragment.OnCrewSelected, ActionsI
 
             if(movieAdapter != null) {
                 Log.e("Fin",movieAdapter.id.toString())
-                Toast.makeText(this,movieAdapter.id.toString(),Toast.LENGTH_LONG).show()
+//                Toast.makeText(this,movieAdapter.id.toString(),Toast.LENGTH_LONG).show()
                 infosFragment.setBookmarkOff()
             }else {
-                Toast.makeText(this,"Not in DB",Toast.LENGTH_LONG).show()
+//                Toast.makeText(this,"Not in DB",Toast.LENGTH_LONG).show()
             }
         })
 
