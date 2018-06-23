@@ -17,18 +17,17 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import prj.mob1.prjmob1.ListItem.ListMovies
 import prj.mob1.prjmob1.ListItem.ListShow
-<<<<<<< HEAD
-import prj.mob1.prjmob1.Settings.ListeItemChoice
-import prj.mob1.prjmob1.movie.MovieClass
-import prj.mob1.prjmob1.retrofitUtil.RemoteApiService.Factory.API_KEY
-=======
-import prj.mob1.prjmob1.episode.Episode
-import prj.mob1.prjmob1.season.Season
->>>>>>> b8bf0ddb42ed5756be37707e36fc9ed57b03567c
-import retrofit2.Response
 import prj.mob1.prjmob1.Person.Person
-import prj.mob1.prjmob1.show.TVShow
+
+import prj.mob1.prjmob1.Settings.ListeItemChoice
+import prj.mob1.prjmob1.episode.Episode
 import prj.mob1.prjmob1.movie.MovieClass
+
+import prj.mob1.prjmob1.season.Season
+import prj.mob1.prjmob1.show.TVShow
+
+
+import retrofit2.Response
 import retrofit2.http.Query
 
 
