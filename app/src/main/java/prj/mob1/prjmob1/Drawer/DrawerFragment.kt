@@ -19,6 +19,7 @@ import prj.mob1.prjmob1.Home.HomeActivity
 import prj.mob1.prjmob1.MyCinema.MyCinemaActivity
 import prj.mob1.prjmob1.MyMovies.MyMoviesActivity
 import prj.mob1.prjmob1.MyShows.MyShowActivity
+import prj.mob1.prjmob1.Settings.ChoiceGenresActivity
 
 
 import java.util.*
@@ -103,6 +104,9 @@ class DrawerFragment : Fragment() {
                startActivity (intent)}
            6->
            {val intent = Intent (context, MyCinemaActivity:: class.java)
+               startActivity (intent)}
+           7->
+           { val intent = Intent (context, ChoiceGenresActivity:: class.java)
                startActivity (intent)}
             else -> {
             }

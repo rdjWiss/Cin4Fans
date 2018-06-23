@@ -40,5 +40,12 @@
         <item name="android:textCursorDrawable">@drawable/cursor</item>
     </style>
 
+    <!-- Set up checkbox style -->
+    <style name="checkBoxComponent" parent="AppTheme">
+        //Checked color
+        <item name="colorAccent">@color/colorAccent</item>
+        //Checkbox border color
+        <item name="android:textColorSecondary">@color/blue_grey_800_50p</item>
+    </style>
 
 </resources>

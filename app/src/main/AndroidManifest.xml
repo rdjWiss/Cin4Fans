@@ -50,7 +50,8 @@
         <activity android:name=".MyMovies.MyMoviesActivity" />
         <activity android:name=".MyShows.MyShowActivity" />
         <activity android:name=".Cinema.CinemasActivity" />
-        <activity android:name=".MyCinema.MyCinemaActivity"></activity>
+        <activity android:name=".MyCinema.MyCinemaActivity" />
+        <activity android:name=".Settings.ChoiceGenresActivity"></activity>
     </application>
 
 </manifest>
