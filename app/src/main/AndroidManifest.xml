@@ -51,7 +51,23 @@
         <activity android:name=".MyMovies.MyMoviesActivity" />
         <activity android:name=".MyShows.MyShowActivity" />
         <activity android:name=".Cinema.CinemasActivity" />
-        <activity android:name=".MyCinema.MyCinemaActivity"></activity>
+        <activity android:name=".MyCinema.MyCinemaActivity" />
+
+        <service
+            android:name=".notification.NotificationService"
+            android:exported="false" />
+
+        <receiver
+            android:name=".notification.NewMoviesReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="prj.mob1.prjmob1.notification.alarm" />
+            </intent-filter>
+        </receiver>
+
+
     </application>
 
 </manifest>

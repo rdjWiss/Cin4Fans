@@ -21,8 +21,10 @@ import prj.mob1.prjmob1.episode.Episode
 import prj.mob1.prjmob1.season.Season
 import retrofit2.Response
 import prj.mob1.prjmob1.Person.Person
+import prj.mob1.prjmob1.Settings.ListeItemChoice
 import prj.mob1.prjmob1.show.TVShow
 import prj.mob1.prjmob1.movie.MovieClass
+import prj.mob1.prjmob1.retrofitUtil.models.Genre
 import retrofit2.http.Query
 
 
@@ -70,6 +72,12 @@ interface RemoteApiService {
     @GET("discover/tv?api_key=$API_KEY")
     fun getAllShow(@Query("page")page:Int = 1): Observable<Response<ListShow>>
 
+    @GET("movie/upcoming?api_key=$API_KEY&include_adult=false")
+    fun getNewMovie(): Observable<Response<ListMovies>>
+
+    //genre/movie/list
+    @GET("genre/movie/list?api_key=$API_KEY")
+    fun getGenres(): Observable<Response<ListeItemChoice>>
 
     // Companion object to create the RemoteApiService,
     //Singleton

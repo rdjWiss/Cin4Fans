@@ -17,6 +17,9 @@ import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.Util.ConnectivityChecker
 import prj.mob1.prjmob1.Util.initDrawer
 import java.util.*
+import android.content.Intent
+import prj.mob1.prjmob1.notification.NotificationService
+import prj.mob1.prjmob1.notification.UpdateScheduler
 
 
 class HomeActivity : AppCompatActivity() {
@@ -41,8 +44,11 @@ class HomeActivity : AppCompatActivity() {
             initDrawer()
             // The tab
             configureTabLayout()
+            startNotifService()
         }
 
+        val service = UpdateScheduler()
+        service.scheduleAlarm(this)
         /*// Initialize the handler instance
         mHandler = Handler()
 
@@ -131,6 +137,15 @@ class HomeActivity : AppCompatActivity() {
         // Get the next random number within range
         // Including both minimum and maximum number
         return r.nextInt((max - min) + 1) + min;
+    }
+
+    fun startNotifService() {
+        // Construct our Intent specifying the Service
+        val i = Intent(this, NotificationService::class.java)
+        // Add extras to the bundle
+        i.putExtra("foo", "bar")
+        // Start the service
+        startService(i)
     }
 
 }

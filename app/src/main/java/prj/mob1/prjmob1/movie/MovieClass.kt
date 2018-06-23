@@ -28,7 +28,8 @@ data class MovieClass(@SerializedName("id") val id: Int,
                       @SerializedName("similar") var similar: SimilarMoviesResponse,
                       @SerializedName("reviews") var reviews: ReviewsResponse,
                       @SerializedName("videos")  var videos:VideoResponse,
-                      @SerializedName("genres")  var genres:List<Genre>
+                      @SerializedName("genres")  var genres:List<Genre>,
+                      @SerializedName("genre_ids") var genreIds:IntArray
                       ) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
@@ -46,16 +47,19 @@ data class MovieClass(@SerializedName("id") val id: Int,
             parcel.readParcelable(SimilarMoviesResponse::class.java.classLoader),
             parcel.readParcelable(ReviewsResponse::class.java.classLoader),
             parcel.readParcelable(VideoResponse::class.java.classLoader),
-            parcel.createTypedArrayList(Genre)) {
+            parcel.createTypedArrayList(Genre),
+            parcel.createIntArray()) {
     }
 
     constructor() : this(0, "NA", "NA", "NA", "NA", 0, "NA","NA", "NA", 0.0, 0, CreditResponse(0, listOf(), listOf()),
-            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), VideoResponse(listOf()),listOf())
+            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()),
+            VideoResponse(listOf()),listOf(), intArrayOf())
 
     constructor(movie:MovieRoomAdapter?)
             :this(movie!!.id,movie.title,movie.releaseDate,movie.year,movie.tags,movie.duration,
             movie.posterId,movie.imagePath,movie.overview,movie.rating,movie.voteCount,CreditResponse(0, listOf(), listOf()),
-            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), VideoResponse(listOf()),listOf())
+            SimilarMoviesResponse(0, listOf()),ReviewsResponse(0, listOf()), VideoResponse(listOf()),listOf(),
+            intArrayOf())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
@@ -74,6 +78,7 @@ data class MovieClass(@SerializedName("id") val id: Int,
         parcel.writeParcelable(reviews, flags)
         parcel.writeParcelable(videos, flags)*/
         parcel.writeTypedList(genres)
+        parcel.writeIntArray(genreIds)
     }
 
     override fun describeContents(): Int {
