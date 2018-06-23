@@ -13,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import prj.mob1.prjmob1.ListItem.*
 import prj.mob1.prjmob1.R
 import prj.mob1.prjmob1.R.layout.item
+import prj.mob1.prjmob1.Util.ConnectivityChecker
 import prj.mob1.prjmob1.Util.EndlessRecyclerViewScrollListener
 import prj.mob1.prjmob1.Util.LoadingDialog
 import prj.mob1.prjmob1.movie.MovieActivity
@@ -126,8 +127,20 @@ import retrofit2.Response
     }
 
     override fun getData(){
-        loadingDialog= LoadingDialog.showLoadingDialog(this.context)
-        RemoteApiService.apply { sendRequest(create()!!.getTVShow_now(), { onCreateMovieDataSuccess(it) },{onCreateMovieLatestFail(it)}) }
+        if(!ConnectivityChecker.isNetworkAvailable(activity!!.applicationContext)){
+            Toast.makeText(activity!!.applicationContext, "No Network Connection",Toast.LENGTH_LONG).show()
+
+        }else{
+            loadingDialog= LoadingDialog.showLoadingDialog(this.context)
+            RemoteApiService.apply { sendRequest(create()!!.getTVShow_now(), {
+                onCreateMovieDataSuccess(it)
+            },{
+                onCreateMovieLatestFail(it)})
+                loadingDialog.dismiss()
+            }
+
+
+        }
     }
 
     fun onCreateMovieDataSuccess(result: Response<ListShow>)

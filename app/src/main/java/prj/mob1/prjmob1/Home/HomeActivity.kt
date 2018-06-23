@@ -36,10 +36,10 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         setTitle("Home")
 
-        if(!ConnectivityChecker.isNetworkAvailable(this)){
-            Toast.makeText(this, "No Network Connection",Toast.LENGTH_LONG).show()
-
-        }
+//        if(!ConnectivityChecker.isNetworkAvailable(this)){
+//            Toast.makeText(this, "No Network Connection",Toast.LENGTH_LONG).show()
+//
+//        }
         apply {
             initDrawer()
             // The tab

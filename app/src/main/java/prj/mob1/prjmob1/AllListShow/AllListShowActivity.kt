@@ -20,10 +20,10 @@ class AllListShowActivity : AppCompatActivity() {
         setContentView(R.layout.activity_all_list_show)
         setTitle("All TV Shows")
 
-        if(!ConnectivityChecker.isNetworkAvailable(this)){
+        /*if(!ConnectivityChecker.isNetworkAvailable(this)){
             Toast.makeText(this, "No Network Connection", Toast.LENGTH_LONG).show()
 
-        }
+        }*/
         apply {
             initDrawer()
             addFragment(AllListShowFragment(),R.id.container_body_all_show)

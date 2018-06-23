@@ -21,10 +21,10 @@ class Activity_all_list_movie : AppCompatActivity() {
         setContentView(R.layout.activity_all_list_movie)
         setTitle("All Movies")
 
-        if(!ConnectivityChecker.isNetworkAvailable(this)){
+        /*if(!ConnectivityChecker.isNetworkAvailable(this)){
             Toast.makeText(this, "No Network Connection", Toast.LENGTH_LONG).show()
 
-        }
+        }*/
         apply {
             initDrawer()
            //addFragment(AllListMoviesFragment(),R.id.container_body_all_movie)

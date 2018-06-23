@@ -14,11 +14,11 @@ class CinemaFragment: BaseFragment()
     }
     override fun initItem():ArrayList<Item>
     {
-        var item= Item(200,"",""
+        /*val item= Item(200,"",""
                 )
 
-        var items= arrayListOf(item,item,item,item,item,item,item,item,item,item)
-        return items
+        val items= arrayListOf(item,item,item,item,item,item,item,item,item,item)*/
+        return arrayListOf()
     }
     override fun openActivity(position: Int) {
         //Géolicasation
